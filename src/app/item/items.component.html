@@ -1,0 +1,21 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" loaded="pageLoaded" actionBarHidden="true">
+</Page>
+
+<FlexboxLayout class="page">
+    <StackLayout class="form">
+        <StackLayout>
+            <Image class="logo" src="~/images/logo.png"></Image>
+        </StackLayout>
+        <StackLayout>
+            <TextField [(ngModel)]="this.user" class="input-rounded" hint="Username..." autocorrect="false"
+             autocapitalizationType="none" ></TextField>
+        </StackLayout>
+
+        <StackLayout>
+            <TextField [(ngModel)]="this.pass" class="input-rounded" hint="Password..." autocorrect="false" autocapitalizationType="none"
+            ></TextField>
+        </StackLayout>
+
+        <Button text="Log In" class="btn-btn-primary" (tap)="loginAuthenicate()"></Button>
+      </StackLayout>
+</FlexboxLayout>
