@@ -8,5 +8,8 @@ import {Router} from "@angular/router";
 export class rootpageComponent {
 
     public constructor() {}
+    fun(): void{
+        console.log("############### CLICKED");
+    }
 
 }
