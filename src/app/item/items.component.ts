@@ -19,7 +19,6 @@ export class ItemsComponent implements OnInit {
     constructor(private router: Router,private page: Page) { }
     ngOnInit(): void {
         // this.page.actionBar.title="Title check"         (Action Bar Title)
-        this.page.actionBarHidden=true;
     }
 
     loginAuthenicate() :void{

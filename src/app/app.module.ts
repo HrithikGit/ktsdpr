@@ -4,6 +4,7 @@ import { NativeScriptModule } from "@nativescript/angular";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ItemsComponent } from "./item/items.component";
+import { FormsModule } from '@angular/forms';
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 import { NativeScriptFormsModule } from "@nativescript/angular/forms";
@@ -18,7 +19,8 @@ import { NativeScriptFormsModule } from "@nativescript/angular/forms";
     imports: [
         NativeScriptModule,
         AppRoutingModule,
-        NativeScriptFormsModule
+        NativeScriptFormsModule,
+        FormsModule
     ],
     declarations: [
         AppComponent,

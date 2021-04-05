@@ -7,9 +7,17 @@ import {Router} from "@angular/router";
 })
 export class rootpageComponent {
 
-    public constructor() {}
-    fun(): void{
-        console.log("############### CLICKED");
+    public constructor(private router: Router) {}
+    teacherdetails(): void{
+        this.router.navigate(["updateteacher"]);
+    }
+
+    studentdetails(): void{
+        this.router.navigate(["updatestudent"]);
+    }
+
+    blog(): void{
+        this.router.navigate(["blog"]);
     }
 
 }
