@@ -5,10 +5,14 @@ import {Router} from "@angular/router";
     selector: "rootpage",
     templateUrl: "./rootpage.html",
 })
-export class rootpageComponent {
-
+export class rootpageComponent implements OnInit{
+    check="";
     public constructor(private router: Router) {}
+    ngOnInit(): void {
+
+    }
     teacherdetails(): void{
+        console.log(this.check);
         this.router.navigate(["updateteacher"]);
     }
 

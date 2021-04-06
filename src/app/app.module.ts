@@ -1,11 +1,18 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
-import { NativeScriptModule } from "@nativescript/angular";
-
+import { NativeScriptModule } from "@nativescript/angular";;
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ItemsComponent } from "./item/items.component";
 import { FormsModule } from '@angular/forms';
-
+import {teacherpageComponent} from "./teacherpage/teacherpage";
+import {updateteacherComponent} from "./rootpage/updateteacher/updateteacher";
+import {updatestudentComponent} from "./rootpage/updatestudent/updatestudent";
+import {timetableComponent} from "./rootpage/timetable/timetable";
+import {blogComponent} from "./rootpage/blog/blog";
+import {deleteteacherComponent} from "./rootpage/updateteacher/deleteteacher/deleteteacher";
+import {addteacherComponent} from "./rootpage/updateteacher/addteacher/addteacher";
+import {deletestudentComponent} from "./rootpage/updatestudent/deletestudent/deletestudent";
+import {addstudentComponent} from "./rootpage/updatestudent/addstudent/addstudent";
 // Uncomment and add to NgModule imports if you need to use two-way binding
 import { NativeScriptFormsModule } from "@nativescript/angular/forms";
 
@@ -24,7 +31,17 @@ import { NativeScriptFormsModule } from "@nativescript/angular/forms";
     ],
     declarations: [
         AppComponent,
-        ItemsComponent
+        ItemsComponent,
+        teacherpageComponent,
+        addteacherComponent,
+        addstudentComponent,
+        deletestudentComponent,
+        timetableComponent,
+        updateteacherComponent,
+        updatestudentComponent,
+        blogComponent,
+        deleteteacherComponent
+
     ],
     providers: [],
     schemas: [

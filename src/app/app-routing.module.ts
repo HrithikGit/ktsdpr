@@ -18,7 +18,8 @@ import {deletestudentComponent} from "./rootpage/updatestudent/deletestudent/del
 import {addstudentComponent} from "./rootpage/updatestudent/addstudent/addstudent";
 
 const routes: Routes = [
-    { path: "", redirectTo: "/items", pathMatch: "full" },
+    // { path: "", redirectTo: "/items", pathMatch: "full" },
+    { path: "", redirectTo: "/root", pathMatch: "full" },
     { path: "items", component: ItemsComponent },
     { path: "root", component: rootpageComponent},
     { path: "teacher", component:teacherpageComponent},
