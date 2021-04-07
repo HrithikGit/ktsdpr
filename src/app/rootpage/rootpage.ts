@@ -19,7 +19,9 @@ export class rootpageComponent implements OnInit{
     studentdetails(): void{
         this.router.navigate(["updatestudent"]);
     }
-
+    timetable(): void{
+        this.router.navigate(["timetable"]);
+    }
     blog(): void{
         this.router.navigate(["blog"]);
     }
