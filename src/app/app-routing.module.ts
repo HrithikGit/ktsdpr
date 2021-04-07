@@ -2,6 +2,9 @@ import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "@nativescript/angular";
 
+
+//Components
+import { attendanceComponent} from "./rootpage/attendance/attendance";
 import { ItemsComponent } from "./item/items.component";
 import {rootpageComponent} from "./rootpage/rootpage";
 import {teacherpageComponent} from "./teacherpage/teacherpage";
@@ -33,7 +36,8 @@ const routes: Routes = [
     {path: "success/:name", component:successComponent},
     {path: "fail/:name", component:failComponent},
     {path: "addstudent", component:addstudentComponent},
-    {path: "deletestudent", component: deletestudentComponent}
+    {path: "deletestudent", component: deletestudentComponent},
+    {path: "attendance", component:attendanceComponent}
 ];
 
 @NgModule({

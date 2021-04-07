@@ -23,5 +23,8 @@ export class rootpageComponent implements OnInit{
     blog(): void{
         this.router.navigate(["blog"]);
     }
+    attendance() : void{
+        this.router.navigate(["attendance"]);
+    }
 
 }

@@ -10,7 +10,10 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class successComponent {
     public message:string;
+    public arr:Array<string> = [];
     public constructor(private router: Router,private page: Page,private route: ActivatedRoute) {
+        this.arr.push("hello");
+        this.arr.push("bye");
         this.route.params.subscribe((params)=>{
             this.message=params["name"];
         });

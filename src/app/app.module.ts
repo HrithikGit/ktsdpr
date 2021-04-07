@@ -1,6 +1,12 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "@nativescript/angular";;
 import { AppRoutingModule } from "./app-routing.module";
+import { NativeScriptFormsModule } from "@nativescript/angular/forms";
+import { NativeScriptCommonModule } from "@nativescript/angular";
+// Uncomment and add to NgModule imports if you need to use the HttpClient wrapper
+// import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+
+//Components
 import { AppComponent } from "./app.component";
 import { ItemsComponent } from "./item/items.component";
 import { FormsModule } from '@angular/forms';
@@ -13,11 +19,8 @@ import {deleteteacherComponent} from "./rootpage/updateteacher/deleteteacher/del
 import {addteacherComponent} from "./rootpage/updateteacher/addteacher/addteacher";
 import {deletestudentComponent} from "./rootpage/updatestudent/deletestudent/deletestudent";
 import {addstudentComponent} from "./rootpage/updatestudent/addstudent/addstudent";
-// Uncomment and add to NgModule imports if you need to use two-way binding
-import { NativeScriptFormsModule } from "@nativescript/angular/forms";
-
-// Uncomment and add to NgModule imports if you need to use the HttpClient wrapper
-// import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+import {successComponent} from "./rootpage/success/success";
+import { attendanceComponent} from "./rootpage/attendance/attendance";
 
 @NgModule({
     bootstrap: [
@@ -27,7 +30,8 @@ import { NativeScriptFormsModule } from "@nativescript/angular/forms";
         NativeScriptModule,
         AppRoutingModule,
         NativeScriptFormsModule,
-        FormsModule
+        FormsModule,
+        NativeScriptCommonModule
     ],
     declarations: [
         AppComponent,
@@ -40,8 +44,9 @@ import { NativeScriptFormsModule } from "@nativescript/angular/forms";
         updateteacherComponent,
         updatestudentComponent,
         blogComponent,
-        deleteteacherComponent
-
+        deleteteacherComponent,
+        successComponent,
+        attendanceComponent
     ],
     providers: [],
     schemas: [
