@@ -19,6 +19,11 @@ import {successComponent} from "./rootpage/success/success";
 import {failComponent} from "./rootpage/fail/fail";
 import {deletestudentComponent} from "./rootpage/updatestudent/deletestudent/deletestudent";
 import {addstudentComponent} from "./rootpage/updatestudent/addstudent/addstudent";
+import {addtimetableComponent} from "./rootpage/timetable/addtimetable/addtimetable";
+import {displaytimetableComponent} from "./rootpage/timetable/displaytimetable/displaytimetable";
+import {timetableclassselectComponent} from "./rootpage/timetable/timetableclassselect/timetableclassselect";
+import {deletetimetableComponent} from "./rootpage/timetable/deletetimetable/deletetimetable";
+import {updatetimetableComponent} from "./rootpage/timetable/updatetimetable/updatetimetable";
 
 const routes: Routes = [
     // { path: "", redirectTo: "/items", pathMatch: "full" },
@@ -37,7 +42,13 @@ const routes: Routes = [
     {path: "fail/:name", component:failComponent},
     {path: "addstudent", component:addstudentComponent},
     {path: "deletestudent", component: deletestudentComponent},
-    {path: "attendance", component:attendanceComponent}
+    {path: "attendance", component:attendanceComponent},
+    {path: "addtimetable",component:addtimetableComponent},
+    {path: "deletetimetable/:name", component:deletetimetableComponent},
+    {path:"updatetimetable/:name", component:updatetimetableComponent},
+    {path:"timetableclassselect/:name",component:timetableclassselectComponent},
+    {path: "displaytimetable/:name", component:displaytimetableComponent}
+
 ];
 
 @NgModule({

@@ -1,0 +1,16 @@
+<!--<StackLayout>
+    <template *ngFor="let class of this.classes">
+        <Button [text]="class" width="100%"></Button>
+    </template>
+</StackLayout>-->
+
+
+<GridLayout>
+    <ListView [items]="this.classes">
+      <ng-template let-item="item">
+        <StackLayout [nsRouterLink]="['/'+this.detail, item.class]">
+          <Label [text]="item.class" horizonalAlignment="center"></Label>
+        </StackLayout>
+      </ng-template>
+    </ListView>
+  </GridLayout>

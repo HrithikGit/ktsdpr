@@ -21,6 +21,11 @@ import {deletestudentComponent} from "./rootpage/updatestudent/deletestudent/del
 import {addstudentComponent} from "./rootpage/updatestudent/addstudent/addstudent";
 import {successComponent} from "./rootpage/success/success";
 import { attendanceComponent} from "./rootpage/attendance/attendance";
+import {addtimetableComponent} from "./rootpage/timetable/addtimetable/addtimetable";
+import {displaytimetableComponent} from "./rootpage/timetable/displaytimetable/displaytimetable";
+import {timetableclassselectComponent} from "./rootpage/timetable/timetableclassselect/timetableclassselect";
+import {deletetimetableComponent} from "./rootpage/timetable/deletetimetable/deletetimetable";
+import {updatetimetableComponent} from "./rootpage/timetable/updatetimetable/updatetimetable";
 
 @NgModule({
     bootstrap: [
@@ -46,7 +51,12 @@ import { attendanceComponent} from "./rootpage/attendance/attendance";
         blogComponent,
         deleteteacherComponent,
         successComponent,
-        attendanceComponent
+        attendanceComponent,
+        addtimetableComponent,
+        updatetimetableComponent,
+        timetableclassselectComponent,
+        deletetimetableComponent,
+        displaytimetableComponent
     ],
     providers: [],
     schemas: [

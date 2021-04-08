@@ -4,17 +4,14 @@ import { CommonModule } from '@angular/common';
 import {NgModule} from "@angular/core";
 import { BrowserModule } from '@angular/platform-browser';
 @Component({
-    selector: "timetable",
-    templateUrl: "./timetable.html",
+    selector: "addtimetable",
+    templateUrl: "./addtimetable.html",
 })
 
 @NgModule({
     imports:[CommonModule,BrowserModule]
 })
-export class timetableComponent {
+export class addtimetableComponent {
     public constructor(private router:Router){}
-    updatetimetable():void{this.router.navigate(["timetableclassselect","Update"]);}
-    deletetimetable():void{this.router.navigate(["timetableclassselect","Delete"]);}
-    displaytimetable():void{this.router.navigate(["timetableclassselect","Display"]);}
 
 }

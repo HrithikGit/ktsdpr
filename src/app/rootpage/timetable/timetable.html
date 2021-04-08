@@ -1,22 +1,21 @@
-<GridLayout columns="*,*,*" rows="auto,auto">
-  <Button text="Monday" row="0" col="0" width="33%" (tap)="mon()" style="background-color:{{this.moncol}}"></Button>
-  <Button text="Tuesday" row="0" col="1" width="33%" (tap)="tue()" style="background-color:{{this.tuecol}}"></Button>
-  <Button text="Wednesday" row="0" col="2" width="33%" (tap)="wed()" style="background-color:{{this.wedcol}}"></Button>
-  <Button text="Thursday" row="1" col="0" width="33%" (tap)="thu()" style="background-color:{{this.thucol}}"></Button>
-  <Button text="Friday" row="1" col="1" width="33%" (tap)="fri()" style="background-color:{{this.fricol}}"></Button>
-  <Button text="Saturday" row="1" col="2" width="33%" (tap)="sat()" style="background-color:{{this.satcol}}"></Button>
-</GridLayout>
-<GridLayout columns="*,50,auto,*" rows="*,auto,auto,*">
-  <Label col="1" row="1" text="Time"></Label>
-  <Label col="2" row="1" text="Period"></Label>
-  <StackLayout col="1" row="2">
-    <template *ngFor="let col of this.rows">
-      <Label [text]="col.Time"></Label>
-    </template>
+<GridLayout columns="auto" rows="20,auto,20,auto,20,auto" width="100%">
+  <StackLayout (tap)="updatetimetable()" row="1" col="0">
+  <GridLayout columns="105,auto" rows="auto" width="100%">
+      <Image src="~/images/update.png" width="100" height="110" stretch="aspectFill" row="0" col="0"></Image>
+      <Label text="Update Time table details" row="0" col="1" text-align="center" ></Label>
+  </GridLayout>
   </StackLayout>
-  <StackLayout col="2" row="2">
-    <template *ngFor="let col of this.rows">
-      <Label [text]="col.period"></Label>
-    </template>
+  <StackLayout (tap)="deletetimetable()" row="3" col="0">
+      <GridLayout columns="105,auto" rows="auto" width="100%">
+          <Image src="~/images/delete.png" width="100" height="100" stretch="aspectFill" row="0" col="0"></Image>
+          <Label text="delete time table details" row="0" col="1" verticalalign="center" horizontalalign="center"></Label>
+      </GridLayout>
+      </StackLayout>
+  <StackLayout (tap)="displaytimetable()" row="5" col="0">
+    <GridLayout columns="105,auto" rows="auto" width="100%">
+        <Image src="~/images/timetable.png" width="100" height="100" stretch="aspectFill" row="0" col="0"></Image>
+        <Label text="display time table details" row="0" col="1" verticalalign="center" horizontalalign="center"></Label>
+    </GridLayout>
   </StackLayout>
+
 </GridLayout>
