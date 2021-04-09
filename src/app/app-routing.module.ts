@@ -24,6 +24,7 @@ import {displaytimetableComponent} from "./rootpage/timetable/displaytimetable/d
 import {timetableclassselectComponent} from "./rootpage/timetable/timetableclassselect/timetableclassselect";
 import {deletetimetableComponent} from "./rootpage/timetable/deletetimetable/deletetimetable";
 import {updatetimetableComponent} from "./rootpage/timetable/updatetimetable/updatetimetable";
+import {addclassComponent} from "./rootpage/addclass/addclass";
 
 const routes: Routes = [
     // { path: "", redirectTo: "/items", pathMatch: "full" },
@@ -47,7 +48,8 @@ const routes: Routes = [
     {path: "deletetimetable/:name", component:deletetimetableComponent},
     {path:"updatetimetable/:name", component:updatetimetableComponent},
     {path:"timetableclassselect/:name",component:timetableclassselectComponent},
-    {path: "displaytimetable/:name", component:displaytimetableComponent}
+    {path: "displaytimetable/:name", component:displaytimetableComponent},
+    {path : "addclass",component:addclassComponent}
 
 ];
 

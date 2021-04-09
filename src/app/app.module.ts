@@ -26,7 +26,7 @@ import {displaytimetableComponent} from "./rootpage/timetable/displaytimetable/d
 import {timetableclassselectComponent} from "./rootpage/timetable/timetableclassselect/timetableclassselect";
 import {deletetimetableComponent} from "./rootpage/timetable/deletetimetable/deletetimetable";
 import {updatetimetableComponent} from "./rootpage/timetable/updatetimetable/updatetimetable";
-
+import { addclassComponent} from "./rootpage/addclass/addclass";
 @NgModule({
     bootstrap: [
         AppComponent

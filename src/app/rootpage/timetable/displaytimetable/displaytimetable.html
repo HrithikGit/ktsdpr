@@ -1,5 +1,5 @@
 <GridLayout columns="*,*,*" rows="auto,auto">
-    <Button text="Monday" row="0" col="0" width="33%" (tap)="mon()" style="background-color:{{this.moncol}}"></Button>
+    <Button text="Monday" row="0" col="0" width="33%" (tap)="mon()" style="background-color: {{this.moncol}}"></Button>
     <Button text="Tuesday" row="0" col="1" width="33%" (tap)="tue()" style="background-color:{{this.tuecol}}"></Button>
     <Button text="Wednesday" row="0" col="2" width="33%" (tap)="wed()" style="background-color:{{this.wedcol}}"></Button>
     <Button text="Thursday" row="1" col="0" width="33%" (tap)="thu()" style="background-color:{{this.thucol}}"></Button>
@@ -11,12 +11,15 @@
     <Label col="2" row="1" text="Period"></Label>
     <StackLayout col="1" row="2">
       <template *ngFor="let col of this.rows">
-        <Label [text]="col.Time"></Label>
+        <Label [text]="col.Start_Hour"></Label>
       </template>
     </StackLayout>
     <StackLayout col="2" row="2">
       <template *ngFor="let col of this.rows">
-        <Label [text]="col.period"></Label>
+        <Label [text]="col.Subject_Id"></Label>
       </template>
+    </StackLayout>
+    <StackLayout>
+          <Button text="Connect" (tap)="connect()"></Button>
     </StackLayout>
   </GridLayout>

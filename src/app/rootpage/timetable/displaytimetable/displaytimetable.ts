@@ -3,6 +3,9 @@ import {Router} from "@angular/router";
 import { CommonModule } from '@angular/common';
 import {NgModule} from "@angular/core";
 import { BrowserModule } from '@angular/platform-browser';
+
+const firebase = require("nativescript-plugin-firebase/app");
+
 @Component({
     selector: "displaytimetable",
     templateUrl: "./displaytimetable.html",
@@ -21,8 +24,8 @@ export class displaytimetableComponent {
     fricol;
     satcol;
     public constructor(private router:Router){
-        var Wday: string[] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];  
-        var day = new Date();  
+        var Wday: string[] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        var day = new Date();
         var TodayDay = Wday[day.getDay()];
         this.obj={
             "Mon":
@@ -85,6 +88,24 @@ export class displaytimetableComponent {
     thu(): void{this.rows=this.obj.Thu; this.color(); this.thucol='green';}
     fri(): void{this.rows=this.obj.Fri; this.color(); this.fricol='green';}
     sat(): void{this.rows=this.obj.Sat; this.color(); this.satcol='green';}
-
+    vals : Array<JSON> =[];
+    connect(): void{
+        this.vals.length=0;
+        const getdata = firebase.firestore().collectionGroup("Monday");
+        const check = getdata.where("Class_Id","==","1000");
+        check.get().then(result=>{
+            result.forEach(doc=>{
+                console.log(JSON.stringify(doc.data()));
+                this.vals.push(doc.data());
+            })
+        })
+        console.log(this.vals);
+        this.rows={};
+        this.vals.sort(function(a,b){
+            return parseInt(a["Sequence"])-parseInt(b["Sequence"]);
+        })
+        this.rows = this.vals;
+        console.log(this.rows);
+    }
 
 }
