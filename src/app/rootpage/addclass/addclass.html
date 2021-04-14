@@ -1,7 +1,16 @@
 <StackLayout>
-    <!-- REY IKKADA FORM PETTU-->
-    <TextField [(ngModel)]="class_name" hint="Class Name" ></TextField>
-    <TextField [(ngModel)]="class_teacher" hint="Class Teacher" ></TextField>
-    <TextField [(ngModel)]="no_of_students" hint="Number of Students"></TextField>
+    <TextField [(ngModel)]="class_year" class="input-add-db" hint="Class Year" ></TextField>
+    <TextField [(ngModel)]="class_section" class="input-add-db" hint="Class Section" ></TextField>
+    <Label class="example" text="Example : A , B , C (if there aren't any add A)" ></Label>
+    <TextField [(ngModel)]="class_teacher" class="input-add-db" hint="Class Teacher ID" ></TextField>
+    <StackLayout>
+    <TextField [(ngModel)]="no_of_students" class="input-add-db" hint="Number of Students"></TextField>
+    <Label *ngIf="this.notvalid" fontSize="15" class="errortext" text="Please Enter Valid Data"></Label>
+    <Label class="example" text="Example : "></Label>
+    <Label class="example" text="Class :1"></Label>
+    <Label class="example" text="Section: A "></Label>
+    <Label class="example" text="Teacher Id : 1000"></Label>
+    <Label class="example" text="No. of Students:30 "></Label>
+    </StackLayout>
     <Button text="Add" (tap)="fun()"></Button>
 </StackLayout>

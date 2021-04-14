@@ -56,6 +56,7 @@ import { addclassComponent} from "./rootpage/addclass/addclass";
         updatetimetableComponent,
         timetableclassselectComponent,
         deletetimetableComponent,
+        addclassComponent,
         displaytimetableComponent
     ],
     providers: [],
