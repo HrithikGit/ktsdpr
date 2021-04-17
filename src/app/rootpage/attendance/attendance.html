@@ -1,6 +1,23 @@
 <ActionBar title="Attendance Page">
 </ActionBar>
-<StackLayout>
-    <Label text="--Attendance page data--"></Label>
-</StackLayout>
 
+<StackLayout class="top">
+    <Label *ngIf="this.notready" class="loading" fontSize="20" text="Loading.. Please Wait"></Label>
+    <Label *ngIf="!this.notready"  class="heading" fontSize="20" text="Select a Class"></Label>
+  </StackLayout>
+
+  <GridLayout>
+      <label text=" "></label>
+      <ListView *ngIf="!this.notready" [items]="this.students">
+        <ng-template let-item="item">
+          <GridLayout rows="*" columns="*,*,*,*,*,*">
+            <Label text="Student :" row="0" col="0"></Label>
+            <Label [text]="item.Student_Id" row="0" col="1" ></Label>
+            <Label text="Today : " row="0" col="2"></Label>
+            <Label [text]="item.Is_Present_Today" row="0" col="3"></Label>
+            <Label text="Total Attendance : " row="0" col="4"></Label>
+            <Label [text]="item.Average_Attendance" row="0" col="5"></Label>
+          </GridLayout>
+        </ng-template>
+      </ListView>
+    </GridLayout>

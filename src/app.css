@@ -44,3 +44,11 @@ Button.-primary {
     border-color: black;
     size: 30;
 }
+
+
+.loading{
+    color: lightseagreen;
+    font-weight: 400;
+    align-items: center;
+    text-align: center;
+}
