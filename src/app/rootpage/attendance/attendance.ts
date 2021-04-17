@@ -1,13 +1,15 @@
 import {Component} from "@angular/core";
-import {Router} from "@angular/router";
+import {Router,ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: "attendance",
     templateUrl: "./attendance.html",
 })
 export class attendanceComponent {
-    public constructor(private router:Router){}
-    add(): void{
-        console.log("Tapped Add Blog");
+    class;
+    public constructor(private router:Router,private route:ActivatedRoute){
+        this.route.params.subscribe((params)=>{
+            this.class=params["name"];
+        });
     }
 }

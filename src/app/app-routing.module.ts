@@ -43,7 +43,7 @@ const routes: Routes = [
     {path: "fail/:name", component:failComponent},
     {path: "addstudent", component:addstudentComponent},
     {path: "deletestudent", component: deletestudentComponent},
-    {path: "attendance", component:attendanceComponent},
+    {path: "attendance/:name", component:attendanceComponent},
     {path: "addtimetable",component:addtimetableComponent},
     {path: "deletetimetable/:name", component:deletetimetableComponent},
     {path:"updatetimetable/:name", component:updatetimetableComponent},

@@ -24,6 +24,7 @@ export class timetableclassselectComponent {
         if(this.detail=="Update"){this.detail="updatetimetable";}
         else if(this.detail=="Delete"){this.detail="deletetimetable";}
         else if(this.detail=="Display"){this.detail="displaytimetable";}
+        else if(this.detail=="Attendance"){this.detail="attendance";}
 
         this.classes=[{"class":"1"},{"class":"2"},{"class":"3"},{"class":"4"},{"class":"5"},{"class":"1"},{"class":"2"},{"class":"3"},{"class":"4"},{"class":"5"},{"class":"1"},{"class":"2"},{"class":"3"},{"class":"4"},{"class":"5"}];
     }

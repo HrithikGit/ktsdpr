@@ -29,7 +29,7 @@ export class rootpageComponent implements OnInit{
         this.router.navigate(["blog"]);
     }
     attendance() : void{
-        this.router.navigate(["attendance"]);
+        this.router.navigate(["timetableclassselect","Attendance"]);
     }
 
 }
