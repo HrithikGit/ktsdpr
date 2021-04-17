@@ -32,8 +32,28 @@ export class attendanceComponent {
                 this.students.push(doc.data());
             })
         })
-        console.log(this.students);
-        console.log("Ended !");
+
+        //Changing Data to Display
+
+        for(var i=0;i<this.students.length;i++){
+            const data=this.students[i];
+            if(data["Is_Present_Today"]==1){
+                data["today"]="Present"
+            }
+            else if(data["Is_Present_Today"]==0){
+                data["today"]="Absent"
+            }
+            else{
+                data["today"]="--";
+            }
+            await firebase.firestore().collection("Student").where("Student_Id","==",data["Student_Id"]).get().then(
+                result=>{
+                    result.forEach(doc=>{
+                        data["name"] = doc.data()["Student_Name"];
+                    })
+                }
+            )
+        }
         this.notready = false;
     }
 
