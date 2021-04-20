@@ -1,14 +1,16 @@
 # Mobile Application for School Management
 
-** Version 1.0.0 **
+**Version 1.0.0**
 
 Code and document files for a Mobile App
 
-Technologies Used : NativeScript+Angular
+>Technologies Used : NativeScript+Angular
 
-Database Used : Firebase
+>Database Used : Firebase
 
-(Project Under Devolpment)
+_(Project Under Devolpment)_
+
+___
 
 ## License and copyright
 © Rohit Reddy Deepa, Keshav Memorial Institute of Technology.
