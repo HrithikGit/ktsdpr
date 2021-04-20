@@ -41,15 +41,15 @@ export class addclassComponent implements OnInit {
         //      Validation
 
         // console.log(this.class_year);
-        // if(this.class_year.length==0 || this.class_section.length==0 ||this.class_teacher.length==0){
-        //     this.notvalid = true;
-        //     return;
-        // }
-        // if(!(this.isCharacterALetter(this.class_section.length))){
-        //     this.notvalid = true;
-        //     return ;
-        // }
-        // alert("Adding a Class with provided values");
+        if(this.class_year.length==0 || this.class_section.length==0 ||this.class_teacher.length==0){
+            this.notvalid = true;
+            return;
+        }
+        if(!(this.isCharacterALetter(this.class_section))){
+            this.notvalid = true;
+            return ;
+        }
+        alert("Adding a Class with provided values");
 
         const classCollection = firebase.firestore().collection("Class");
 
@@ -59,16 +59,14 @@ export class addclassComponent implements OnInit {
                 console.log(JSON.stringify(doc.data()));
             })
         })
-        console.log(this.exists);
         if(this.exists){
             alert("This Class Already exists ! Please Delete and Try or Add another Class");
             return;
         }
-        console.log("Got Value ");
 
 
-        classCollection.add({
-            Class_ID : parseInt(this.class_year.trim())*100,
+        await classCollection.add({
+            Class_Id : parseInt(this.class_year.trim())*100,
             Class_Section : this.class_section,
             Teacher_Id : parseInt(this.class_teacher),
             No_Of_Students : parseInt(this.no_of_students)
@@ -79,11 +77,6 @@ export class addclassComponent implements OnInit {
                 this.succeded= false;
             },3000);
         })
-        if(this.succeded){
-            this.router.navigate(["success","Successfully Added Class Details"]);
-        }
-        else{
-            this.router.navigate(["fail","Problem in adding Class Details, Please try again"]);
-        }
+        alert("Added Successfully !");
     }
 }

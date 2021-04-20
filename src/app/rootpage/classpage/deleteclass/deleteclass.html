@@ -1,0 +1,5 @@
+<StackLayout class="main">
+    <TextField [(ngModel)]="this.class_id" class="input-add-db" hint="Enter Class ID to be deleted !" autocorrect="false"></TextField>
+    <TextField [(ngModel)]="this.section" class="input-add-db" hint="Enter Section of class to be deleted !" autocorrect="false"></TextField>
+    <Button text="DELETE" (tap)="delete()" class="delete"></Button>
+</StackLayout>

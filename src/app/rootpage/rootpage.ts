@@ -17,7 +17,7 @@ export class rootpageComponent implements OnInit{
     }
 
     addclass(): void{
-        this.router.navigate(["addclass"]);
+        this.router.navigate(["classpage"]);
     }
     studentdetails(): void{
         this.router.navigate(["updatestudent"]);

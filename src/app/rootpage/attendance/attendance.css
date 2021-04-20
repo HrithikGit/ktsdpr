@@ -5,3 +5,8 @@
     margin-bottom: 100px;
     padding-bottom: 20px;
 }
+
+.delete{
+    color: white;
+    background-color: red;
+}

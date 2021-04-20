@@ -27,6 +27,7 @@ import {timetableclassselectComponent} from "./rootpage/timetable/timetableclass
 import {deletetimetableComponent} from "./rootpage/timetable/deletetimetable/deletetimetable";
 import {updatetimetableComponent} from "./rootpage/timetable/updatetimetable/updatetimetable";
 import { addclassComponent} from "./rootpage/addclass/addclass";
+import { deleteclassComponent} from "./rootpage/classpage/deleteclass/deleteclass";
 @NgModule({
     bootstrap: [
         AppComponent
@@ -57,6 +58,7 @@ import { addclassComponent} from "./rootpage/addclass/addclass";
         timetableclassselectComponent,
         deletetimetableComponent,
         addclassComponent,
+        deleteclassComponent,
         displaytimetableComponent
     ],
     providers: [],
