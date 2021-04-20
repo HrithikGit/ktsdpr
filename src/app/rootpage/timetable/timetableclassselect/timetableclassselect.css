@@ -1,0 +1,11 @@
+.heading{
+    align-self: center;
+    text-align: center;
+    font-weight: 400;
+    margin-bottom: 100px;
+    padding-bottom: 20px;
+}
+
+.top{
+    margin-bottom: auto;
+}

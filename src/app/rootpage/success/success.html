@@ -1,0 +1,7 @@
+<StackLayout>
+    <Image src="~/images/right.png" height="100" width="100" stretch="aspectFill"></Image>
+    <Label text="{{message}}"></Label>
+    <StackLayout>
+        <Label *ngFor="let val of arr" [text]="val"></Label>
+    </StackLayout>
+</StackLayout>

@@ -5,11 +5,31 @@ import {Router} from "@angular/router";
     selector: "rootpage",
     templateUrl: "./rootpage.html",
 })
-export class rootpageComponent {
+export class rootpageComponent implements OnInit{
+    check="";
+    public constructor(private router: Router) {}
+    ngOnInit(): void {
 
-    public constructor() {}
-    fun(): void{
-        console.log("############### CLICKED");
+    }
+    teacherdetails(): void{
+        console.log(this.check);
+        this.router.navigate(["updateteacher"]);
+    }
+
+    addclass(): void{
+        this.router.navigate(["addclass"]);
+    }
+    studentdetails(): void{
+        this.router.navigate(["updatestudent"]);
+    }
+    timetable(): void{
+        this.router.navigate(["timetable"]);
+    }
+    blog(): void{
+        this.router.navigate(["blog"]);
+    }
+    attendance() : void{
+        this.router.navigate(["timetableclassselect","Attendance"]);
     }
 
 }

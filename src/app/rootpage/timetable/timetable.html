@@ -1,0 +1,21 @@
+<GridLayout columns="auto" rows="20,auto,20,auto,20,auto" width="100%">
+  <StackLayout (tap)="updatetimetable()" row="1" col="0">
+  <GridLayout columns="105,auto" rows="auto" width="100%">
+      <Image src="~/images/update.png" width="100" height="110" stretch="aspectFill" row="0" col="0"></Image>
+      <Label text="Update Time table details" row="0" col="1" text-align="center" ></Label>
+  </GridLayout>
+  </StackLayout>
+  <StackLayout (tap)="deletetimetable()" row="3" col="0">
+      <GridLayout columns="105,auto" rows="auto" width="100%">
+          <Image src="~/images/delete.png" width="100" height="100" stretch="aspectFill" row="0" col="0"></Image>
+          <Label text="delete time table details" row="0" col="1" verticalalign="center" horizontalalign="center"></Label>
+      </GridLayout>
+      </StackLayout>
+  <StackLayout (tap)="displaytimetable()" row="5" col="0">
+    <GridLayout columns="105,auto" rows="auto" width="100%">
+        <Image src="~/images/timetable.png" width="100" height="100" stretch="aspectFill" row="0" col="0"></Image>
+        <Label text="display time table details" row="0" col="1" verticalalign="center" horizontalalign="center"></Label>
+    </GridLayout>
+  </StackLayout>
+
+</GridLayout>

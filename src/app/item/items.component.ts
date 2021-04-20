@@ -19,7 +19,6 @@ export class ItemsComponent implements OnInit {
     constructor(private router: Router,private page: Page) { }
     ngOnInit(): void {
         // this.page.actionBar.title="Title check"         (Action Bar Title)
-        this.page.actionBarHidden=true;
     }
 
     loginAuthenicate() :void{
@@ -32,6 +31,9 @@ export class ItemsComponent implements OnInit {
         }
         var check = false;
         const userCollection = firebase.firestore().collection("Users");
+
+        // const userCollection = firebase.firestore().collection("Users").get().where("Username","==",this.user);
+
         userCollection.get({ source: "server" }).then(querySnapshot => {
             querySnapshot.forEach(doc => {
               const document = JSON.parse(JSON.stringify(doc.data()));

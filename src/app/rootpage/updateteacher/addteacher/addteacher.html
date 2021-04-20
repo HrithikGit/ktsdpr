@@ -1,0 +1,13 @@
+
+<StackLayout>
+    <!-- REY IKKADA FORM PETTU-->
+    <TextField [(ngModel)]="this.teacher_name" hint="Teacher Name" ></TextField>
+    <TextField [(ngModel)]="this.teacher_id" hint="Teacher ID" ></TextField>
+    <TextField [(ngModel)]="this.subject_id" hint="Teacher Subject"></TextField>
+    <TextField [(ngModel)]="this.class_id" hint="Enter Class" ></TextField>
+    <StackLayout>
+    <TextField [(ngModel)]="this.section" hint="Enter Section"></TextField>
+    <Label *ngIf="this.notvalid" fontSize="15" class="errortext" text="Please Enter Valid Data"></Label>
+    </StackLayout>
+    <Button text="Add" (tap)="fun()"></Button>
+</StackLayout>
