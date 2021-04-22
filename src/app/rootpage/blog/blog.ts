@@ -5,8 +5,14 @@ import {Router} from "@angular/router";
     selector: "blog",
     templateUrl: "./blog.html",
 })
+
 export class blogComponent {
-    public constructor(private router:Router){}
+    loading;
+    nodata;
+    public constructor(private router:Router){
+        this.loading = true;
+        this.nodata = true;
+    }
     add(): void{
         console.log("Tapped Add Blog");
     }
