@@ -47,10 +47,10 @@ const routes: Routes = [
     {path: "deletestudent", component: deletestudentComponent},
     {path: "attendance/:name/:section", component:attendanceComponent},
     {path: "addtimetable",component:addtimetableComponent},
-    {path: "deletetimetable/:name", component:deletetimetableComponent},
-    {path:"updatetimetable/:name", component:updatetimetableComponent},
+    {path: "deletetimetable/:name/:name", component:deletetimetableComponent},
+    {path:"updatetimetable/:name/:name", component:updatetimetableComponent},
     {path:"timetableclassselect/:name",component:timetableclassselectComponent},
-    {path: "displaytimetable/:name", component:displaytimetableComponent},
+    {path: "displaytimetable/:name/:name", component:displaytimetableComponent},
     {path : "addclass",component:addclassComponent},
     {path : "classpage", component: classpageComponent},
     {path : "deleteclass", component: deleteclassComponent}
