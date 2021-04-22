@@ -1,9 +1,4 @@
-<!--<StackLayout>
-    <template *ngFor="let class of this.classes">
-        <Button [text]="class" width="100%"></Button>
-    </template>
-</StackLayout>-->
-
+<StackLayout>
 <StackLayout class="top">
   <Label *ngIf="this.notready" class="loading" fontSize="20" text="Loading.. Please Wait"></Label>
   <Label *ngIf="!this.notready"  class="heading" fontSize="20" text="Select a Class"></Label>
@@ -21,3 +16,5 @@
       </ng-template>
     </ListView>
   </GridLayout>
+
+</StackLayout>
