@@ -16,7 +16,7 @@ const firebase = require("nativescript-plugin-firebase/app");
     imports:[CommonModule,BrowserModule]
 })
 export class displaytimetableComponent {
-    monday; tuesday; wednesday; thursday; friday; saturday; sunday;
+    monday=[]; tuesday=[]; wednesday=[]; thursday=[]; friday=[]; saturday=[]; sunday=[];
     rows;
     moncol;
     tuecol;
@@ -25,106 +25,93 @@ export class displaytimetableComponent {
     fricol;
     satcol;
     class;
+    bool=false;
     vals : Array<JSON> =[];
     public constructor(private router:Router,private route: ActivatedRoute){
         this.route.params.subscribe((params)=>{
             this.class=params["name"];
         });
+        this.onload();
+    }
+
+    async onload(){
         var Wday: string[] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         var day = new Date();
         var TodayDay = Wday[day.getDay()];
-        var getdata = firebase.firestore().collectionGroup("Monday");
+        var getdata = firebase.firestore().collection("Monday");
         var check = getdata.where("Class_Id","==","1000");
-        check.get().then(result=>{
+        await check.get().then(result=>{
             result.forEach(doc=>{
                 console.log(JSON.stringify(doc.data()));
-                this.vals.push(doc.data());
+                this.monday.push(doc.data());
             })
         })
-        console.log(this.vals);
-        this.rows={};
-        this.vals.sort(function(a,b){
+        this.monday.sort(function(a,b){
             return parseInt(a["Sequence"])-parseInt(b["Sequence"]);
         })
-        this.monday = this.vals;
 
-        this.vals.length=0;
-        getdata = firebase.firestore().collectionGroup("Tuesday");
+        
+        getdata = firebase.firestore().collection("Tuesday");
         check = getdata.where("Class_Id","==","1000");
-        check.get().then(result=>{
+        await check.get().then(result=>{
             result.forEach(doc=>{
                 console.log(JSON.stringify(doc.data()));
-                this.vals.push(doc.data());
+                this.tuesday.push(doc.data());
             })
         })
-        console.log(this.vals);
-        this.vals.sort(function(a,b){
+        this.tuesday.sort(function(a,b){
             return parseInt(a["Sequence"])-parseInt(b["Sequence"]);
         })
-        this.tuesday = this.vals;
 
-        this.vals.length=0;
-        getdata = firebase.firestore().collectionGroup("Wednesday");
+        getdata = firebase.firestore().collection("Wednesday");
         check = getdata.where("Class_Id","==","1000");
-        check.get().then(result=>{
+        await check.get().then(result=>{
             result.forEach(doc=>{
                 console.log(JSON.stringify(doc.data()));
-                this.vals.push(doc.data());
+                this.wednesday.push(doc.data());
             })
         })
-        console.log(this.vals);
-        this.vals.sort(function(a,b){
+        this.wednesday.sort(function(a,b){
             return parseInt(a["Sequence"])-parseInt(b["Sequence"]);
-        })
-        this.wednesday = this.vals;   
+        })   
         
         
-        this.vals.length=0;
-        getdata = firebase.firestore().collectionGroup("Thursday");
+        getdata = firebase.firestore().collection("Thursday");
         check = getdata.where("Class_Id","==","1000");
-        check.get().then(result=>{
+        await check.get().then(result=>{
             result.forEach(doc=>{
                 console.log(JSON.stringify(doc.data()));
-                this.vals.push(doc.data());
+                this.thursday.push(doc.data());
             })
         })
-        console.log(this.vals);
-        this.vals.sort(function(a,b){
+        this.thursday.sort(function(a,b){
             return parseInt(a["Sequence"])-parseInt(b["Sequence"]);
         })
-        this.thursday = this.vals;
 
-        this.vals.length=0;
-        getdata = firebase.firestore().collectionGroup("Friday");
+        getdata = firebase.firestore().collection("Friday");
         check = getdata.where("Class_Id","==","1000");
-        check.get().then(result=>{
+        await check.get().then(result=>{
             result.forEach(doc=>{
                 console.log(JSON.stringify(doc.data()));
-                this.vals.push(doc.data());
+                this.friday.push(doc.data());
             })
-        })
-        console.log(this.vals);
-        this.vals.sort(function(a,b){
+        });
+        this.friday.sort(function(a,b){
             return parseInt(a["Sequence"])-parseInt(b["Sequence"]);
-        })
-        this.friday = this.vals;
+        });
 
 
-        this.vals.length=0;
-        getdata = firebase.firestore().collectionGroup("Saturday");
+        getdata = firebase.firestore().collection("Saturday");
         check = getdata.where("Class_Id","==","1000");
-        check.get().then(result=>{
+        await check.get().then(result=>{
             result.forEach(doc=>{
                 console.log(JSON.stringify(doc.data()));
-                this.vals.push(doc.data());
+                this.saturday.push(doc.data());
             })
-        })
-        console.log(this.vals);
-        this.vals.sort(function(a,b){
+        });
+        this.saturday.sort(function(a,b){
             return parseInt(a["Sequence"])-parseInt(b["Sequence"]);
-        })
-        this.saturday= this.vals;
-
+        });
         if(TodayDay=="Mon"){this.mon();}
         else if(TodayDay=="Tue"){this.tue();}
         else if(TodayDay=="Wed"){this.wed();}
@@ -132,6 +119,7 @@ export class displaytimetableComponent {
         else if(TodayDay=="Fri"){this.fri();}
         else if(TodayDay=="Sat"){this.sat();}
         else if(TodayDay=="Sun"){this.sun();}
+        this.bool=true;
     }
     color(): void{
         this.moncol='white';

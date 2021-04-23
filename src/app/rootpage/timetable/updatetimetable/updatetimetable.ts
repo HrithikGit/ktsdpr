@@ -25,7 +25,8 @@ export class updatetimetableComponent {
     fricol;
     satcol;
     onday;
-    
+
+
     public constructor(private router:Router,private route:ActivatedRoute){
         this.route.params.subscribe((params)=>{
             this.class=params["name"];
@@ -139,11 +140,11 @@ export class updatetimetableComponent {
         this.satcol='white';
     }
     sun(): void{this.mon();}
-    mon(): void{this.rows=[]; this.rows=[...this.monday];   this.color(); this.moncol='green';}
+    mon(): void{ this.rows=[]; this.rows=[...this.monday];   this.color(); this.moncol='green';}
     tue(): void{this.rows=[]; this.rows=[...this.tuesday];  this.color(); this.tuecol='green';}
     wed():void{this.rows=[]; console.log("INSIDEEEEEEEEEEEEEEEEEEEEEEE"); this.rows=[...this.wednesday]; this.color(); this.wedcol='green';}
-    thu(): void{this.rows=[]; this.rows=[...this.thursday];  this.color(); this.thucol='green';}
-    fri(): void{this.rows=[]; this.rows=[...this.friday];  this.color(); this.fricol='green';}
+    thu(): void{ this.rows=[]; this.rows=[...this.thursday];  this.color(); this.thucol='green';}
+    fri(): void{ this.rows=[]; this.rows=[...this.friday];  this.color(); this.fricol='green';}
     sat(): void{this.rows=[]; this.rows=[...this.saturday];  this.color(); this.satcol='green';}
 
 

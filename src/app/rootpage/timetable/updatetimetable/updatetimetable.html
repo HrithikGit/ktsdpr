@@ -8,32 +8,33 @@
     <Button *ngIf="this.bool" text="Thursday" row="1" col="0" width="33%" (tap)="thu()" style="background-color:{{this.thucol}}"></Button>
     <Button *ngIf="this.bool" text="Friday" row="1" col="1" width="33%" (tap)="fri()" style="background-color:{{this.fricol}}"></Button>
     <Button *ngIf="this.bool" text="Saturday" row="1" col="2" width="33%" (tap)="sat()" style="background-color:{{this.satcol}}"></Button>
-    <Button *ngIf="this.bool" text="Undo" row="2" col="0" width="33%" style="background-color: #F1948A ;" (tap)="undo()"></Button>
-    <Button *ngIf="this.bool" text="Add Coloumn" row="2" col="1" width="33%" style="background-color: #F8C471;" (tap)="addcol()"></Button>
-    <Button *ngIf="this.bool" text="Change" row="2" col="2" width="33%" (tap)="change()" style="background-color: #76D7C4 ;"></Button>
   </GridLayout>
-<ScrollView>
-<StackLayout *ngIf="this.bool">
-  <GridLayout columns="17*,16*,12*,16*,7*,20*,12*" rows="auto">
-    <Label text="Start Time" col="1" row="0" ></Label>
-    <Label text="End Time" col="3" row="0"></Label>
-    <Label text="Period" col="5" row="0" margin-top="50"></Label>
-  </GridLayout>
-  <template *ngFor="let col of this.rows; let i=index">
-    <GridLayout columns="11*,14*,1*,14*,14*,1*,14*,20*,10*,11*" rows="auto">
+<GridLayout columns="*,*" rows="auto">
+  <Button *ngIf="this.bool" text="Add Coloumn" row="0" col="0" width="50%" style="background-color: #F8C471;" (tap)="addcol()"></Button>
+  <Button *ngIf="this.bool" text="Change" row="0" col="1" width="50%" (tap)="change()" style="background-color: #76D7C4 ;"></Button>
+</GridLayout>
+  <ScrollView>
+    <StackLayout *ngIf="this.bool">
+     <GridLayout columns="17*,14*,12*,14*,7*,20*,12*" rows="auto">
+      <Label text="Start Time" col="1" row="0" ></Label>
+      <Label text="End Time" col="3" row="0"></Label>
+      <Label text="Period" col="5" row="0" margin-top="50"></Label>
+     </GridLayout>
+    <template *ngFor="let col of this.rows; let i=index">
+     <GridLayout columns="11*,14*,1*,14*,14*,1*,14*,20*,10*,11*" rows="auto">
       <TextField [(ngModel)]="col.Start_Hour" col="1" row="0" ></TextField>
-      <Label text=":" col="2" row="0" ></Label>
+      <Label style="padding-top: 29px;"  horizontalAlignment="center" text=":" col="2" row="0" ></Label>
       <TextField [(ngModel)]="col.Start_Minute" col="3" row="0" ></TextField>
-
+   
       <TextField [(ngModel)]="col.End_Hour" col="4" row="0" ></TextField>
-      <Label text=":" col="5" row="0" ng-readonly="checked"></Label>
+      <Label style="padding-top: 30px;" text=":" col="5" row="0"></Label>
       <TextField [(ngModel)]="col.End_Minute" col="6" row="0"></TextField>
-
-      <TextField [(ngModel)]="col.Subject_Id" col="7" row="0"></TextField>
+   
+      <TextField [(ngModel)]="col.Subject_Id" width="50" col="7" row="0"></TextField>
       <StackLayout (tap)="remove(i)" col="8" row="0"><Image src="~/images/minus.png" height="30" width="30" col="3" row="0"></Image></StackLayout>
-    </GridLayout>
-  </template>
-</StackLayout>
-</ScrollView>
+     </GridLayout>
+    </template>
+    </StackLayout>
+   </ScrollView>
 
 </StackLayout>
