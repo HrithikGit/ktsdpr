@@ -7,7 +7,8 @@ import {Router} from "@angular/router";
 })
 export class rootpageComponent implements OnInit{
     check="";
-    public constructor(private router: Router) {}
+    public constructor(private router: Router) {
+    }
     ngOnInit(): void {
 
     }

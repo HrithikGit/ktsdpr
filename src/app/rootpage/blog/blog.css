@@ -1,0 +1,22 @@
+.nodata{
+    text-align: center;
+    font-weight: bold;
+}
+
+.blog-heading{
+    color: #187bcd;
+    text-align: center;
+    font-weight: 600;
+}
+
+.blog-content{
+    padding-left: 5%;
+    margin : 10% 10%;
+}
+
+.timeanddate{
+    font-style: italic;
+    color: gray;
+    stroke: black;
+    stroke-width: 1%;
+}

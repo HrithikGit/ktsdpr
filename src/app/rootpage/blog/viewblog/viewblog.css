@@ -1,0 +1,10 @@
+.local-heading{
+    font-weight: 700;
+    text-align: center;
+    color: black;
+}
+
+.local-content{
+    text-justify: auto;
+    padding : 10% 10%;
+}

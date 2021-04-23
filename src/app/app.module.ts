@@ -28,6 +28,8 @@ import {deletetimetableComponent} from "./rootpage/timetable/deletetimetable/del
 import {updatetimetableComponent} from "./rootpage/timetable/updatetimetable/updatetimetable";
 import { addclassComponent} from "./rootpage/addclass/addclass";
 import { deleteclassComponent} from "./rootpage/classpage/deleteclass/deleteclass";
+import { addblogComponent} from "./rootpage/blog/addblog/addblog";
+import { viewblogComponent} from "./rootpage/blog/viewblog/viewblog";
 @NgModule({
     bootstrap: [
         AppComponent
@@ -59,7 +61,9 @@ import { deleteclassComponent} from "./rootpage/classpage/deleteclass/deleteclas
         deletetimetableComponent,
         addclassComponent,
         deleteclassComponent,
-        displaytimetableComponent
+        displaytimetableComponent,
+        addblogComponent,
+        viewblogComponent
     ],
     providers: [],
     schemas: [

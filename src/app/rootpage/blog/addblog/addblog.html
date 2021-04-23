@@ -1,0 +1,8 @@
+
+<StackLayout>
+    <TextField [(ngModel)]="this.heading" hint="Please Enter the heading"></TextField>
+    <Label *ngIf="!this.headavail" style="margin-top: 15px" borderRadius="5%" borderColor="#DEDEDE" borderWidth="1" class="errortext" text="Heading required"></Label>
+    <TextField [(ngModel)]="this.content" style="margin-top: 15px" borderRadius="5%" borderColor="#DEDEDE" borderWidth="1" height="50%" hint="Enter Note" class="input input-border"></TextField>
+    <Button text="Add Images" width="40%"></Button>
+    <Button text="Post" (tap)="addToDb()"class="addbutton"></Button>
+</StackLayout>

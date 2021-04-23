@@ -27,6 +27,8 @@ import {updatetimetableComponent} from "./rootpage/timetable/updatetimetable/upd
 import {classpageComponent} from "./rootpage/classpage/classpage";
 import {addclassComponent} from "./rootpage/addclass/addclass";
 import { deleteclassComponent } from "./rootpage/classpage/deleteclass/deleteclass"
+import { addblogComponent} from "./rootpage/blog/addblog/addblog";
+import {viewblogComponent} from "./rootpage/blog/viewblog/viewblog";
 
 const routes: Routes = [
     // { path: "", redirectTo: "/items", pathMatch: "full" },
@@ -53,7 +55,9 @@ const routes: Routes = [
     {path: "displaytimetable/:name/:name", component:displaytimetableComponent},
     {path : "addclass",component:addclassComponent},
     {path : "classpage", component: classpageComponent},
-    {path : "deleteclass", component: deleteclassComponent}
+    {path : "deleteclass", component: deleteclassComponent},
+    {path : "addblog",component: addblogComponent},
+    {path : "viewblog/:date/:time",component : viewblogComponent}
 
 ];
 

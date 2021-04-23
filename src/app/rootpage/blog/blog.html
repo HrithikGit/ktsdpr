@@ -1,5 +1,18 @@
 <StackLayout>
-    <Button text="Add Blog" (tap)="add()"></Button>
+    <Button text="Add Blog" (tap)="add()" class="addbutton"></Button>
     <Label *ngIf="this.loading" text="Loading .... Please Wait" class="loading"></Label>
-    <Label *ngIf="this.nodata" text="No blogs as of now ! :-/  Try adding one"></Label>
+    <Label *ngIf="this.nodata" class="nodata" text="No blogs as of now ! :-/  Try adding one"></Label>
+    <ScrollView *ngIf="!this.loading" height="100%">
+        <ListView *ngIf="!this.loading" [items]="this.blogs">
+            <ng-template let-item="item">
+              <StackLayout [nsRouterLink]="['/viewblog',item.Date,item.Time]" >
+                <Label fontSize=20 class="blog-heading"  [text]="item.Heading"></Label>
+                <Label class="blogcontent" [text]="item.Content" textWrap="true"></Label>
+                <Label class="timeanddate" [text]="item.Date"></Label>
+                <Label class="timeanddate" [text]="item.Time"></Label>
+              </StackLayout>
+            </ng-template>
+          </ListView>
+    </ScrollView>
 </StackLayout>
+<!-- [nsRouterLink]="['/'+this.detail, item]"  -->
