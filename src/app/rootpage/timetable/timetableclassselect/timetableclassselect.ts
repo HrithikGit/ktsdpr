@@ -31,6 +31,7 @@ export class timetableclassselectComponent {
         else if(this.detail=="Delete"){this.detail="deletetimetable";}
         else if(this.detail=="Display"){this.detail="displaytimetable";}
         else if(this.detail=="Attendance"){this.detail="attendance";}
+        else if(this.detail=="Marks"){this.detail="marks";}
     }
 
     async getclasses(){

@@ -33,4 +33,7 @@ export class rootpageComponent implements OnInit{
         this.router.navigate(["timetableclassselect","Attendance"]);
     }
 
+    marks():void{
+        this.router.navigate(["timetableclassselect","Marks"]);
+    }
 }

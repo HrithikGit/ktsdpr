@@ -30,6 +30,8 @@ import { addclassComponent} from "./rootpage/addclass/addclass";
 import { deleteclassComponent} from "./rootpage/classpage/deleteclass/deleteclass";
 import { addblogComponent} from "./rootpage/blog/addblog/addblog";
 import { viewblogComponent} from "./rootpage/blog/viewblog/viewblog";
+import {marksComponent} from "./rootpage/marks/marks";
+
 @NgModule({
     bootstrap: [
         AppComponent
@@ -63,7 +65,8 @@ import { viewblogComponent} from "./rootpage/blog/viewblog/viewblog";
         deleteclassComponent,
         displaytimetableComponent,
         addblogComponent,
-        viewblogComponent
+        viewblogComponent,
+        marksComponent
     ],
     providers: [],
     schemas: [

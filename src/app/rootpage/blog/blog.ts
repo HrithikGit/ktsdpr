@@ -42,9 +42,15 @@ export class blogComponent {
             return parseInt(date2)-parseInt(date1);
         })
         this.nodata = this.blogs.length==0;
+        console.log(this.blogs);
         this.loading  = false;
     }
     add(): void{
         this.router.navigate(["addblog"]);
+    }
+
+    remove(i){
+        var removeddata=this.blogs.splice(i,1);
+        console.log("TAPPED ON REMOVE");
     }
 }

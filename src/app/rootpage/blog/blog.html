@@ -2,17 +2,24 @@
     <Button text="Add Blog" (tap)="add()" class="addbutton"></Button>
     <Label *ngIf="this.loading" text="Loading .... Please Wait" class="loading"></Label>
     <Label *ngIf="this.nodata" class="nodata" text="No blogs as of now ! :-/  Try adding one"></Label>
-    <ScrollView *ngIf="!this.loading" height="100%">
-        <ListView *ngIf="!this.loading" [items]="this.blogs">
-            <ng-template let-item="item">
-              <StackLayout [nsRouterLink]="['/viewblog',item.Date,item.Time]" >
+    <ScrollView>
+      <StackLayout>
+          <template *ngFor="let item of this.blogs; let i=index">
+
+              <GridLayout columns="2*,85*,13*" rows="auto" style="padding-bottom: 10px;">
+              <StackLayout [nsRouterLink]="['/viewblog',item.Date,item.Time]" row="0" col="1">
                 <Label fontSize=20 class="blog-heading"  [text]="item.Heading"></Label>
                 <Label class="blogcontent" [text]="item.Content" textWrap="true"></Label>
                 <Label class="timeanddate" [text]="item.Date"></Label>
                 <Label class="timeanddate" [text]="item.Time"></Label>
               </StackLayout>
-            </ng-template>
-          </ListView>
+
+              <StackLayout (tap)=remove(i) height="30" width="30" row="0" col="2" verticalAlignment="center">
+                <Image src="~/images/minus.png"></Image>
+              </StackLayout>
+              </GridLayout>
+            </template>
+          </StackLayout>
     </ScrollView>
 </StackLayout>
 <!-- [nsRouterLink]="['/'+this.detail, item]"  -->

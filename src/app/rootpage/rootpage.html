@@ -1,6 +1,6 @@
 <ActionBar title="Root Page">
 </ActionBar>
-<GridLayout columns="*,*" rows="10,*,*,*">
+<GridLayout columns="*,*" rows="10,*,*,*,*">
 
     <StackLayout row="1" col="0" (tap)="studentdetails()" >
         <Image src="~/images/student.png" width="125" height="125" stretch="aspectFill"></Image>
@@ -35,5 +35,11 @@
         <Image src="~/images/manageclass.png" width="125" height="125" stretch="aspectFill"></Image>
         <br>
         <Label text="Manage Classes" font-weight=bold verticalAlignment="center" horizontalAlignment="center"></Label>
+    </StackLayout>
+
+    <StackLayout row="4" col="0" (tap)="marks()" >
+        <Image src="~/images/marks.png" width="125" height="125" stretch="aspectFill"></Image>
+        <br>
+        <Label text="Marks" font-weight=bold verticalAlignment="center" horizontalAlignment="center"></Label>
     </StackLayout>
 </GridLayout>
