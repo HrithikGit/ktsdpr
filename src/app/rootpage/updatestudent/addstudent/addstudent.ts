@@ -74,7 +74,7 @@ export class addstudentComponent {
 
         await studentCollection.add({
             Student_Id : parseInt(this.student_id),
-            Class_Id : parseInt(this.student_class),
+            Class_Id : parseInt(this.student_class)*100,
             Class_Section : this.student_section,
             Student_Name : this.student_name,
             Student_Attendance : parseInt(this.student_attendance)

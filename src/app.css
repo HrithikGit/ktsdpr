@@ -52,3 +52,11 @@ Button.-primary {
     align-items: center;
     text-align: center;
 }
+.deletebutton{
+    color: white;
+    background-color: red;
+}
+.addbutton{
+    color: white;
+    background-color: #a4de02;
+}

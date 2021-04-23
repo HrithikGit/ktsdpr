@@ -13,7 +13,7 @@ export class addteacherComponent implements OnInit {
     class_id;
     section;
     teacher_id;
-    subject_id;
+    subject_name;
     exists;
     notvalid;
     succeded;
@@ -23,7 +23,7 @@ export class addteacherComponent implements OnInit {
         this.class_id="";
         this.section="";
         this.teacher_id="";
-        this.subject_id="";
+        this.subject_name="";
         this.notvalid = false;
         this.exists = false;
     }
@@ -36,7 +36,7 @@ export class addteacherComponent implements OnInit {
         this.class_id.trim();
         this.section.trim();
         this.teacher_id.trim();
-        this.subject_id.trim();
+        this.subject_name.trim();
         this.succeded = false;
         //      Validation
 
@@ -77,7 +77,7 @@ export class addteacherComponent implements OnInit {
             Class_Id : parseInt(this.class_id),
             Class_Section : this.section,
             Teacher_Name : this.teacher_name,
-            Subject_Id : parseInt(this.subject_id)
+            Subject_Name : this.subject_name
 
         }).then((result)=>{
             this.succeded = true;

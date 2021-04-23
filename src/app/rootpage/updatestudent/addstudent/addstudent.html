@@ -1,6 +1,6 @@
 <StackLayout>
     <!-- REY IKKADA FORM PETTU-->
-    <TextField [(ngModel)]="this.student_name" hint="sStudent Name" autocorrect="false"></TextField>
+    <TextField [(ngModel)]="this.student_name" hint="Student Name" autocorrect="false"></TextField>
     <TextField [(ngModel)]="this.student_id" hint="Student ID" autocorrect="false"></TextField>
     <TextField [(ngModel)]="this.student_attendance" hint="Student Attendance" autocorrect="false"></TextField>
     <TextField [(ngModel)]="this.student_class" hint="Student Class" autocorrect="false"></TextField>
@@ -8,5 +8,5 @@
     <TextField [(ngModel)]="this.student_section" hint="Student Section" autocorrect="false"></TextField>
     <Label *ngIf="this.notvalid" fontSize="15" class="errortext" text="Please Enter Valid Data"></Label>
     </StackLayout>
-    <Button text="Add" (tap)="fun()"></Button>
+    <Button text="Add" class="addbutton" (tap)="fun()"></Button>
 </StackLayout>

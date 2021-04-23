@@ -1,3 +1,5 @@
 <StackLayout>
     <Button text="Add Blog" (tap)="add()"></Button>
+    <Label *ngIf="this.loading" text="Loading .... Please Wait" class="loading"></Label>
+    <Label *ngIf="this.nodata" text="No blogs as of now ! :-/  Try adding one"></Label>
 </StackLayout>

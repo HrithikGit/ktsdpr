@@ -1,7 +1,8 @@
 <StackLayout>
     <!-- REY IKKADA FORM PETTU-->
+    <TextField [(ngModel)] ="teacherid" hint="Teacher Id" autocorrect="false"></TextField>
     <TextField [(ngModel)]="teachername" hint="Teacher Name" autocorrect="false"></TextField>
     <TextField [(ngModel)]="teacherclass" hint="Teacher Class" autocorrect="false"></TextField>
-    <TextField [(ngModel)]="this.teachersub" hint="Teacher Subject" autocorrect="false"></TextField>
-    <Button text="Delete" (tap)="fun()"></Button>
+    <TextField [(ngModel)]="this.section" hint="Teacher Section" autocorrect="false"></TextField>
+    <Button text="Delete" class="deletebutton" (tap)="fun()"></Button>
 </StackLayout>
