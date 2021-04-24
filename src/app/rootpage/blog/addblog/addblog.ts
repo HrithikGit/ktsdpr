@@ -21,8 +21,9 @@ export class addblogComponent {
     async addToDb(){
         this.heading.trim();
         this.content.trim();
-        if(this.heading.length==0){
+        if(this.heading.length==0 || this.content.length==0){
             this.headavail = false;
+            return ;
         }
         const date = new Date();
         const blogCollection = firebase.firestore().collection("Blogs");

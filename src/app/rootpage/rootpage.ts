@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 @Component({
     selector: "rootpage",
     templateUrl: "./rootpage.html",
+    styleUrls : ["./rootpage.css"]
 })
 export class rootpageComponent implements OnInit{
     check="";

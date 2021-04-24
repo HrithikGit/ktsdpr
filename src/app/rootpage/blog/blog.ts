@@ -16,10 +16,11 @@ export class blogComponent {
     public constructor(private router:Router){
         this.loading = true;
         this.nodata = false;
+    }
+    ngOnInit(): void {
         this.blogs=[];
         this.getdata();
     }
-
     async getdata(){
         await firebase.firestore().collection("Blogs").get().then(result=>{
             result.forEach(doc=>{
@@ -27,6 +28,7 @@ export class blogComponent {
                 if(check.Content.length>=100){
                     check.Content = check.Content.substring(0,110)+".....";
                 }
+                check["id"]=doc.id;
                 this.blogs.push(check);
             })
         })
@@ -50,7 +52,10 @@ export class blogComponent {
     }
 
     remove(i){
+        const remcollection = firebase.firestore().collection("Blogs").doc(this.blogs[i].id);
+        remcollection.delete();
         var removeddata=this.blogs.splice(i,1);
-        console.log("TAPPED ON REMOVE");
+        // console.log(i);
+        // console.log("TAPPED ON REMOVE");
     }
 }

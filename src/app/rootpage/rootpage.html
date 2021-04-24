@@ -1,45 +1,47 @@
 <ActionBar title="Root Page">
 </ActionBar>
+<ScrollView height="100%">
 <GridLayout columns="*,*" rows="10,*,*,*,*">
 
     <StackLayout row="1" col="0" (tap)="studentdetails()" >
-        <Image src="~/images/student.png" width="125" height="125" stretch="aspectFill"></Image>
+        <Image src="~/images/student.png" class="image" stretch="aspectFill"></Image>
         <Label text="Student Details" font-weight="bold" verticalAlignment="center" horizontalAlignment="center"></Label>
     </StackLayout>
 
     <StackLayout row="1" col="1" (tap)="teacherdetails()" >
-        <Image src="~/images/teacher.png" width="125" height="125" stretch="aspectFill"></Image>
+        <Image src="~/images/teacher.png" class="image" stretch="aspectFill"></Image>
         <br>
         <Label text="Teacher Details" font-weight=bold verticalAlignment="center" horizontalAlignment="center"></Label>
     </StackLayout>
 
     <StackLayout row="2" col="0" (tap)="timetable()" >
-        <Image src="~/images/timetable.png" width="125" height="125" stretch="aspectFill"></Image>
+        <Image src="~/images/timetable.png" class="image" stretch="aspectFill"></Image>
         <br>
         <Label text="Time table" font-weight=bold verticalAlignment="center" horizontalAlignment="center"></Label>
     </StackLayout>
 
     <StackLayout row="2" col="1" (tap)="blog()" >
-        <Image src="~/images/blog.png" width="125" height="125" stretch="aspectFill"></Image>
+        <Image src="~/images/blog.png" class="image" stretch="aspectFill"></Image>
         <br>
         <Label text="Blog" font-weight=bold verticalAlignment="center" horizontalAlignment="center"></Label>
     </StackLayout>
 
     <StackLayout row="3" col="0" (tap)="attendance()" >
-        <Image src="~/images/attendance.png" width="125" height="125" stretch="aspectFill"></Image>
+        <Image src="~/images/attendance.png" class="image" stretch="aspectFill"></Image>
         <br>
         <Label text="Attendance" font-weight=bold verticalAlignment="center" horizontalAlignment="center"></Label>
     </StackLayout>
 
     <StackLayout row="3" col="1" (tap)="addclass()" >
-        <Image src="~/images/manageclass.png" width="125" height="125" stretch="aspectFill"></Image>
+        <Image src="~/images/manageclass.png" class="image" stretch="aspectFill"></Image>
         <br>
         <Label text="Manage Classes" font-weight=bold verticalAlignment="center" horizontalAlignment="center"></Label>
     </StackLayout>
 
     <StackLayout row="4" col="0" (tap)="marks()" >
-        <Image src="~/images/marks.png" width="125" height="125" stretch="aspectFill"></Image>
+        <Image src="~/images/marks.png" class="image" stretch="aspectFill"></Image>
         <br>
         <Label text="Marks" font-weight=bold verticalAlignment="center" horizontalAlignment="center"></Label>
     </StackLayout>
 </GridLayout>
+</ScrollView>

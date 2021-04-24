@@ -2,19 +2,21 @@
     <Button text="Add Blog" (tap)="add()" class="addbutton"></Button>
     <Label *ngIf="this.loading" text="Loading .... Please Wait" class="loading"></Label>
     <Label *ngIf="this.nodata" class="nodata" text="No blogs as of now ! :-/  Try adding one"></Label>
-    <ScrollView>
+    <ScrollView height="80%">
       <StackLayout>
           <template *ngFor="let item of this.blogs; let i=index">
 
-              <GridLayout columns="2*,85*,13*" rows="auto" style="padding-bottom: 10px;">
+              <GridLayout columns="2*,85*,13*" rows="auto,auto" style="padding-bottom:10%;">
               <StackLayout [nsRouterLink]="['/viewblog',item.Date,item.Time]" row="0" col="1">
                 <Label fontSize=20 class="blog-heading"  [text]="item.Heading"></Label>
                 <Label class="blogcontent" [text]="item.Content" textWrap="true"></Label>
-                <Label class="timeanddate" [text]="item.Date"></Label>
-                <Label class="timeanddate" [text]="item.Time"></Label>
               </StackLayout>
+              <GridLayout rows="auto" columns="30*,30*,40*" row="1" col="1">
+                <Label class="timeanddate" row="0" col="0" [text]="item.Date"></Label>
+                <Label class="timeanddate" row="0" col="1" [text]="item.Time"></Label>
+              </GridLayout>
 
-              <StackLayout (tap)=remove(i) height="30" width="30" row="0" col="2" verticalAlignment="center">
+              <StackLayout (tap)=remove(i) height="20" width="0" row="0" col="2" verticalAlignment="center">
                 <Image src="~/images/minus.png"></Image>
               </StackLayout>
               </GridLayout>
