@@ -15,7 +15,8 @@ const firebase = require("nativescript-plugin-firebase/app");
 })
 export class updatetimetableComponent {
     bool=false;
-    class;
+    class_id;
+    section;
     monday=[]; tuesday=[]; wednesday=[]; thursday=[]; friday=[]; saturday=[]; sunday=[];
     rows;
     moncol;
@@ -25,17 +26,15 @@ export class updatetimetableComponent {
     fricol;
     satcol;
     onday;
-
+    currday;
 
     public constructor(private router:Router,private route:ActivatedRoute){
         this.route.params.subscribe((params)=>{
-            this.class=params["name"];
+            this.class_id=params["name"];
+            this.section = params["section"];
         });
-
         this.onload();
-
-        
-
+        this.currday="";
     }
     async onload(){
 
@@ -46,21 +45,23 @@ export class updatetimetableComponent {
         var check = getdata.where("Class_Id","==","1000");
         await check.get().then(result=>{
             result.forEach(doc=>{
-                console.log(JSON.stringify(doc.data()));
-                this.monday.push(doc.data());
+                var got = doc.data();
+                got["id"] = doc.id;
+                this.monday.push(got);
             })
         })
         this.monday.sort(function(a,b){
             return parseInt(a["Sequence"])-parseInt(b["Sequence"]);
         })
 
-        
+
         getdata = firebase.firestore().collection("Tuesday");
         check = getdata.where("Class_Id","==","1000");
         await check.get().then(result=>{
             result.forEach(doc=>{
-                console.log(JSON.stringify(doc.data()));
-                this.tuesday.push(doc.data());
+                var got = doc.data();
+                got["id"] = doc.id;
+                this.tuesday.push(got);
             })
         })
         this.tuesday.sort(function(a,b){
@@ -71,21 +72,23 @@ export class updatetimetableComponent {
         check = getdata.where("Class_Id","==","1000");
         await check.get().then(result=>{
             result.forEach(doc=>{
-                console.log(JSON.stringify(doc.data()));
-                this.wednesday.push(doc.data());
+                var got = doc.data();
+                got["id"] = doc.id;
+                this.wednesday.push(got);
             })
         })
         this.wednesday.sort(function(a,b){
             return parseInt(a["Sequence"])-parseInt(b["Sequence"]);
-        })   
-        
-        
+        })
+
+
         getdata = firebase.firestore().collection("Thursday");
         check = getdata.where("Class_Id","==","1000");
         await check.get().then(result=>{
             result.forEach(doc=>{
-                console.log(JSON.stringify(doc.data()));
-                this.thursday.push(doc.data());
+                var got = doc.data();
+                got["id"] = doc.id;
+                this.thursday.push(got);
             })
         })
         this.thursday.sort(function(a,b){
@@ -96,8 +99,9 @@ export class updatetimetableComponent {
         check = getdata.where("Class_Id","==","1000");
         await check.get().then(result=>{
             result.forEach(doc=>{
-                console.log(JSON.stringify(doc.data()));
-                this.friday.push(doc.data());
+                var got = doc.data();
+                got["id"] = doc.id;
+                this.friday.push(got);
             })
         });
         this.friday.sort(function(a,b){
@@ -109,8 +113,9 @@ export class updatetimetableComponent {
         check = getdata.where("Class_Id","==","1000");
         await check.get().then(result=>{
             result.forEach(doc=>{
-                console.log(JSON.stringify(doc.data()));
-                this.saturday.push(doc.data());
+                var got = doc.data();
+                got["id"] = doc.id;
+                this.saturday.push(got);
             })
         });
         this.saturday.sort(function(a,b){
@@ -119,7 +124,7 @@ export class updatetimetableComponent {
 
 
 
-        console.log(this.tuesday);
+        // console.log(this.tuesday);
 
 
         if(TodayDay=="Mon"){this.mon();}
@@ -140,12 +145,12 @@ export class updatetimetableComponent {
         this.satcol='white';
     }
     sun(): void{this.mon();}
-    mon(): void{ this.rows=[]; this.rows=[...this.monday];   this.color(); this.moncol='green';}
-    tue(): void{this.rows=[]; this.rows=[...this.tuesday];  this.color(); this.tuecol='green';}
-    wed():void{this.rows=[]; console.log("INSIDEEEEEEEEEEEEEEEEEEEEEEE"); this.rows=[...this.wednesday]; this.color(); this.wedcol='green';}
-    thu(): void{ this.rows=[]; this.rows=[...this.thursday];  this.color(); this.thucol='green';}
-    fri(): void{ this.rows=[]; this.rows=[...this.friday];  this.color(); this.fricol='green';}
-    sat(): void{this.rows=[]; this.rows=[...this.saturday];  this.color(); this.satcol='green';}
+    mon(): void{this.currday ="Monday" ;this.rows=[...this.monday];   this.color(); this.moncol='green';}
+    tue(): void{this.currday ="Tuesday" ;this.rows=[]; this.rows=[...this.tuesday];  this.color(); this.tuecol='green';}
+    wed():void{this.currday ="Wednesday" ; console.log("INSIDEEEEEEEEEEEEEEEEEEEEEEE"); this.rows=[...this.wednesday]; this.color(); this.wedcol='green';}
+    thu(): void{ this.currday ="Thrusday" ; this.rows=[...this.thursday];  this.color(); this.thucol='green';}
+    fri(): void{this.currday ="Friday" ; this.rows=[...this.friday];  this.color(); this.fricol='green';}
+    sat(): void{this.currday ="Saturday" ; this.rows=[...this.saturday];  this.color(); this.satcol='green';}
 
 
     remove(val){
@@ -154,10 +159,51 @@ export class updatetimetableComponent {
         console.log(this.rows);
     }
 
-
-
     addcol(){
-        var rw={"End_Minute": "","Class_Id": "1000","End_Hour": "","Start_Hour": "","Sequence": "","Start_Minute": "","Subject_Id": ""}
+        var rw={"End_Minute": "","End_Hour": "","Start_Hour": "","Sequence":this.rows.length+1,"Start_Minute": "","Subject_Name": ""}
         this.rows.push(rw);
+    }
+
+    async change(){
+        var todel=[] ;
+        if(this.currday=="Monday"){
+            todel = [...this.monday];
+        }
+        else if(this.currday=="Tuesday"){
+            todel = [...this.tuesday];
+        }
+        else if(this.currday=="Wednesday"){
+            todel = [...this.wednesday];
+        }
+        else if(this.currday =="Thursday"){
+            todel= [...this.thursday];
+        }
+        else if(this.currday =="Friday"){
+            todel = [...this.friday];
+        }
+        else{
+            todel  = [...this.saturday];
+        }
+
+        console.log(todel);
+        for(var i=0;i<todel.length;i++){
+            const del = firebase.firestore().collection(this.currday).doc(todel[i]["id"]);
+            del.delete();
+        }
+
+        const toadd = firebase.firestore().collection(this.currday);
+
+        for(var i=0;i<this.rows.length;i++){
+            await toadd.add({
+                Class_Id : this.class_id,
+                Class_Section : this.section,
+                Start_Time : this.rows[i]["Start_Hour"],
+                Start_Minute : this.rows[i]["Start_Minute"],
+                End_Hour : this.rows[i]["End_Hour"],
+                End_Minute : this.rows[i]["End_Minute"],
+                Sequence : this.rows[i]["Sequence"],
+                Subject_Name : this.rows[i]["Subject_Name"]
+            })
+        }
     }
 }
