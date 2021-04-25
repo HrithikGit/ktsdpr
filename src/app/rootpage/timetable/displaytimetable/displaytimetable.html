@@ -1,4 +1,4 @@
-<Label *ngIf="!this.bool" text="Loading... Please wait"></Label>
+<Label *ngIf="!this.bool" text="Loading... Please wait" class="loading"></Label>
 
 <StackLayout>
 <GridLayout columns="*,*,*" rows="auto,auto,auto" style="padding-bottom: 100px;">
@@ -9,7 +9,7 @@
     <Button *ngIf="this.bool" text="Friday" row="1" col="1" width="33%" (tap)="fri()" style="background-color:{{this.fricol}}"></Button>
     <Button *ngIf="this.bool" text="Saturday" row="1" col="2" width="33%" (tap)="sat()" style="background-color:{{this.satcol}}"></Button>
   </GridLayout>
-  <ScrollView>
+  <ScrollView height="100%">
     <StackLayout *ngIf="this.bool">
      <GridLayout columns="20*,14*,12*,14*,7*,20*,9*" rows="auto">
       <Label text="Start Time" col="1" row="0" ></Label>

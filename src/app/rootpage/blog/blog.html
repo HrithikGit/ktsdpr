@@ -1,8 +1,10 @@
 <StackLayout>
+    <StackLayout>
     <Button text="Add Blog" (tap)="add()" class="addbutton"></Button>
     <Label *ngIf="this.loading" text="Loading .... Please Wait" class="loading"></Label>
     <Label *ngIf="this.nodata" class="nodata" text="No blogs as of now ! :-/  Try adding one"></Label>
-    <ScrollView height="80%">
+  </StackLayout>
+    <ScrollView height="100%">
       <StackLayout>
           <template *ngFor="let item of this.blogs; let i=index">
 

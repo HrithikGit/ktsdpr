@@ -16,41 +16,34 @@ firebase.initializeApp({
 export class ItemsComponent implements OnInit {
     user="";
     pass="";
-    constructor(private router: Router,private page: Page) { }
+    notcorrect ;
+    constructor(private router: Router,private page: Page) {
+        this.notcorrect = false;
+    }
     ngOnInit(): void {
+        this.page.actionBarHidden = true;
         // this.page.actionBar.title="Title check"         (Action Bar Title)
     }
 
     loginAuthenicate() :void{
-        console.log("Hoi");
-        console.log("Entered Details are : ");
-        console.log(this.user+" "+this.pass);
+        this.user.trim();
         if(this.user.length==0 || this.pass.length==0){
             alert("Invalid Email or PassWord\n Try Re-entering Details");
             return ;
         }
         var check = false;
-        const userCollection = firebase.firestore().collection("Users");
-
-        // const userCollection = firebase.firestore().collection("Users").get().where("Username","==",this.user);
-
-        userCollection.get({ source: "server" }).then(querySnapshot => {
-            querySnapshot.forEach(doc => {
-              const document = JSON.parse(JSON.stringify(doc.data()));
-              console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-              if(document.Username===this.user && document.Password==this.pass){
-                  if(document.Type=="Root"){
-                    this.router.navigate(["root"]);
-                }
-                  else if(document.Type=="Teacher"){
-                      this.router.navigate(["teacher"]);
-                  }
-                  else{
-                      this.router.navigate(["student"]);
-                  }
-              }
-
-            });
-          });
+        var passdb ="";
+        const usercollection = firebase.firestore().collection("Users").where("Username","==",this.user)
+        usercollection.get().then(result=>{
+            result.forEach(doc=>{
+                passdb = doc.data()["Password"];
+            })
+        })
+        if(this.pass==passdb){
+            this.router.navigate(["root"]);
+        }
+        else{
+            this.notcorrect = true;
+        }
     }
 }

@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
+import { action } from "tns-core-modules/ui/dialogs";
 
 const firebase = require("nativescript-plugin-firebase/app");
 
@@ -23,6 +24,23 @@ export class addblogComponent {
         this.content.trim();
         if(this.heading.length==0 || this.content.length==0){
             this.headavail = false;
+            return ;
+        }
+
+        //Confirm Prompt
+        var flag = false;
+        await action({
+            message: "Are you sure to add this data",
+            cancelButtonText: "",
+            actions: ["Yes", "No"]
+        }).then((result) => {
+            if (result == "No") {
+                flag = true;
+            } else {
+                console.log("The user selected option 2.");
+            }
+        });
+        if(flag){
             return ;
         }
         const date = new Date();

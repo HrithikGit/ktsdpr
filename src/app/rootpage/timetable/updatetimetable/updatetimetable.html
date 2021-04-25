@@ -16,7 +16,7 @@
   <Button *ngIf="this.bool" text="Change" row="0" col="1" width="50%" (tap)="change()" style="background-color: #76D7C4 ;"></Button>
 </GridLayout>
 
-<ScrollView>
+<ScrollView height="80%">
     <StackLayout *ngIf="this.bool">
      <GridLayout columns="17*,14*,12*,14*,7*,20*,12*" rows="auto">
       <Label text="Start Time" col="1" row="0" ></Label>
@@ -33,7 +33,7 @@
       <Label style="padding-top: 30px;" text=":" col="5" row="0"></Label>
       <TextField [(ngModel)]="col.End_Minute" col="6" row="0"></TextField>
 
-      <TextField [(ngModel)]="col.Subject_Id" width="50" col="7" row="0"></TextField>
+      <TextField [(ngModel)]="col.Subject_Name" width="50" col="7" row="0"></TextField>
       <StackLayout (tap)="remove(i)" col="8" row="0"><Image src="~/images/minus.png" height="30" width="30" col="3" row="0"></Image></StackLayout>
      </GridLayout>
     </template>

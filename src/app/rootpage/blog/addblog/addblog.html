@@ -1,7 +1,9 @@
 
-<StackLayout>
-    <TextField [(ngModel)]="this.heading" hint="Please Enter the heading"></TextField>
-    <TextField [(ngModel)]="this.content" style="margin-top: 15px" borderRadius="5%" borderColor="#DEDEDE" borderWidth="1" height="50%" hint="Enter Note" class="input input-border"></TextField>
+<StackLayout class="input-form">
+    <Label text="Heading" fontSize="17%" class="local-heading"></Label>
+    <TextField textWrap="true" [(ngModel)]="this.heading"  style="margin-top:15px" backgroundColor="#f1f1f1" paddingLeft="10%" borderRadius="5%" borderColor="#DEDEDE" borderWidth="1" hint="Please Enter the heading"></TextField>
+    <Label text="Content" fontSize="17%" class="local-heading"></Label>
+    <TextView textWrap="true" [(ngModel)]="this.content" style="margin-top: 15px" backgroundColor="#f1f1f1" paddingLeft="10%" borderRadius="5%" borderColor="#DEDEDE" borderWidth="1" height="50%" hint="Enter Note" ></TextView>
     <Button text="Add Images" width="40%"></Button>
     <Label *ngIf="!this.headavail" style="margin-top: 15px" borderRadius="5%" borderColor="#DEDEDE" borderWidth="1" class="errortext" text="*Fields Cannot be Empty"></Label>
     <Button text="Post" (tap)="addToDb()"class="addbutton"></Button>

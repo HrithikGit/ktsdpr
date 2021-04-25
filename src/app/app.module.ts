@@ -24,7 +24,6 @@ import { attendanceComponent} from "./rootpage/attendance/attendance";
 import {addtimetableComponent} from "./rootpage/timetable/addtimetable/addtimetable";
 import {displaytimetableComponent} from "./rootpage/timetable/displaytimetable/displaytimetable";
 import {timetableclassselectComponent} from "./rootpage/timetable/timetableclassselect/timetableclassselect";
-import {deletetimetableComponent} from "./rootpage/timetable/deletetimetable/deletetimetable";
 import {updatetimetableComponent} from "./rootpage/timetable/updatetimetable/updatetimetable";
 import { addclassComponent} from "./rootpage/addclass/addclass";
 import { deleteclassComponent} from "./rootpage/classpage/deleteclass/deleteclass";
@@ -60,7 +59,6 @@ import {marksComponent} from "./rootpage/marks/marks";
         addtimetableComponent,
         updatetimetableComponent,
         timetableclassselectComponent,
-        deletetimetableComponent,
         addclassComponent,
         deleteclassComponent,
         displaytimetableComponent,

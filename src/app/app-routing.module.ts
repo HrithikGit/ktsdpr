@@ -22,7 +22,6 @@ import {addstudentComponent} from "./rootpage/updatestudent/addstudent/addstuden
 import {addtimetableComponent} from "./rootpage/timetable/addtimetable/addtimetable";
 import {displaytimetableComponent} from "./rootpage/timetable/displaytimetable/displaytimetable";
 import {timetableclassselectComponent} from "./rootpage/timetable/timetableclassselect/timetableclassselect";
-import {deletetimetableComponent} from "./rootpage/timetable/deletetimetable/deletetimetable";
 import {updatetimetableComponent} from "./rootpage/timetable/updatetimetable/updatetimetable";
 import {classpageComponent} from "./rootpage/classpage/classpage";
 import {addclassComponent} from "./rootpage/addclass/addclass";
@@ -50,10 +49,9 @@ const routes: Routes = [
     {path: "deletestudent", component: deletestudentComponent},
     {path: "attendance/:name/:section", component:attendanceComponent},
     {path: "addtimetable",component:addtimetableComponent},
-    {path: "deletetimetable/:name/:name", component:deletetimetableComponent},
-    {path:"updatetimetable/:name/:name", component:updatetimetableComponent},
+    {path:"updatetimetable/:name/:section", component:updatetimetableComponent},
     {path:"timetableclassselect/:name",component:timetableclassselectComponent},
-    {path: "displaytimetable/:name/:name", component:displaytimetableComponent},
+    {path: "displaytimetable/:name/:section", component:displaytimetableComponent},
     {path : "addclass",component:addclassComponent},
     {path : "classpage", component: classpageComponent},
     {path : "deleteclass", component: deleteclassComponent},

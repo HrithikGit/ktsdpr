@@ -7,15 +7,17 @@
             <Image class="logo" src="~/images/logo.png"></Image>
         </StackLayout>
         <StackLayout>
-            <TextField [(ngModel)]="this.user" class="input-rounded" hint="Username..." autocorrect="false"
+            <TextField [(ngModel)]="this.user" style="margin-top: 15px" paddingLeft="10%" borderRadius="5%" borderColor="#DEDEDE" borderWidth="1" height="auto" hint="Username..." autocorrect="false"
              autocapitalizationType="none" ></TextField>
         </StackLayout>
 
         <StackLayout>
-            <TextField [(ngModel)]="this.pass" class="input-rounded" hint="Password..." autocorrect="false" autocapitalizationType="none"
-            ></TextField>
+            <TextField [(ngModel)]="this.pass" secure="true" style="margin-top: 15px" paddingLeft="10%" borderRadius="5%" borderColor="#DEDEDE" borderWidth="1" height="auto" hint="Password..." autocorrect="false"
+             autocapitalizationType="none" ></TextField>
         </StackLayout>
-
-        <Button text="Log In" class="btn-btn-primary" (tap)="loginAuthenicate()"></Button>
+        <StackLayout>
+            <Label class="errortext" *ngIf="this.notcorrect" text="Username and Password doesn't match"></Label>
+        </StackLayout>
+        <Button text="Log In" class="btn-btn-primary" (tap)="loginAuthenicate()" style="font-size: 16%;"></Button>
       </StackLayout>
 </FlexboxLayout>

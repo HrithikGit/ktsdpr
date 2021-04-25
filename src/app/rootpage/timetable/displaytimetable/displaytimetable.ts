@@ -24,12 +24,14 @@ export class displaytimetableComponent {
     thucol;
     fricol;
     satcol;
-    class;
+    class_id;
+    section;
     bool=false;
     vals : Array<JSON> =[];
     public constructor(private router:Router,private route: ActivatedRoute){
         this.route.params.subscribe((params)=>{
-            this.class=params["name"];
+            this.class_id=params["name"];
+            this.section = params["section"];
         });
         this.onload();
     }
@@ -39,10 +41,10 @@ export class displaytimetableComponent {
         var day = new Date();
         var TodayDay = Wday[day.getDay()];
         var getdata = firebase.firestore().collection("Monday");
-        var check = getdata.where("Class_Id","==","1000");
+        var check = getdata.where("Class_Id","==",this.class_id).where("Class_Section","==",this.section);
         await check.get().then(result=>{
             result.forEach(doc=>{
-                console.log(JSON.stringify(doc.data()));
+                // console.log(JSON.stringify(doc.data()));
                 this.monday.push(doc.data());
             })
         })
@@ -50,12 +52,12 @@ export class displaytimetableComponent {
             return parseInt(a["Sequence"])-parseInt(b["Sequence"]);
         })
 
-        
+
         getdata = firebase.firestore().collection("Tuesday");
-        check = getdata.where("Class_Id","==","1000");
+        check = getdata.where("Class_Id","==",this.class_id).where("Class_Section","==",this.section);
         await check.get().then(result=>{
             result.forEach(doc=>{
-                console.log(JSON.stringify(doc.data()));
+                // console.log(JSON.stringify(doc.data()));
                 this.tuesday.push(doc.data());
             })
         })
@@ -64,23 +66,23 @@ export class displaytimetableComponent {
         })
 
         getdata = firebase.firestore().collection("Wednesday");
-        check = getdata.where("Class_Id","==","1000");
+        check = getdata.where("Class_Id","==",this.class_id).where("Class_Section","==",this.section);
         await check.get().then(result=>{
             result.forEach(doc=>{
-                console.log(JSON.stringify(doc.data()));
+                // console.log(JSON.stringify(doc.data()));
                 this.wednesday.push(doc.data());
             })
         })
         this.wednesday.sort(function(a,b){
             return parseInt(a["Sequence"])-parseInt(b["Sequence"]);
-        })   
-        
-        
+        })
+
+
         getdata = firebase.firestore().collection("Thursday");
-        check = getdata.where("Class_Id","==","1000");
+        check = getdata.where("Class_Id","==",this.class_id).where("Class_Section","==",this.section);
         await check.get().then(result=>{
             result.forEach(doc=>{
-                console.log(JSON.stringify(doc.data()));
+                // console.log(JSON.stringify(doc.data()));
                 this.thursday.push(doc.data());
             })
         })
@@ -89,10 +91,10 @@ export class displaytimetableComponent {
         })
 
         getdata = firebase.firestore().collection("Friday");
-        check = getdata.where("Class_Id","==","1000");
+        check = getdata.where("Class_Id","==",this.class_id).where("Class_Section","==",this.section);
         await check.get().then(result=>{
             result.forEach(doc=>{
-                console.log(JSON.stringify(doc.data()));
+                // console.log(JSON.stringify(doc.data()));
                 this.friday.push(doc.data());
             })
         });
@@ -102,10 +104,10 @@ export class displaytimetableComponent {
 
 
         getdata = firebase.firestore().collection("Saturday");
-        check = getdata.where("Class_Id","==","1000");
+        check = getdata.where("Class_Id","==",this.class_id).where("Class_Section","==",this.section);
         await check.get().then(result=>{
             result.forEach(doc=>{
-                console.log(JSON.stringify(doc.data()));
+                // console.log(JSON.stringify(doc.data()));
                 this.saturday.push(doc.data());
             })
         });
