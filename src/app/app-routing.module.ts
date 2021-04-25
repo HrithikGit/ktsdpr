@@ -4,11 +4,14 @@ import { NativeScriptRouterModule } from "@nativescript/angular";
 
 
 //Components
-import { attendanceComponent} from "./rootpage/attendance/attendance";
-import { ItemsComponent } from "./item/items.component";
 import {rootpageComponent} from "./rootpage/rootpage";
 import {teacherpageComponent} from "./teacherpage/teacherpage";
 import {studentpageComponent} from "./studentpage/studentpage";
+
+
+//root page
+import { attendanceComponent} from "./rootpage/attendance/attendance";
+import { ItemsComponent } from "./item/items.component";
 import {updateteacherComponent} from "./rootpage/updateteacher/updateteacher";
 import {updatestudentComponent} from "./rootpage/updatestudent/updatestudent";
 import {timetableComponent} from "./rootpage/timetable/timetable";
@@ -30,9 +33,18 @@ import { addblogComponent} from "./rootpage/blog/addblog/addblog";
 import {viewblogComponent} from "./rootpage/blog/viewblog/viewblog";
 import {marksComponent} from "./rootpage/marks/marks";
 
+
+
+//teacherpage
+import {teacherpageattendanceComponent} from "./teacherpage/teacherpageattendance/teacherpageattendance";
+import {teacherpagemarksComponent} from "./teacherpage/teacherpagemarks/teacherpagemarks";
+import {teacherpagetimetableComponent} from "./teacherpage/teacherpagetimetable/teacherpagetimetable";
+import {teacherpageupdatestudentComponent} from "./teacherpage/teacherpageupdatestudent/teacherpageupdatestudent";
+
 const routes: Routes = [
     // { path: "", redirectTo: "/items", pathMatch: "full" },
-    { path: "", redirectTo: "/root", pathMatch: "full" },
+    // root page ki =>{ path: "", redirectTo: "/root", pathMatch: "full" },
+    {path:"",redirectTo: "/teacher", pathMatch:"full"},
     { path: "items", component: ItemsComponent },
     { path: "root", component: rootpageComponent},
     { path: "teacher", component:teacherpageComponent},
@@ -57,7 +69,11 @@ const routes: Routes = [
     {path : "deleteclass", component: deleteclassComponent},
     {path : "addblog",component: addblogComponent},
     {path : "viewblog/:date/:time",component : viewblogComponent},
-    {path: "marks/:class/:section", component:marksComponent}
+    {path: "marks/:class/:section", component:marksComponent},
+    {path: "teacherpageupdatestudent/:name",component:teacherpageupdatestudentComponent},
+    {path:"teacherpagetimetable/:name",component:teacherpagetimetableComponent},
+    {path:"teacherpagemarks/:name",component:teacherpagemarksComponent},
+    {path:"teacherpageattendance/:name",component:teacherpageattendanceComponent}
 
 ];
 

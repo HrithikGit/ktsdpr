@@ -31,6 +31,13 @@ import { addblogComponent} from "./rootpage/blog/addblog/addblog";
 import { viewblogComponent} from "./rootpage/blog/viewblog/viewblog";
 import {marksComponent} from "./rootpage/marks/marks";
 
+
+
+//teacherpage
+import {teacherpageattendanceComponent} from "./teacherpage/teacherpageattendance/teacherpageattendance";
+import {teacherpagemarksComponent} from "./teacherpage/teacherpagemarks/teacherpagemarks";
+import {teacherpagetimetableComponent} from "./teacherpage/teacherpagetimetable/teacherpagetimetable";
+import {teacherpageupdatestudentComponent} from "./teacherpage/teacherpageupdatestudent/teacherpageupdatestudent";
 @NgModule({
     bootstrap: [
         AppComponent
@@ -64,7 +71,11 @@ import {marksComponent} from "./rootpage/marks/marks";
         displaytimetableComponent,
         addblogComponent,
         viewblogComponent,
-        marksComponent
+        marksComponent,
+        teacherpageattendanceComponent,
+        teacherpagemarksComponent,
+        teacherpagetimetableComponent,
+        teacherpageupdatestudentComponent
     ],
     providers: [],
     schemas: [
