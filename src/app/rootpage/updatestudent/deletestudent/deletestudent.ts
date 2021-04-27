@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import { confirm } from "tns-core-modules/ui/dialogs";
 import { FirebaseTrace } from "nativescript-plugin-firebase/performance/performance";
 
 const firebase = require("nativescript-plugin-firebase/app");
@@ -9,36 +10,62 @@ const firebase = require("nativescript-plugin-firebase/app");
     templateUrl: "./deletestudent.html",
 })
 export class deletestudentComponent {
-    studentid ;
-    studentclass;
-    studentsection;
-    studentname;
-    public constructor(private router: Router) {
-        this.studentid="";
-        this.studentclass="";
-        this.studentsection="";
-        this.studentname="";
+    student_class;
+    student_section;
+    waiting;
+
+    students=[];
+    public constructor(private router: Router,private route:ActivatedRoute) {
+        this.route.params.subscribe((params)=>{
+            this.student_class= params["name"],
+            this.student_section = params["section"]
+            console.log(this.student_class+" "+this.student_section);
+        })
+        this.waiting = true;
+        this.getData();
     }
 
-    async fun(){
-        console.log("Came Here !");
-        const studentCollection = firebase.firestore().collection("Student").where("Student_Id","==",parseInt(this.studentid))
-        .where("Class_Id","==",parseInt(this.studentclass)*100).where("Class_Section","==",this.studentsection);
-        var val ="";
-        await studentCollection.get().then(result=>{
+    async getData(){
+        const teacherCollection = firebase.firestore().collection("Student");
+        await teacherCollection.get().then(result=>{
             result.forEach(doc=>{
-                // console.log(doc.data().Student_Name);
-                if(doc.data().Student_Name!=this.studentname){
-                    alert("Entered Data Doesn't Match! Please re-check");
-                    return;
-                }
-                console.log(doc.data)
-                val = doc.id;
-                console.log("I'm here ! "+val);
+                var check = doc.data();
+                check["id"] = doc.id;
+                this.students.push(check);
             })
         })
-        console.log(val);
-        firebase.firestore().collection("Student").doc(val).delete();
-        alert("Delete Successful !");
+        this.waiting = false;
+    }
+
+    async remove(i){
+        var stop = false;
+        await confirm({
+            title: "Your title",
+            message: "Are you sure delete this student "+this.students[i].Student_Name,
+            okButtonText: "Yes",
+            cancelButtonText: "No",
+            neutralButtonText: "Cancel"
+         }).then(result=>{
+             if(result==false){
+                 stop = true;
+             }
+             else if(result==true){
+                 stop = false;
+             }
+             else{
+                 stop = true;
+             }
+         })
+        if(stop){
+            return ;
+        }
+        const remcollection = firebase.firestore().collection("Student").doc(this.students[i].id);
+        this.waiting = true;
+        await remcollection.delete();
+        var removeddata=this.students.splice(i,1);
+        this.waiting = false;
+
+        // console.log(i);
+        // console.log("TAPPED ON REMOVE");
     }
 }

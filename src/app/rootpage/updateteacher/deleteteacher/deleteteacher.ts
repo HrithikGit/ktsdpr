@@ -9,9 +9,6 @@ const firebase = require("nativescript-plugin-firebase/app");
     templateUrl: "./deleteteacher.html",
 })
 export class deleteteacherComponent {
-    teacherclass ;
-    teachersub;
-    teachername;
     teacherid;
     section;
     waiting;
@@ -19,16 +16,7 @@ export class deleteteacherComponent {
     teachers=[];
     public constructor(private router: Router) {
         this.waiting = true;
-        this.intialize();
         this.getData();
-    }
-
-    intialize() : void{
-        this.teacherid="";
-        this.teacherclass="";
-        this.teachersub="";
-        this.teachername="";
-        this.section="";
     }
 
     async getData(){

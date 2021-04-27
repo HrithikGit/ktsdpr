@@ -1,12 +1,21 @@
 <StackLayout>
     <!-- REY IKKADA FORM PETTU-->
-    <TextField [(ngModel)]="this.student_name" hint="Student Name" autocorrect="false"></TextField>
-    <TextField [(ngModel)]="this.student_id" hint="Student ID" autocorrect="false"></TextField>
-    <TextField [(ngModel)]="this.student_attendance" hint="Student Attendance" autocorrect="false"></TextField>
-    <TextField [(ngModel)]="this.student_class" hint="Student Class" autocorrect="false"></TextField>
+    <Label text="Student Name" class="local-heading"></Label>
+    <TextField [(ngModel)]="this.student_name" class="input-add-db" autocorrect="false"></TextField>
+
+    <GridLayout rows="auto,auto" columns="50*,50*">
+    <Label text="Roll No" class="local-heading" row="0" col="0"></Label>
+    <TextField [(ngModel)]="this.student_id" row="1" col="0" class="input-add-db"  autocorrect="false"></TextField>
+    <Label text="Attendance" row="0" col="1" class="local-heading"></Label>
+    <TextField [(ngModel)]="this.student_attendance" row="1" col="1" class="input-add-db"  autocorrect="false"></TextField>
+    </GridLayout>
+
+    <Label text="Address" class="local-heading"></Label>
+    <TextView [(ngModel)]="this.student_address" class="input-add-db"  height="20%" autocorrect="false"></TextView>
+
     <StackLayout>
-    <TextField [(ngModel)]="this.student_section" hint="Student Section" autocorrect="false"></TextField>
     <Label *ngIf="this.notvalid" fontSize="15" class="errortext" text="Please Enter Valid Data"></Label>
     </StackLayout>
+
     <Button text="Add" class="addbutton" (tap)="fun()"></Button>
 </StackLayout>
