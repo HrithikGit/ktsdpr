@@ -210,19 +210,19 @@ export class updatetimetableComponent {
             this.monday = [...this.rows];
         }
         else if(this.currday=="Tuesday"){
-            this.monday = [...this.rows];
+            this.tuesday = [...this.rows];
         }
         else if(this.currday=="Wednesday"){
-            this.monday = [...this.rows];
+            this.wednesday = [...this.rows];
         }
         else if(this.currday =="Thursday"){
-            this.monday = [...this.rows];
+            this.thursday = [...this.rows];
         }
         else if(this.currday =="Friday"){
-            this.monday = [...this.rows];
+            this.friday = [...this.rows];
         }
         else{
-            this.monday = [...this.rows];
+            this.saturday = [...this.rows];
         }
     }
 }

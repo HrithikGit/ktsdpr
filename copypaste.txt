@@ -1,0 +1,37 @@
+//Confirmation
+import { confirm } from "tns-core-modules/ui/dialogs";
+var stop = false;
+        await confirm({
+            title: "Your title",
+            message: "Are you sure delete this teacher "+this.teachers[i].Teacher_Name;
+            okButtonText: "Yes",
+            cancelButtonText: "No",
+            neutralButtonText: "Cancel"
+         }).then(result=>{
+             if(result==false){
+                 stop = true;
+             }
+             else if(result==true){
+                 stop = false;
+             }
+             else{
+                 stop = true;
+             }
+         })
+        if(stop){
+            return ;
+        }
+
+
+//Switch
+import { EventData } from "tns-core-modules/data/observable";
+import { Switch } from "tns-core-modules/ui/switch";
+onCheckedChange(args: EventData) {
+        let sw = args.object as Switch;
+        this.checked = sw.checked; // boolean
+    }
+
+
+
+//Activity Indicator
+<ActivityIndicator class="activity-indicator" [busy]="this.waiting"></ActivityIndicator>

@@ -35,14 +35,17 @@ Button.-primary {
 
 }
 .input-add-db{
-    padding-left: 10%;
-    border-radius: 10%;
-    border-top-width: 1;
-    border-right-width: 1;
-    border-left-width: 1;
-    border-bottom-width: 1;
-    border-color: black;
-    size: 30;
+    height :6%;
+    padding-left:17%;
+    background-color: #f1f1f1;
+    border-radius: 5%;
+    border-color: gray;
+    border-width: 1px;
+}
+
+.line {
+    background: linear-gradient(to left, orangered, green, lightblue);
+    height: 2px;
 }
 
 
@@ -59,4 +62,24 @@ Button.-primary {
 .addbutton{
     color: white;
     background-color: #a4de02;
+}
+.local-heading{
+    color: #0074d9;
+    font-weight: bold;
+    padding-left: 17%;
+}
+
+.activity-indicator{
+    display : flex;
+    align-self: center;
+    align-items: center;
+    align-content: center;
+}
+
+.title-heading{
+    text-align: center;
+    color: white;
+    background-color: #ca3542;
+    font-weight: 800;
+
 }

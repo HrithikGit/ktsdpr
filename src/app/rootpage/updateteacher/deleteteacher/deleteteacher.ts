@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
+import { confirm } from "tns-core-modules/ui/dialogs";
 
 const firebase = require("nativescript-plugin-firebase/app");
 
@@ -13,36 +14,64 @@ export class deleteteacherComponent {
     teachername;
     teacherid;
     section;
+    waiting;
+
+    teachers=[];
     public constructor(private router: Router) {
+        this.waiting = true;
+        this.intialize();
+        this.getData();
+    }
+
+    intialize() : void{
         this.teacherid="";
         this.teacherclass="";
         this.teachersub="";
         this.teachername="";
         this.section="";
     }
-    async fun(){
-        console.log("Came Here ! "+this.teacherid+" "+this.teacherclass);
-        const teacherCollection = firebase.firestore().collection("Teacher")
-        .where("Teacher_Id","==",parseInt(this.teacherid.trim())).where("Class_Id","==",parseInt(this.teacherclass)*100)
-        .where("Class_Section","==",this.section);
-        var val ="";
+
+    async getData(){
+        const teacherCollection = firebase.firestore().collection("Teacher");
         await teacherCollection.get().then(result=>{
             result.forEach(doc=>{
-                // console.log(doc.data().Student_Name);
-                if(doc.data().Teacher_Name!=this.teachername){
-                    alert("Entered Data Doesn't Match! Please re-check");
-                    return;
-                }
-                console.log(doc.data());
-                val = doc.id;
+                var check = doc.data();
+                check["id"] = doc.id;
+                this.teachers.push(check);
             })
         })
-        if(val.length==0){
-            alert("There is no such data available! recheck ");
-            return;
+        this.waiting = false;
+    }
+
+    async remove(i){
+        var stop = false;
+        await confirm({
+            title: "Your title",
+            message: "Are you sure delete this teacher "+this.teachers[i].Teacher_Name,
+            okButtonText: "Yes",
+            cancelButtonText: "No",
+            neutralButtonText: "Cancel"
+         }).then(result=>{
+             if(result==false){
+                 stop = true;
+             }
+             else if(result==true){
+                 stop = false;
+             }
+             else{
+                 stop = true;
+             }
+         })
+        if(stop){
+            return ;
         }
-        console.log(val);
-        firebase.firestore().collection("Teacher").doc(val).delete();
-        alert("Delete Successful !");
+        const remcollection = firebase.firestore().collection("Teacher").doc(this.teachers[i].id);
+        this.waiting = true;
+        await remcollection.delete();
+        var removeddata=this.teachers.splice(i,1);
+        this.waiting = false;
+
+        // console.log(i);
+        // console.log("TAPPED ON REMOVE");
     }
 }

@@ -1,16 +1,14 @@
 <StackLayout>
-    <TextField [(ngModel)]="class_year" class="input-add-db" hint="Class Year" ></TextField>
-    <TextField [(ngModel)]="class_section" class="input-add-db" hint="Class Section" ></TextField>
+    <Label text="Class Year" fontSize="17" class="local-heading"></Label>
+    <TextField [(ngModel)]="class_year" class="input-add-db" hint=".." ></TextField>
+    <Label text="Section" fontSize="17" class="local-heading"></Label>
+    <TextField [(ngModel)]="class_section" class="input-add-db" hint=".." ></TextField>
     <Label class="example" text="Example : A , B , C (if there aren't any add A)" ></Label>
-    <TextField [(ngModel)]="class_teacher" class="input-add-db" hint="Class Teacher ID" ></TextField>
-    <StackLayout>
+    <Label text="Number of Students" fontSize="17" class="local-heading"></Label>
     <TextField [(ngModel)]="no_of_students" class="input-add-db" hint="Number of Students"></TextField>
     <Label *ngIf="this.notvalid" fontSize="15" class="errortext" text="Please Enter Valid Data"></Label>
-    <Label class="example" text="Example : "></Label>
-    <Label class="example" text="Class :1"></Label>
-    <Label class="example" text="Section: A "></Label>
-    <Label class="example" text="Teacher Id : 1000"></Label>
-    <Label class="example" text="No. of Students:30 "></Label>
+    <ActivityIndicator class="activity-indicator" [busy]="this.waiting"></ActivityIndicator>
+    <StackLayout>
+        <Button text="Add" class="addbutton" (tap)="fun()"></Button>
     </StackLayout>
-    <Button text="Add" class="addbutton" (tap)="fun()"></Button>
 </StackLayout>

@@ -43,8 +43,8 @@ import {teacherpageupdatestudentComponent} from "./teacherpage/teacherpageupdate
 
 const routes: Routes = [
     // { path: "", redirectTo: "/items", pathMatch: "full" },
-    // root page ki =>{ path: "", redirectTo: "/root", pathMatch: "full" },
-    {path:"",redirectTo: "/teacher", pathMatch:"full"},
+    { path: "", redirectTo: "/root", pathMatch: "full" },
+    // {path:"",redirectTo: "/teacher", pathMatch:"full"},
     { path: "items", component: ItemsComponent },
     { path: "root", component: rootpageComponent},
     { path: "teacher", component:teacherpageComponent},
