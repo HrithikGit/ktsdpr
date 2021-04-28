@@ -40,6 +40,9 @@ import {teacherpageattendanceComponent} from "./teacherpage/teacherpageattendanc
 import {teacherpagemarksComponent} from "./teacherpage/teacherpagemarks/teacherpagemarks";
 import {teacherpagetimetableComponent} from "./teacherpage/teacherpagetimetable/teacherpagetimetable";
 import {teacherpageupdatestudentComponent} from "./teacherpage/teacherpageupdatestudent/teacherpageupdatestudent";
+import {timetableofteacherComponent} from "./teacherpage/teacherpagetimetable/timetableofteacher/timetableofteacher";
+import {selectclassComponent} from "./teacherpage/teacherpagemarks/selectclass/selectclass";
+import {addmarksComponent} from "./teacherpage/teacherpagemarks/addmarks/addmarks";
 
 const routes: Routes = [
     // { path: "", redirectTo: "/items", pathMatch: "full" },
@@ -70,10 +73,13 @@ const routes: Routes = [
     {path : "addblog",component: addblogComponent},
     {path : "viewblog/:date/:time",component : viewblogComponent},
     {path: "marks/:class/:section", component:marksComponent},
-    {path: "teacherpageupdatestudent/:name",component:teacherpageupdatestudentComponent},
-    {path:"teacherpagetimetable/:name",component:teacherpagetimetableComponent},
-    {path:"teacherpagemarks/:name",component:teacherpagemarksComponent},
-    {path:"teacherpageattendance/:name",component:teacherpageattendanceComponent}
+    {path: "teacherpageupdatestudent/:class/:section",component:teacherpageupdatestudentComponent},
+    {path:"teacherpagetimetable/:class/:section",component:teacherpagetimetableComponent},
+    {path:"teacherpagemarks/:class/:section",component:teacherpagemarksComponent},
+    {path:"teacherpageattendance/:class/:section",component:teacherpageattendanceComponent},
+    {path:"timetableofteacher/:teacherid",component:timetableofteacherComponent},
+    {path:"selectclass/:teacherid/:message",component:selectclassComponent},
+    {path: "addmarks/:class/:section/:subject", component:addmarksComponent}
 
 ];
 

@@ -38,6 +38,9 @@ import {teacherpageattendanceComponent} from "./teacherpage/teacherpageattendanc
 import {teacherpagemarksComponent} from "./teacherpage/teacherpagemarks/teacherpagemarks";
 import {teacherpagetimetableComponent} from "./teacherpage/teacherpagetimetable/teacherpagetimetable";
 import {teacherpageupdatestudentComponent} from "./teacherpage/teacherpageupdatestudent/teacherpageupdatestudent";
+import {timetableofteacherComponent} from "./teacherpage/teacherpagetimetable/timetableofteacher/timetableofteacher";
+import {selectclassComponent} from "./teacherpage/teacherpagemarks/selectclass/selectclass";
+import {addmarksComponent} from "./teacherpage/teacherpagemarks/addmarks/addmarks";
 @NgModule({
     bootstrap: [
         AppComponent
@@ -72,10 +75,13 @@ import {teacherpageupdatestudentComponent} from "./teacherpage/teacherpageupdate
         addblogComponent,
         viewblogComponent,
         marksComponent,
+        selectclassComponent,
         teacherpageattendanceComponent,
         teacherpagemarksComponent,
         teacherpagetimetableComponent,
-        teacherpageupdatestudentComponent
+        teacherpageupdatestudentComponent,
+        timetableofteacherComponent,
+        addmarksComponent
     ],
     providers: [],
     schemas: [

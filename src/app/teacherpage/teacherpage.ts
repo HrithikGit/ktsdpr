@@ -7,17 +7,18 @@ import {Router} from "@angular/router";
 })
 export class teacherpageComponent {
     isClassTeacher=true;
+    obj={classteacherclass:"100", classteachersection:"A"};
     public constructor(private router:Router) {}
     studentdetails(): void{
-        this.router.navigate(["teacherpageupdatestudent",String(this.isClassTeacher)]);
+        this.router.navigate(["teacherpageupdatestudent",this.obj.classteacherclass,this.obj.classteachersection]);
     }
     timetable(): void{
-        this.router.navigate(["teacherpagetimetable",String(this.isClassTeacher)]);
+        this.router.navigate(["teacherpagetimetable",this.obj.classteacherclass,this.obj.classteachersection]);
     }
     marks():void{
-        this.router.navigate(["teacherpagemarks",String(this.isClassTeacher)]);
+        this.router.navigate(["teacherpagemarks",this.obj.classteacherclass,this.obj.classteachersection]);
     }
     attendance():void{
-        this.router.navigate(["teacherpageattendance",String(this.isClassTeacher)]);
+        this.router.navigate(["teacherpageattendance",this.obj.classteacherclass,this.obj.classteachersection]);
     }
 }

@@ -1,0 +1,21 @@
+<StackLayout>
+    <StackLayout>
+      <Label *ngIf="this.notready" class="loading" fontSize="20" text="Loading.. Please Wait"></Label>
+      <Label *ngIf="!this.notready" class="heading" fontSize="20" text="Select a Class"></Label>
+    </StackLayout>
+    
+    <GridLayout>
+        <ListView *ngIf="!this.notready" [items]="this.classes">
+          <ng-template let-item="item">
+            <GridLayout [nsRouterLink]="['/'+this.navigateto, item.Class_Id,item.Class_Section]" rows="auto" columns="auto,auto,auto,auto">
+              <Label text="Class :" row="0" col="0"></Label>
+              <Label [text]="item.Class_Id" row="0" col="1" ></Label>
+              <Label text="Section : " row="0" col="2"></Label>
+              <Label [text]="item.Class_Section" row="0" col="3"></Label>
+            </GridLayout>
+          </ng-template>
+        </ListView>
+      </GridLayout>
+    
+    </StackLayout>
+    

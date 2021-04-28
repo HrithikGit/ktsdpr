@@ -6,10 +6,21 @@ import {Router,ActivatedRoute} from "@angular/router";
     templateUrl: "./teacherpagemarks.html",
 })
 export class teacherpagemarksComponent {
-    isClassTeacher;
+    ClassTeacherClass;
+    ClassTeacherSection;
+    teacherid=10;
     public constructor(private router:Router,private route:ActivatedRoute) {
         this.route.params.subscribe((params)=>{
-            this.isClassTeacher=(params["name"]=="true");
+            this.ClassTeacherClass=params["class"];
+            this.ClassTeacherSection=params["section"];
         });
+    }
+
+    add():void{
+        this.router.navigate(["selectclass",this.teacherid,"add"]);
+    }
+
+    view():void{
+        this.router.navigate(["selectclass",this.teacherid,"view"]);
     }
 }

@@ -1,1 +1,12 @@
-<Label text="Teacher page timetable"></Label>
+<Scrollview height="100%">
+    <StackLayout style="vertical-align:'center'">
+    <GridLayout columns="*,*" rows="auto,auto">
+        <StackLayout  row="0" col="0" (tap)="timetable()"><Image src="~/images/timetable.png" height="130" width="130" stretch="aspectFill" ></Image></StackLayout>
+        <StackLayout row="0" col="1" (tap)="timetable()" verticalAlignment="center"><Label text="View My timetable"></Label></StackLayout>
+
+
+        <StackLayout row="1" col="0" (tap)="update()" *ngIf="this.isClassTeacher"><Image src="~/images/update.png" height="130" width="130" stretch="aspectFill" ></Image></StackLayout>
+        <StackLayout row="1" col="1" (tap)="update()" verticalAlignment="center" *ngIf="this.isClassTeacher"><Label text="Update my Class TimeTable"></Label></StackLayout>
+    </GridLayout>
+</StackLayout>
+</Scrollview>

@@ -6,10 +6,12 @@ import {Router,ActivatedRoute} from "@angular/router";
     templateUrl: "./teacherpageupdatestudent.html",
 })
 export class teacherpageupdatestudentComponent {
-    isClassTeacher;
+    ClassTeacherClass;
+    ClassTeacherSection;
     public constructor(private router:Router,private route:ActivatedRoute) {
         this.route.params.subscribe((params)=>{
-            this.isClassTeacher=(params["name"]=="true");
+            this.ClassTeacherClass=params["class"];
+            this.ClassTeacherSection=params["section"];
         });
     }
 }

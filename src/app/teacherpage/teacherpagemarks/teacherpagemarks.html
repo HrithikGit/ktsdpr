@@ -1,1 +1,21 @@
-<Label text="Teacher page marks"></Label>
+<Scrollview height="100%">
+<StackLayout>
+    <GridLayout columns="*,*" rows="auto,auto">
+        <StackLayout row="0" col="0" (tap)="view()">
+            <Image src="~/images/newlogo.jpg" height="150" width="150" stretch="aspectFill"></Image>
+        </StackLayout>
+
+        <StackLayout row="0" col="1" (tap)="view()">
+            <Label text="View Student marks"></Label>
+        </StackLayout>
+
+        <StackLayout row="1" col="0" (tap)="add()">
+            <Image src="~/images/newlogo.jpg" height="150" width="150" stretch="aspectFill"></Image>
+        </StackLayout>
+
+        <StackLayout row="1" col="1" (tap)="add()">
+            <Label text="Add Student marks"></Label>
+        </StackLayout>
+    </GridLayout>
+</StackLayout>
+</Scrollview>
