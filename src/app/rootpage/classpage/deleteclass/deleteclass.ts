@@ -16,11 +16,6 @@ export class deleteclassComponent {
         this.section="";
     }
     async delete(){
-        if(this.section.length!=1 || !(this.class_id>=100 && this.class_id<=1000)){
-            console.log(this.section+" "+this.class_id);
-            alert("Invalid Data !");
-            return;
-        }
         var val ="";
         const record = firebase.firestore().collection("Class").where("Class_Id","==",parseInt(this.class_id)).where("Class_Section","==",this.section);
         await record.get().then(

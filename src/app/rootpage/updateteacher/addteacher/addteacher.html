@@ -1,13 +1,22 @@
-
+<ScrollView height="100%">
 <StackLayout>
     <!-- REY IKKADA FORM PETTU-->
-    <TextField [(ngModel)]="this.teacher_name" hint="Teacher Name" ></TextField>
-    <TextField [(ngModel)]="this.teacher_id" hint="Teacher ID" ></TextField>
-    <TextField [(ngModel)]="this.subject_name" hint="Teacher Subject"></TextField>
-    <TextField [(ngModel)]="this.class_id" hint="Enter Class" ></TextField>
-    <StackLayout>
-    <TextField [(ngModel)]="this.section" hint="Enter Section"></TextField>
+    <Label text="Teacher Name" class="local-heading"></Label>
+    <TextField [(ngModel)]="this.teacher_name" class="input-add-db" ></TextField>
+    <Label text="Subject" class="local-heading"></Label>
+    <TextField [(ngModel)]="this.subject_name" class="input-add-db"></TextField>
+    <GridLayout rows="auto,auto" columns="50*,50*">
+    <Label text="Class" row="0" col="0" class="local-heading"></Label>
+    <Label text="Section" row="0" col="1" class="local-heading"></Label>
+    <TextField height="8%" [(ngModel)]="this.class_id" row="1" col="0" class="input-add-db"></TextField>
+    <TextField height="8%" [(ngModel)]="this.section" row="1" col="1" class="input-add-db"></TextField>
+    </GridLayout>
+    <ActivityIndicator class="activity-indicator" [busy]="this.waiting"></ActivityIndicator>
+    <Label text="Class Teacher ?" class="local-heading"></Label>
+    <Switch horizontalAlignment="left" checked={{this.checked}} (checkedChange)="onCheckedChange($event)" ></Switch>
     <Label *ngIf="this.notvalid" fontSize="15" class="errortext" text="Please Enter Valid Data"></Label>
-    </StackLayout>
+    <StackLayout>
     <Button text="Add" class="addbutton" (tap)="fun()"></Button>
+    </StackLayout>
 </StackLayout>
+</ScrollView>

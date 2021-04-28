@@ -1,8 +1,29 @@
 <StackLayout>
-    <!-- REY IKKADA FORM PETTU-->
-    <TextField [(ngModel)]="studentname" hint="Student Name" autocorrect="false"></TextField>
-    <TextField [(ngModel)]="studentid" hint="Student Id" autocorrect="false"></TextField>
-    <TextField [(ngModel)]="studentclass" hint="Student Class" autocorrect="false"></TextField>
-    <TextField [(ngModel)] ="this.studentsection" hint="Section" autocorrect="false"></TextField>
-    <Button text="Delete" class="deletebutton" (tap)="fun()"></Button>
-</StackLayout>
+    <StackLayout>
+    <Label *ngIf="!this.waiting" class="title-heading" text="Delete Teacher/Update Teacher"></Label>
+    <!-- <ActivityIndicator class="activity-indicator" [busy]="this.waiting"></ActivityIndicator> -->
+    </StackLayout>
+    <template *ngFor="let item of this.students; let i=index">
+
+        <GridLayout columns="2*,85*,13*" rows="auto,auto,auto" style="padding-bottom:10%;">
+        <GridLayout paddingTop="5%" rows="*" columns="auto,auto,*" row="0" col="1">
+          <Label fontSize="15" text="Student Name : " class="local-heading" row="0" col="0"></Label>
+          <Label fontSize="15" [text]="item.Student_Name"
+           row="0" col="1"></Label>
+        </GridLayout>
+        <GridLayout paddingTop="5%" rows="*" columns="auto,auto,auto,auto,auto,auto,*" row="2" col="1">
+            <Label text="Class : " fontSize="15" class="local-heading" row="0" col="0"></Label>
+            <Label [text]="item.Class_Id"  fontSize="15" row="0" col ="1"></Label>
+            <Label text="Section : " fontSize="15" class="local-heading" row="0" col="2"></Label>
+            <Label [text] ="item.Class_Section" fontSize="15" row="0" col="3"></Label>
+            <Label text="Roll No. : " fontSize="15" class="local-heading" row="0" col="4"></Label>
+            <Label [text] ="item.Student_Id" fontSize="15" row="0" col="5"></Label>
+        </GridLayout>
+
+        <StackLayout (tap)=remove(i) height="20" width="0" rowSpan="2" row="0" col="2" verticalAlignment="center">
+          <Image src="~/images/minus.png"></Image>
+        </StackLayout>
+        </GridLayout>
+        <Label class="line"></Label>
+      </template>
+    </StackLayout>

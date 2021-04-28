@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {Router} from "@angular/router";
+import {Router,ActivatedRoute} from "@angular/router";
 import { Page } from "tns-core-modules/ui/page";
 
 const firebase = require("nativescript-plugin-firebase/app");
@@ -17,12 +17,19 @@ export class addstudentComponent {
     exists;
     notvalid;
     succeded;
-    constructor(private router: Router,private page: Page) {}
-    ngOnInit(): void {
+    student_address;
+    constructor(private router: Router,private route: ActivatedRoute,private page: Page) {
+        this.route.params.subscribe((params)=>{
+            this.student_class= params["name"],
+            this.student_section = params["section"]
+            console.log(this.student_class+" "+this.student_section);
+        })
+        this.intialize();
+    }
+    intialize(): void {
+        this.student_address="";
         this.student_name="";
-        this.student_class="";
         this.student_id="";
-        this.student_section="";
         this.student_attendance="";
         this.notvalid = false;
         this.exists = false;
@@ -42,20 +49,16 @@ export class addstudentComponent {
 
         // console.log(this.class_year);
 
-        if(this.student_name.length==0 || this.student_class.length==0 ||this.student_id.length==0){
+        if(this.student_name.length==0){
             this.notvalid = true;
             return;
         }
-        if(!(this.isCharacterALetter(this.student_section))){
-            this.notvalid = true;
-            return ;
-        }
-
         //Validation Ends Here !
 
         const studentCollection = firebase.firestore().collection("Student");
 
-        await studentCollection.where("Student_Id","==",parseInt(this.student_id)).where("Class_Section","==",this.student_section).get().then(result=>{
+        await studentCollection.where("Student_Id","==",parseInt(this.student_id)).
+        where("Class_Id","==",this.student_class).where("Class_Section","==",this.student_section).get().then(result=>{
             result.forEach(doc=>{
                 this.exists = true;
                 console.log(JSON.stringify(doc.data()));
@@ -64,7 +67,7 @@ export class addstudentComponent {
         console.log(this.exists);
 
         if(this.exists){
-            alert("This Student Already exists ! Please Delete and Try or Add another Student");
+            alert("This Student with provided Roll No. Exists ! Please Delete and Try or Add another Student");
             return;
         }
 
@@ -74,24 +77,20 @@ export class addstudentComponent {
 
         await studentCollection.add({
             Student_Id : parseInt(this.student_id),
-            Class_Id : parseInt(this.student_class)*100,
+            Class_Id : parseInt(this.student_class),
             Class_Section : this.student_section,
             Student_Name : this.student_name,
-            Student_Attendance : parseInt(this.student_attendance)
+            Student_Attendance : parseInt(this.student_attendance),
+            Student_Address : this.student_address
         }).then((result)=>{
-            this.succeded = true;
-            console.log("Added document with id "+ result.id);
+            // this.succeded = true;
+            // console.log("Added document with id "+ result.id);
             // setTimeout(()=>{
             //     this.succeded= false;
             // },3000);
         })
-
-        if(this.succeded){
-            this.router.navigate(["success","Successfully Added Class Details"]);
-        }
-        else{
-            this.router.navigate(["fail","Problem in adding Class Details, Please try again"]);
-        }
+        alert("Added Successfully !");
+        this.intialize();
     }
 }
 

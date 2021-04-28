@@ -46,8 +46,8 @@ import {addmarksComponent} from "./teacherpage/teacherpagemarks/addmarks/addmark
 
 const routes: Routes = [
     // { path: "", redirectTo: "/items", pathMatch: "full" },
-    // root page ki =>{ path: "", redirectTo: "/root", pathMatch: "full" },
-    {path:"",redirectTo: "/teacher", pathMatch:"full"},
+    { path: "", redirectTo: "/root", pathMatch: "full" },
+    // {path:"",redirectTo: "/teacher", pathMatch:"full"},
     { path: "items", component: ItemsComponent },
     { path: "root", component: rootpageComponent},
     { path: "teacher", component:teacherpageComponent},
@@ -60,8 +60,8 @@ const routes: Routes = [
     {path: "deleteteacher", component: deleteteacherComponent},
     {path: "success/:name", component:successComponent},
     {path: "fail/:name", component:failComponent},
-    {path: "addstudent", component:addstudentComponent},
-    {path: "deletestudent", component: deletestudentComponent},
+    {path: "addstudent/:name/:section", component:addstudentComponent},
+    {path: "deletestudent/:name/:section", component: deletestudentComponent},
     {path: "attendance/:name/:section", component:attendanceComponent},
     {path: "addtimetable",component:addtimetableComponent},
     {path:"updatetimetable/:name/:section", component:updatetimetableComponent},

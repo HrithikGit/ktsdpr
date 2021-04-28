@@ -8,9 +8,9 @@ import {Router} from "@angular/router";
 export class updatestudentComponent {
     public constructor(private router: Router) {}
     addstudent(): void{
-        this.router.navigate(["addstudent"]);
+        this.router.navigate(["timetableclassselect","addstudent"]);
     }
     deletestudent(): void{
-        this.router.navigate(["deletestudent"]);
+        this.router.navigate(["timetableclassselect","deletestudent"]);
     }
 }
