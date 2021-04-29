@@ -8,13 +8,9 @@ import { TouchGestureEventData } from "tns-core-modules/ui/gestures";
     templateUrl: "./teacherpageattendance.html",
 })
 export class teacherpageattendanceComponent {
-<<<<<<< HEAD
     ClassTeacherClass;
     ClassTeacherSection;
-=======
-    isClassTeacher;
-    loading = true;
->>>>>>> 0eba2c27ed7e61c361cc64aa485f0f37923782a0
+    loading=true;
     public constructor(private router:Router,private route:ActivatedRoute) {
         this.route.params.subscribe((params)=>{
             this.ClassTeacherClass=params["class"];
