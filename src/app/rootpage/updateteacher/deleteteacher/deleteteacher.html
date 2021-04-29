@@ -5,13 +5,13 @@
         </StackLayout>
         <template *ngFor="let item of this.teachers; let i=index">
 
-            <GridLayout columns="2*,85*,13*" rows="auto,auto,auto" style="padding-bottom:10%;">
+            <GridLayout  [nsRouterLink]="['/viewteacher',item.Teacher_Id]" columns="2*,85*,13*" rows="auto,auto,auto" style="padding-bottom:10%;">
             <GridLayout paddingTop="5%" rows="*" columns="auto,auto,*" row="0" col="1">
               <Label fontSize="15" text="Teacher Name : " class="local-heading" row="0" col="0"></Label>
               <Label fontSize="15" [text]="item.Teacher_Name"
                row="0" col="1"></Label>
             </GridLayout>
-            <GridLayout paddingTop="5%" rows="*" columns="auto,auto,auto,auto,auto,auto,*" row="2" col="1">
+            <GridLayout  [nsRouterLink]="['/viewteacher',item.Teacher_Id]" paddingTop="5%" rows="*" columns="auto,auto,auto,auto,auto,auto,*" row="2" col="1">
                 <Label text="Class : " fontSize="15" class="local-heading" row="0" col="0"></Label>
                 <Label [text]="item.Class_Id"  fontSize="15" row="0" col ="1"></Label>
                 <Label text="Section : " fontSize="15" class="local-heading" row="0" col="2"></Label>

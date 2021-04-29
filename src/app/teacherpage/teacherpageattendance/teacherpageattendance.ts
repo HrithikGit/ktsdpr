@@ -7,11 +7,13 @@ import {Router,ActivatedRoute} from "@angular/router";
 })
 export class teacherpageattendanceComponent {
     isClassTeacher;
+    loading = true;
     public constructor(private router:Router,private route:ActivatedRoute) {
         this.route.params.subscribe((params)=>{
             this.isClassTeacher=(params["name"]=="true");
         });
         this.getdetails();
+        this.loading = false;
     }
     Array=[];
 
@@ -32,7 +34,7 @@ export class teacherpageattendanceComponent {
                 j+=1;
             }
             this.SuperArrays.push(SubArray);
-            
+
         }
         console.log(this.SuperArrays);
 

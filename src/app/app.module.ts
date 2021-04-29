@@ -30,6 +30,8 @@ import { deleteclassComponent} from "./rootpage/classpage/deleteclass/deleteclas
 import { addblogComponent} from "./rootpage/blog/addblog/addblog";
 import { viewblogComponent} from "./rootpage/blog/viewblog/viewblog";
 import {marksComponent} from "./rootpage/marks/marks";
+import {viewteacherComponent} from "./rootpage/updateteacher/viewteacher/viewteacher";
+import {viewstudentComponent} from "./rootpage/updatestudent/viewstudent/viewstudent";
 
 
 
@@ -52,6 +54,8 @@ import {teacherpageupdatestudentComponent} from "./teacherpage/teacherpageupdate
     declarations: [
         AppComponent,
         ItemsComponent,
+        viewteacherComponent,
+        viewstudentComponent,
         teacherpageComponent,
         addteacherComponent,
         addstudentComponent,

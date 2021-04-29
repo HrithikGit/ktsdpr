@@ -26,7 +26,8 @@ export class deletestudentComponent {
     }
 
     async getData(){
-        const teacherCollection = firebase.firestore().collection("Student");
+        const teacherCollection = firebase.firestore().collection("Student")
+        .where("Class_Id","==",parseInt(this.student_class)).where("Class_Section","==",this.student_section);
         await teacherCollection.get().then(result=>{
             result.forEach(doc=>{
                 var check = doc.data();

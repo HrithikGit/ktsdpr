@@ -9,8 +9,7 @@ const firebase = require("nativescript-plugin-firebase/app")
 
 @Component({
     selector: "ns-items",
-    templateUrl: "./addteacher.html",
-    styleUrls : ["./addteacher.css"]
+    templateUrl: "./addteacher.html"
 })
 
 export class addteacherComponent implements OnInit {
@@ -41,8 +40,36 @@ export class addteacherComponent implements OnInit {
       onCheckedChange(args: EventData) {
         let sw = args.object as Switch;
         this.checked = sw.checked; // boolean
+        if(this.checked){
+            this.confirmClassTeacher();
+        }
+        sw.checked = this.checked;
     }
 
+    async confirmClassTeacher(){
+         var stop =false;
+        console.log("Came here ");
+            await confirm({
+               title: "Your title",
+               message: "Are you sure to make this teacher class teacher for "+this.class_id+" "+this.section,
+               okButtonText: "Yes",
+               cancelButtonText: "No",
+               neutralButtonText: "Cancel"
+            }).then(result=>{
+                if(result==false){
+                    stop = true;
+                }
+                else if(result==true){
+                    stop = false;
+                }
+                else{
+                    stop = true;
+                }
+            })
+            if(stop){
+                this.checked =false;
+            }
+    }
     async fun(){
         this.notvalid = false;
         this.teacher_name.trim();
@@ -64,32 +91,6 @@ export class addteacherComponent implements OnInit {
             return ;
         }
         //Validation Ends Here !
-        var stop = false;
-        // confirming class teacher;
-        console.log(this.checked);
-        if(this.checked==true){
-            console.log("Came here ");
-            await confirm({
-               title: "Your title",
-               message: "Are you sure to make this teacher class teacher for "+this.class_id+" "+this.section,
-               okButtonText: "Yes",
-               cancelButtonText: "No",
-               neutralButtonText: "Cancel"
-            }).then(result=>{
-                if(result==false){
-                    stop = true;
-                }
-                else if(result==true){
-                    stop = false;
-                }
-                else{
-                    stop = true;
-                }
-            })
-       }
-       if(stop){
-           return ;
-       }
        //Confirmation ends here !
        this.waiting = true;
        var classdefined = false;
