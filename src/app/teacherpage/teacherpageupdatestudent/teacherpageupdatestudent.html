@@ -1,1 +1,21 @@
-<Label text="Teacher page update student"></Label>
+<ScrollView width="100%">
+        <GridLayout style="vertical-align: center;" rows="auto,auto" coloumns="*,*">
+            <StackLayout row="0" col="0">
+                <Image src="~/images/newlogo.jpg" width="125" height="125" (tap)="view()" strech="aspectFill"></Image>
+            </StackLayout>
+
+            <StackLayout row="0" col="1" style="vertical-align: center;">
+                <Label text="View Student Details"></Label>
+            </StackLayout>
+
+            <StackLayout row="1" col="0" *ngIf="this.isClassTeacher">
+                <Image src="~/images/newlogo.jpg" width="125" height="125" (tap)="update()" strech="aspectFill"></Image>
+            </StackLayout>
+
+            <StackLayout row="1" col="1" *ngIf="this.isClassTeacher">
+                <Label text="Add student details of your class"></Label>
+            </StackLayout>
+
+
+        </GridLayout>
+</ScrollView>

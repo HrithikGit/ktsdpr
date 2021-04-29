@@ -1,5 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {Router,ActivatedRoute} from "@angular/router";
+import { TouchGestureEventData } from "tns-core-modules/ui/gestures";
+
 
 @Component({
     selector: "teacherpageattendance",
@@ -48,6 +50,14 @@ export class teacherpageattendanceComponent {
             return "red";
         }
     }
+
+    start; end;
+
+
+    longpress(i) {
+        console.log("LONG PRESSED")
+      }
+
     change(i){
         if(this.Array[i].present=="1"){
             this.Array[i].present="0";
