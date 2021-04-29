@@ -84,9 +84,11 @@ export class addteacherComponent implements OnInit {
 
         if(this.teacher_name.length==0 || this.section.length==0){
             this.notvalid = true;
+            alert("Problem");
             return;
         }
         if(!(this.isCharacterALetter(this.section))){
+            alert("Problem 2");
             this.notvalid = true;
             return ;
         }
