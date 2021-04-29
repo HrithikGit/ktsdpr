@@ -1,6 +1,8 @@
-
-<StackLayout>
-    <Label horizontalAlignment="center" height="8%" text="Mark the Attendance"></Label>
+<StackLayout *ngIf="this.loading">
+    <Label text="Loading... Please Wait !" class="loading"></Label>
+</StackLayout>
+<StackLayout *ngIf="!this.loading">
+    <Label class="heading" horizontalAlignment="center" height="8%" text="Mark the Attendance"></Label>
     <ScrollView height="84%">
         <StackLayout>
             <template *ngFor="let row of this.SuperArrays; let i=index">

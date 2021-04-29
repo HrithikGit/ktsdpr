@@ -32,7 +32,8 @@ import { deleteclassComponent } from "./rootpage/classpage/deleteclass/deletecla
 import { addblogComponent} from "./rootpage/blog/addblog/addblog";
 import {viewblogComponent} from "./rootpage/blog/viewblog/viewblog";
 import {marksComponent} from "./rootpage/marks/marks";
-
+import {viewteacherComponent} from "./rootpage/updateteacher/viewteacher/viewteacher";
+import {viewstudentComponent} from "./rootpage/updatestudent/viewstudent/viewstudent";
 
 
 //teacherpage
@@ -73,6 +74,7 @@ const routes: Routes = [
     {path : "addblog",component: addblogComponent},
     {path : "viewblog/:date/:time",component : viewblogComponent},
     {path: "marks/:class/:section", component:marksComponent},
+<<<<<<< HEAD
     {path: "teacherpageupdatestudent/:class/:section",component:teacherpageupdatestudentComponent},
     {path:"teacherpagetimetable/:class/:section",component:teacherpagetimetableComponent},
     {path:"teacherpagemarks/:class/:section",component:teacherpagemarksComponent},
@@ -80,6 +82,14 @@ const routes: Routes = [
     {path:"timetableofteacher/:teacherid",component:timetableofteacherComponent},
     {path:"selectclass/:teacherid/:message",component:selectclassComponent},
     {path: "addmarks/:class/:section/:subject", component:addmarksComponent}
+=======
+    {path: "teacherpageupdatestudent/:name",component:teacherpageupdatestudentComponent},
+    {path:"teacherpagetimetable/:name",component:teacherpagetimetableComponent},
+    {path:"teacherpagemarks/:name",component:teacherpagemarksComponent},
+    {path:"teacherpageattendance/:name/:class/:subject",component:teacherpageattendanceComponent},
+    {path :"viewteacher/:teacherid", component: viewteacherComponent},
+    {path : "viewstudent/:studentid/:class/:section", component: viewstudentComponent}
+>>>>>>> 0eba2c27ed7e61c361cc64aa485f0f37923782a0
 
 ];
 
