@@ -69,4 +69,7 @@ export class deletestudentComponent {
         // console.log(i);
         // console.log("TAPPED ON REMOVE");
     }
+    add():void{
+        this.router.navigate(["addstudent",this.student_class,this.student_section]);
+    }
 }

@@ -1,29 +1,32 @@
-    <StackLayout>
-        <StackLayout>
-        <Label *ngIf="!this.waiting" class="title-heading" text="Delete Teacher/Update Teacher"></Label>
-        <!-- <ActivityIndicator class="activity-indicator" [busy]="this.waiting"></ActivityIndicator> -->
-        </StackLayout>
-        <template *ngFor="let item of this.teachers; let i=index">
+<StackLayout>
+  <StackLayout>
+    <Label *ngIf="this.waiting" text="Please wait.... Loading"></Label>
+    <Label *ngIf="!this.waiting" class="title-heading" text="Add Teacher/Delete Teacher/Update Teacher"></Label>
+    <Button *ngIf="!this.waiting" (tap)="add()" width="90%" text="Add Teacher" class="addbutton"></Button>
+  </StackLayout>
+  
+  <ScrollView height="100%">
+  <StackLayout>
+  <template *ngFor="let item of this.teachers; let i=index">
 
-            <GridLayout  [nsRouterLink]="['/viewteacher',item.Teacher_Id]" columns="2*,85*,13*" rows="auto,auto,auto" style="padding-bottom:10%;">
-            <GridLayout paddingTop="5%" rows="*" columns="auto,auto,*" row="0" col="1">
-              <Label fontSize="15" text="Teacher Name : " class="local-heading" row="0" col="0"></Label>
-              <Label fontSize="15" [text]="item.Teacher_Name"
-               row="0" col="1"></Label>
-            </GridLayout>
-            <GridLayout  [nsRouterLink]="['/viewteacher',item.Teacher_Id]" paddingTop="5%" rows="*" columns="auto,auto,auto,auto,auto,auto,*" row="2" col="1">
-                <Label text="Class : " fontSize="15" class="local-heading" row="0" col="0"></Label>
-                <Label [text]="item.Class_Id"  fontSize="15" row="0" col ="1"></Label>
-                <Label text="Section : " fontSize="15" class="local-heading" row="0" col="2"></Label>
-                <Label [text] ="item.Class_Section" fontSize="15" row="0" col="3"></Label>
-                <Label text="Teaches : " fontSize="15" class="local-heading" row="0" col="4"></Label>
-                <Label [text] ="item.Subject_Name" fontSize="15" row="0" col="5"></Label>
-            </GridLayout>
+    <GridLayout   columns="2*,85*,13*" rows="auto,auto,auto" style="padding-bottom:10%;">
+      <GridLayout [nsRouterLink]="['/viewteacher',item.Teacher_Id]" paddingTop="5%" rows="*" columns="auto,auto,*" row="0" col="1">
+        <Label fontSize="15" text="Teacher Name : " class="local-heading" row="0" col="0"></Label>
+        <Label fontSize="15" [text]="item.Teacher_Name" row="0" col="1"></Label>
+      </GridLayout>
+      <GridLayout  [nsRouterLink]="['/viewteacher',item.Teacher_Id]" paddingTop="5%" rows="*" columns="auto,auto,auto,auto,*" row="2" col="1">
+        <Label text="Teacher-Id : " fontSize="15" class="local-heading" row="0" col="0"></Label>
+        <Label [text] ="item.Teacher_Id" fontSize="15" row="0" col="1"></Label>
+        <Label text="Teaches : " fontSize="15" class="local-heading" row="0" col="2"></Label>
+        <Label [text] ="item.Subject_Name" fontSize="15" row="0" col="3"></Label>
+      </GridLayout>
 
-            <StackLayout (tap)=remove(i) height="20" width="0" rowSpan="2" row="0" col="2" verticalAlignment="center">
-              <Image src="~/images/minus.png"></Image>
-            </StackLayout>
-            </GridLayout>
-            <Label class="line"></Label>
-          </template>
-        </StackLayout>
+      <StackLayout (tap)=remove(i) height="20" width="0" rowSpan="2" row="0" col="2" verticalAlignment="center">
+        <Image src="~/images/minus.png"></Image>
+      </StackLayout>
+    </GridLayout>
+    <Label class="line"></Label>
+  </template>
+  </StackLayout>
+  </ScrollView>
+</StackLayout>

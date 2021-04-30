@@ -11,8 +11,6 @@ import { AppComponent } from "./app.component";
 import { ItemsComponent } from "./item/items.component";
 import { FormsModule } from '@angular/forms';
 import {teacherpageComponent} from "./teacherpage/teacherpage";
-import {updateteacherComponent} from "./rootpage/updateteacher/updateteacher";
-import {updatestudentComponent} from "./rootpage/updatestudent/updatestudent";
 import {timetableComponent} from "./rootpage/timetable/timetable";
 import {blogComponent} from "./rootpage/blog/blog";
 import {deleteteacherComponent} from "./rootpage/updateteacher/deleteteacher/deleteteacher";
@@ -64,8 +62,6 @@ import {addmarksComponent} from "./teacherpage/teacherpagemarks/addmarks/addmark
         addstudentComponent,
         deletestudentComponent,
         timetableComponent,
-        updateteacherComponent,
-        updatestudentComponent,
         blogComponent,
         deleteteacherComponent,
         successComponent,

@@ -12,8 +12,6 @@ import {studentpageComponent} from "./studentpage/studentpage";
 //root page
 import { attendanceComponent} from "./rootpage/attendance/attendance";
 import { ItemsComponent } from "./item/items.component";
-import {updateteacherComponent} from "./rootpage/updateteacher/updateteacher";
-import {updatestudentComponent} from "./rootpage/updatestudent/updatestudent";
 import {timetableComponent} from "./rootpage/timetable/timetable";
 import {blogComponent} from "./rootpage/blog/blog";
 import {deleteteacherComponent} from "./rootpage/updateteacher/deleteteacher/deleteteacher";
@@ -32,8 +30,8 @@ import { deleteclassComponent } from "./rootpage/classpage/deleteclass/deletecla
 import { addblogComponent} from "./rootpage/blog/addblog/addblog";
 import {viewblogComponent} from "./rootpage/blog/viewblog/viewblog";
 import {marksComponent} from "./rootpage/marks/marks";
-import {viewteacherComponent} from "./rootpage/updateteacher/viewteacher/viewteacher";
 import {viewstudentComponent} from "./rootpage/updatestudent/viewstudent/viewstudent";
+import {viewteacherComponent} from "./rootpage/updateteacher/viewteacher/viewteacher";
 
 
 //teacherpage
@@ -47,14 +45,12 @@ import {addmarksComponent} from "./teacherpage/teacherpagemarks/addmarks/addmark
 
 const routes: Routes = [
     // { path: "", redirectTo: "/items", pathMatch: "full" },
-    // { path: "", redirectTo: "/root", pathMatch: "full" },
-     {path:"",redirectTo: "/teacher", pathMatch:"full"},
+    { path: "", redirectTo: "/root", pathMatch: "full" },
+    //{path:"",redirectTo: "/teacher", pathMatch:"full"},
     { path: "items", component: ItemsComponent },
     { path: "root", component: rootpageComponent},
     { path: "teacher", component:teacherpageComponent},
     { path: "student", component: studentpageComponent},
-    {path: "updateteacher", component: updateteacherComponent},
-    {path: "updatestudent", component: updatestudentComponent},
     {path: "blog", component: blogComponent},
     {path: "timetable", component: timetableComponent},
     {path: "addteacher", component:addteacherComponent},

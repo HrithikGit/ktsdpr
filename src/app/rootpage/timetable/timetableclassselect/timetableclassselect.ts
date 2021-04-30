@@ -32,6 +32,7 @@ export class timetableclassselectComponent {
         else if(this.detail=="Display"){this.detail="displaytimetable";}
         else if(this.detail=="Attendance"){this.detail="attendance";}
         else if(this.detail=="Marks"){this.detail="marks";}
+        else if(this.detail=="StudentDetails"){this.detail="deletestudent"}
     }
 
     async getclasses(){

@@ -12,6 +12,7 @@ export class deleteteacherComponent {
     teacherid;
     section;
     waiting;
+    teacher_set=new Set();
 
     teachers=[];
     public constructor(private router: Router) {
@@ -25,7 +26,10 @@ export class deleteteacherComponent {
             result.forEach(doc=>{
                 var check = doc.data();
                 check["id"] = doc.id;
-                this.teachers.push(check);
+                if(!this.teacher_set.has(check.Teacher_Id)){
+                    this.teacher_set.add(check.Teacher_Id);
+                    this.teachers.push({"Teacher_Id":check.Teacher_Id,"Subject_Name":check.Subject_Name,"Teacher_Name":check.Teacher_Name});
+                }
             })
         })
         this.waiting = false;
@@ -61,5 +65,10 @@ export class deleteteacherComponent {
 
         // console.log(i);
         // console.log("TAPPED ON REMOVE");
+    }
+
+
+    add():void{
+        this.router.navigate(["addteacher"]);
     }
 }

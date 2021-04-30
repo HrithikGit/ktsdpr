@@ -15,14 +15,14 @@ export class rootpageComponent implements OnInit{
     }
     teacherdetails(): void{
         console.log(this.check);
-        this.router.navigate(["updateteacher"]);
+        this.router.navigate(["deleteteacher"]);
     }
 
     addclass(): void{
         this.router.navigate(["classpage"]);
     }
     studentdetails(): void{
-        this.router.navigate(["updatestudent"]);
+        this.router.navigate(["timetableclassselect","StudentDetails"]);
     }
     timetable(): void{
         this.router.navigate(["timetable"]);

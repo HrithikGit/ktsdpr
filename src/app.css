@@ -83,3 +83,9 @@ Button.-primary {
     font-weight: 800;
 
 }
+
+
+.plusbutton{
+    color:white;
+    background-color: #00C3FF;
+}
