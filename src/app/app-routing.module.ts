@@ -64,7 +64,7 @@ const routes: Routes = [
     {path:"updatetimetable/:name/:section", component:updatetimetableComponent},
     {path:"timetableclassselect/:name",component:timetableclassselectComponent},
     {path: "displaytimetable/:name/:section", component:displaytimetableComponent},
-    {path : "addclass",component:addclassComponent},
+    {path : "addclass/:name/:section",component:addclassComponent},
     {path : "classpage", component: classpageComponent},
     {path : "deleteclass", component: deleteclassComponent},
     {path : "addblog",component: addblogComponent},

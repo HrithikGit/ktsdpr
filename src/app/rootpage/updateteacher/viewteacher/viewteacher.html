@@ -1,22 +1,25 @@
 <StackLayout>
     <StackLayout>
       <Label *ngIf="this.waiting" text="Please wait.... Loading"></Label>
-      <Label text="Teacher Name : {{this.teacher_name}}" horizontalAlignment="center"></Label>
+      <Label text="Teacher Name : {{this.teacher_name}}" class="local-heading" horizontalAlignment="center"></Label>
+      <Button *ngIf="!this.waiting" text="Add Class and Section" (tap)="addrow()" class="plusbutton"></Button>
     </StackLayout>
+
     
-    <ScrollView height="100%">
+    
+    <ScrollView height="80%">
     <StackLayout>
     <template *ngFor="let item of this.class_and_section; let i=index">
   
-      <GridLayout  columns="2*,85*,13*" rows="auto,auto,auto" style="padding-bottom:10%;">
-        <GridLayout paddingTop="5%" rows="*" columns="auto,auto,auto,auto,*" row="2" col="1">
+      <GridLayout  columns="2*,85*,13*" rows="auto" style="padding-bottom:10%;">
+        <GridLayout paddingTop="5%" rows="*" columns="auto,auto,auto,auto,*" row="0" col="1">
           <Label text="Class: " fontSize="15" class="local-heading" row="0" col="0"></Label>
-          <Label [text] ="item.Class_Id" fontSize="15" row="0" col="1"></Label>
+          <TextField [(ngModel)] ="item.Class_Id" width="10%" fontSize="15" row="0" col="1"></TextField>>
           <Label text="Section: " fontSize="15" class="local-heading" row="0" col="2"></Label>
-          <Label [text] ="item.Class_Section" fontSize="15" row="0" col="3"></Label>
+          <TextField [(ngModel)] ="item.Class_Section" width="10%" fontSize="15" row="0" col="3"></TextField>>
         </GridLayout>
   
-        <StackLayout (tap)=remove(i) height="20" width="0" rowSpan="2" row="0" col="2" verticalAlignment="center">
+        <StackLayout (tap)=remove(i) height="20" width="0" row="0" col="2" verticalAlignment="center">
           <Image src="~/images/minus.png"></Image>
         </StackLayout>
       </GridLayout>
@@ -24,5 +27,9 @@
     </template>
     </StackLayout>
     </ScrollView>
+
+    <StackLayout>
+      <Button text="Confirm changes" (tap)="confirmchanges()" class="addbutton"></Button>
+    </StackLayout>
   </StackLayout>
   

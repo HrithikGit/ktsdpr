@@ -1,5 +1,31 @@
-<StackLayout class="main">
-    <TextField [(ngModel)]="this.class_id" class="input-add-db" hint="Enter Class ID to be deleted !" autocorrect="false"></TextField>
-    <TextField [(ngModel)]="this.section" class="input-add-db" hint="Enter Section of class to be deleted !" autocorrect="false"></TextField>
-    <Button text="DELETE" (tap)="delete()" class="deletebutton"></Button>
-</StackLayout>
+<StackLayout>
+    <StackLayout>
+      <Label *ngIf="this.waiting" text="Please wait.... Loading"></Label>
+      <Label *ngIf="!this.waiting" class="title-heading" text="Add Class/Delete Class/Update Class"></Label>
+      <Button *ngIf="!this.waiting" (tap)="add()" width="90%" text="Add Class" class="addbutton"></Button>
+    </StackLayout>
+    
+    <ScrollView height="100%">
+    <StackLayout>
+    <template *ngFor="let item of this.classes; let i=index">
+  
+      <GridLayout   columns="2*,85*,13*" rows="auto" style="padding-bottom:10%;">
+        <GridLayout [nsRouterLink]="['/addclass',item.Class_Id,item.Class_Section]" paddingTop="5%" rows="*" columns="auto,auto,auto,auto,*" row="0" col="1">
+          <Label fontSize="15" text="Class : " class="local-heading" row="0" col="0"></Label>
+          <Label fontSize="15" [text]="item.Class_Id" row="0" col="1"></Label>
+
+          <Label fontSize="15" text="Section : " class="local-heading" row="0" col="2"></Label>
+          <Label fontSize="15" [text]="item.Class_Section" row="0" col="3"></Label>
+
+        </GridLayout>
+  
+        <StackLayout (tap)=remove(i) height="20" width="0" rowSpan="2" row="0" col="2" verticalAlignment="center">
+          <Image src="~/images/minus.png"></Image>
+        </StackLayout>
+      </GridLayout>
+      <Label class="line"></Label>
+    </template>
+    </StackLayout>
+    </ScrollView>
+  </StackLayout>
+  

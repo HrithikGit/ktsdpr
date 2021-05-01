@@ -9,6 +9,6 @@
     <Label *ngIf="this.notvalid" fontSize="15" class="errortext" text="Please Enter Valid Data"></Label>
     <ActivityIndicator class="activity-indicator" [busy]="this.waiting"></ActivityIndicator>
     <StackLayout>
-        <Button text="Add" class="addbutton" (tap)="fun()"></Button>
+        <Button [text]="this.buttonmessage" class="addbutton" (tap)="fun()"></Button>
     </StackLayout>
 </StackLayout>

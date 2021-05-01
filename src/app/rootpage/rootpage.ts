@@ -19,7 +19,7 @@ export class rootpageComponent implements OnInit{
     }
 
     addclass(): void{
-        this.router.navigate(["classpage"]);
+        this.router.navigate(["deleteclass"]);
     }
     studentdetails(): void{
         this.router.navigate(["timetableclassselect","StudentDetails"]);
