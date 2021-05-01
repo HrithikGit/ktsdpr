@@ -1,7 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {Router,ActivatedRoute} from "@angular/router";
 import { TouchGestureEventData } from "tns-core-modules/ui/gestures";
-
+import { prompt } from "tns-core-modules/ui/dialogs";
+const firebase = require("nativescript-plugin-firebase/app");
 
 @Component({
     selector: "teacherpageattendance",
@@ -17,39 +18,46 @@ export class teacherpageattendanceComponent {
             this.ClassTeacherSection=params["section"];
         });
         this.getdetails();
-        this.loading = false;
     }
-    Array=[];
 
-    SuperArrays=[];
+    students =[];
+    attendance =[];
+    ref=[];
+    // rows=[[],[],[]];
+
     async getdetails(){
-        for(var i=0;i<15;i++){
-            this.Array.push({"roll":i,"present":"0"});
-        }
+        var k=0;
 
-        var i=0;
-        while(i<this.Array.length){
-            var SubArray=[];
-            var j=0;
-            while(j<3 && i<this.Array.length){
-                this.Array[i].present="1";
-                SubArray.push(this.Array[i]);
-                i+=1;
-                j+=1;
-            }
-            this.SuperArrays.push(SubArray);
+        var classid=1;
+        var section ="A";
 
-        }
-        console.log(this.SuperArrays);
+        const collect = firebase.firestore().collection("Student").where("Class_Id","==",classid)
+        .where("Class_Section","==",section);
+
+        await collect.get().then(result=>{
+            result.forEach(doc=>{
+                this.students.push(doc.data());
+                this.attendance.push(doc.data()["Is_Present_Today"]);
+                this.ref.push(doc.id);
+            })
+        })
+        // for(var i=0;i<this.students.length;i++){
+        //     this.rows[i%3].push(this.students[i]);
+        // }
+        // console.log(this.rows);
+        this.loading = false;
 
     }
 
     get(i){
-        if(this.Array[i].present=="1"){
-            return "green";
+        if(this.attendance[i]=="1"){
+            return "#a4de02"; //Green Color;
+        }
+        else if(this.attendance[i]=="-1"){
+            return "#ff392e"; //Red Color
         }
         else{
-            return "red";
+            return "#808080";  //Gray Color;
         }
     }
 
@@ -57,19 +65,24 @@ export class teacherpageattendanceComponent {
 
 
     longpress(i) {
-        console.log("LONG PRESSED")
+        prompt({
+            title: "Details",
+            message: "Student Name : "+this.students[i]["Student_Name"]+"\n"+
+                    "Student Attendance : "+this.students[i]["Student_Attendance"],
+            okButtonText: "Ok"
+        })
       }
 
     change(i){
-        if(this.Array[i].present=="1"){
-            this.Array[i].present="0";
+        if(this.attendance[i]=="1"){
+            this.attendance[i]="-1";
         }
         else{
-            this.Array[i].present="1";
+            this.attendance[i]="1";
         }
     }
 
     commit():void{
-        console.log("CHANGES ARE TO BE MADE NOW");
+        console.log("YO");
     }
 }

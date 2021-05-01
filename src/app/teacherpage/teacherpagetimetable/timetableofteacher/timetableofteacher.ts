@@ -9,7 +9,7 @@ const firebase = require("nativescript-plugin-firebase/app")
 })
 export class timetableofteacherComponent {
     monday=[]; tuesday=[]; wednesday=[]; thursday=[]; friday=[]; saturday=[]; sunday=[];
-    rows;
+    rows=[];
     moncol;
     tuecol;
     wedcol;
@@ -20,10 +20,11 @@ export class timetableofteacherComponent {
     section;
     tt;
     loading ;
+    index;
     teacherid;
     public constructor(private router:Router, private route:ActivatedRoute){
+        this.index=0;
         this.tt =[];
-        this.rows=[];
         this.route.params.subscribe((params)=>{
             this.teacherid=params["teacherid"];
         });
@@ -123,7 +124,7 @@ export class timetableofteacherComponent {
     }
     sun(): void{this.mon();}
     mon(): void{
-        this.rows=this.monday; this.color(); this.moncol='green';
+        this.rows=[...this.monday]; this.color(); this.moncol='green';
     console.log(this.rows);}
     tue(): void{this.rows=this.tuesday; this.color(); this.tuecol='green';}
     wed():void{this.rows=this.wednesday; this.color(); this.wedcol='green';}

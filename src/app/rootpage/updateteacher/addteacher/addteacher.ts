@@ -43,7 +43,7 @@ export class addteacherComponent implements OnInit {
       }
 
     onCheckedChange(args: EventData) {
-        
+
         if(this.checked==true){this.checked=false;}
         else{this.checked=true;}
         /*let sw = args.object as Switch;
@@ -86,7 +86,6 @@ export class addteacherComponent implements OnInit {
     }
 
 
-<<<<<<< HEAD
 
     async submit(){
         await firebase.firestore().collection("Generate_Id").get().then(result=>{
@@ -116,26 +115,6 @@ export class addteacherComponent implements OnInit {
             .where("Class_Section","==",present_section);
             await checkexist.get().then(
             result=>{
-=======
-        if(this.teacher_name.length==0 || this.section.length==0){
-            this.notvalid = true;
-            alert("Problem");
-            return;
-        }
-        if(!(this.isCharacterALetter(this.section))){
-            alert("Problem 2");
-            this.notvalid = true;
-            return ;
-        }
-        //Validation Ends Here !
-       //Confirmation ends here !
-       this.waiting = true;
-       var classdefined = false;
-       const checkexist = firebase.firestore().collection("Class").where("Class_Id","==",this.class_id)
-       .where("Class_Section","==",this.section);
-       await checkexist.get().then(
-           result=>{
->>>>>>> 6b0081c8928945dd2a48086f205d76931d03699c
                result.forEach(doc=>{
                    classdefined = true;
                })
@@ -213,7 +192,7 @@ export class addteacherComponent implements OnInit {
             Class_Section : section_tobeAdded,
             Subject_Name : this.subject_name
         })
-        
-        
+
+
     }
 }

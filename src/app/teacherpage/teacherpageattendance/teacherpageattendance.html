@@ -5,11 +5,11 @@
     <Label class="heading" horizontalAlignment="center" height="8%" text="Mark the Attendance"></Label>
     <ScrollView height="84%">
         <StackLayout>
-            <template *ngFor="let row of this.SuperArrays; let i=index">
+            <template *ngFor="let row of this.students; let i=index">
                 <GridLayout columns="*,*,*" rows="auto">
-                    <Button *ngIf="row.length>0" [text]="row[0].roll" row="0" col="0" style="border-radius: 100; background-color: {{get(3*i+0)}};" (tap)="change(3*i+0)" (longPress)="longpress(3*i+0)"></Button>
-                    <Button *ngIf="row.length>1" [text]="row[1].roll" row="0" col="1" style="border-radius: 100; background-color: {{get(3*i+1)}};" (tap)="change(3*i+1)" (longPress)="longpress(3*i+1)"></Button>
-                    <Button *ngIf="row.length>2" [text]="row[2].roll" row="0" col="2" style="border-radius: 100; background-color: {{get(3*i+2)}};" (tap)="change(3*i+2)" (longPress)="longpress(3*i+2)"></Button>
+                    <Button  [text]="row.Student_Id" row="0" col="0" style="border-radius: 100%; background-color: {{get(3*i+0)}};" (tap)="change(3*i+0)" (longPress)="longpress(3*i+0)"></Button>
+                    <Button  [text]="row.Student_Id" row="0" col="1" style="border-radius: 100%; background-color: {{get(3*i+1)}};" (tap)="change(3*i+1)" (longPress)="longpress(3*i+1)"></Button>
+                    <Button  [text]="row.Student_Id" row="0" col="2" style="border-radius: 100%; background-color: {{get(3*i+2)}};" (tap)="change(3*i+2)" (longPress)="longpress(3*i+2)"></Button>
                 </GridLayout>
             </template>
         </StackLayout>
