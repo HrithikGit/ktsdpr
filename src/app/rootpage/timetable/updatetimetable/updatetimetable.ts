@@ -42,7 +42,7 @@ export class updatetimetableComponent {
         var day = new Date();
         var TodayDay = Wday[day.getDay()];
         var getdata = firebase.firestore().collection("Monday");
-        var check = getdata.where("Class_Id","==",this.class_id).where("Class_Section","==",this.section);
+        var check = getdata.where("Class_Id","==",parseInt(this.class_id)).where("Class_Section","==",this.section);
         await check.get().then(result=>{
             result.forEach(doc=>{
                 var got = doc.data();
@@ -56,7 +56,7 @@ export class updatetimetableComponent {
 
 
         getdata = firebase.firestore().collection("Tuesday");
-        check = getdata.where("Class_Id","==",this.class_id).where("Class_Section","==",this.section);
+        check = getdata.where("Class_Id","==",parseInt(this.class_id)).where("Class_Section","==",this.section);
         await check.get().then(result=>{
             result.forEach(doc=>{
                 var got = doc.data();
@@ -69,7 +69,7 @@ export class updatetimetableComponent {
         })
 
         getdata = firebase.firestore().collection("Wednesday");
-        check = getdata.where("Class_Id","==",this.class_id).where("Class_Section","==",this.section);
+        check = getdata.where("Class_Id","==",parseInt(this.class_id)).where("Class_Section","==",this.section);
         await check.get().then(result=>{
             result.forEach(doc=>{
                 var got = doc.data();
@@ -83,7 +83,7 @@ export class updatetimetableComponent {
 
 
         getdata = firebase.firestore().collection("Thursday");
-        check = getdata.where("Class_Id","==",this.class_id).where("Class_Section","==",this.section);
+        check = getdata.where("Class_Id","==",parseInt(this.class_id)).where("Class_Section","==",this.section);
         await check.get().then(result=>{
             result.forEach(doc=>{
                 var got = doc.data();
@@ -96,7 +96,7 @@ export class updatetimetableComponent {
         })
 
         getdata = firebase.firestore().collection("Friday");
-        check = getdata.where("Class_Id","==",this.class_id).where("Class_Section","==",this.section);
+        check = getdata.where("Class_Id","==",parseInt(this.class_id)).where("Class_Section","==",this.section);
         await check.get().then(result=>{
             result.forEach(doc=>{
                 var got = doc.data();
@@ -110,7 +110,7 @@ export class updatetimetableComponent {
 
 
         getdata = firebase.firestore().collection("Saturday");
-        check = getdata.where("Class_Id","==",this.class_id).where("Class_Section","==",this.section);
+        check = getdata.where("Class_Id","==",parseInt(this.class_id)).where("Class_Section","==",this.section);
         await check.get().then(result=>{
             result.forEach(doc=>{
                 var got = doc.data();
@@ -192,16 +192,16 @@ export class updatetimetableComponent {
         }
 
         const toadd = firebase.firestore().collection(this.currday);
-        console.log(this.class_id+" "+this.section);
+        console.log(parseInt(this.class_id)+" "+this.section);
         for(var i=0;i<this.rows.length;i++){
             await toadd.add({
-                Class_Id : this.class_id,
+                Class_Id : parseInt(this.class_id),
                 Class_Section : this.section,
-                Start_Hour : this.rows[i]["Start_Hour"],
-                Start_Minute : this.rows[i]["Start_Minute"],
-                End_Hour : this.rows[i]["End_Hour"],
-                End_Minute : this.rows[i]["End_Minute"],
-                Sequence : this.rows[i]["Sequence"],
+                Start_Hour : parseInt(this.rows[i]["Start_Hour"]),
+                Start_Minute : parseInt(this.rows[i]["Start_Minute"]),
+                End_Hour : parseInt(this.rows[i]["End_Hour"]),
+                End_Minute : parseInt(this.rows[i]["End_Minute"]),
+                Sequence : parseInt(this.rows[i]["Sequence"]),
                 Subject_Name : this.rows[i]["Subject_Name"]
             })
         }

@@ -1,1 +1,28 @@
-<Label text="Timetable of teacher"></Label>
+<Label *ngIf="this.loading" fontSize="15%" text="Loading... Please wait" class="loading"></Label>
+
+<StackLayout *ngIf="!this.loading">
+  <GridLayout columns="*,*,*" rows="auto,auto,auto" style="padding-bottom: 100px;">
+    <Button *ngIf="!this.loading" text="Monday" row="0" col="0" width="33%" (tap)="mon()" style="background-color: {{this.moncol}}"></Button>
+    <Button *ngIf="!this.loading" text="Tuesday" row="0" col="1" width="33%" (tap)="tue()" style="background-color:{{this.tuecol}}"></Button>
+    <Button *ngIf="!this.loading" text="Wednesday" row="0" col="2" width="33%" (tap)="wed()" style="background-color:{{this.wedcol}}"></Button>
+    <Button *ngIf="!this.loading" text="Thursday" row="1" col="0" width="33%" (tap)="thu()" style="background-color:{{this.thucol}}"></Button>
+    <Button *ngIf="!this.loading" text="Friday" row="1" col="1" width="33%" (tap)="fri()" style="background-color:{{this.fricol}}"></Button>
+    <Button *ngIf="!this.loading" text="Saturday" row="1" col="2" width="33%" (tap)="sat()" style="background-color:{{this.satcol}}"></Button>
+  </GridLayout>
+  <GridLayout rows="*" columns="4*,21*,25*,25*,25*">
+      <Label text="Class" class="local-heading" row="0" col="1"></Label>
+      <Label text="Subject" class="local-heading" row="0" col="2"></Label>
+      <Label text="StartTime" class="local-heading" row="0" col="3"></Label>
+      <Label text="EndTime" class="local-heading" row="0" col="4"></Label>
+  </GridLayout>
+  <StackLayout>
+    <template *ngFor="let col of this.rows; let i=index">
+        <GridLayout rows="*" columns="4*,21*,25*,25*,25*">
+            <Label verticalAlignment="center" horizontalAlignment="right" text="col.Class_Id" row="0" col="1"></Label>
+            <Label verticalAlignment="center" horizontalAlignment="right" text="col.Class_Section"  row="0" col="2"></Label>
+            <Label verticalAlignment="center" horizontalAlignment="right" text="col.Start_Time"  row="0" col="3"></Label>
+            <Label verticalAlignment="center" horizontalAlignment="right" text="col.End_Time"  row="0" col="4"></Label>
+        </GridLayout>
+    </template>
+</StackLayout>
+</StackLayout>
