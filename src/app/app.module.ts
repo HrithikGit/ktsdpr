@@ -23,7 +23,7 @@ import {addtimetableComponent} from "./rootpage/timetable/addtimetable/addtimeta
 import {displaytimetableComponent} from "./rootpage/timetable/displaytimetable/displaytimetable";
 import {timetableclassselectComponent} from "./rootpage/timetable/timetableclassselect/timetableclassselect";
 import {updatetimetableComponent} from "./rootpage/timetable/updatetimetable/updatetimetable";
-import { addclassComponent} from "./rootpage/addclass/addclass";
+import { addclassComponent} from "./rootpage/classpage/addclass/addclass";
 import { deleteclassComponent} from "./rootpage/classpage/deleteclass/deleteclass";
 import { addblogComponent} from "./rootpage/blog/addblog/addblog";
 import { viewblogComponent} from "./rootpage/blog/viewblog/viewblog";

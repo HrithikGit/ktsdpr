@@ -24,8 +24,7 @@ import {addtimetableComponent} from "./rootpage/timetable/addtimetable/addtimeta
 import {displaytimetableComponent} from "./rootpage/timetable/displaytimetable/displaytimetable";
 import {timetableclassselectComponent} from "./rootpage/timetable/timetableclassselect/timetableclassselect";
 import {updatetimetableComponent} from "./rootpage/timetable/updatetimetable/updatetimetable";
-import {classpageComponent} from "./rootpage/classpage/classpage";
-import {addclassComponent} from "./rootpage/addclass/addclass";
+import {addclassComponent} from "./rootpage/classpage/addclass/addclass";
 import { deleteclassComponent } from "./rootpage/classpage/deleteclass/deleteclass"
 import { addblogComponent} from "./rootpage/blog/addblog/addblog";
 import {viewblogComponent} from "./rootpage/blog/viewblog/viewblog";
@@ -65,7 +64,6 @@ const routes: Routes = [
     {path:"timetableclassselect/:name",component:timetableclassselectComponent},
     {path: "displaytimetable/:name/:section", component:displaytimetableComponent},
     {path : "addclass/:name/:section",component:addclassComponent},
-    {path : "classpage", component: classpageComponent},
     {path : "deleteclass", component: deleteclassComponent},
     {path : "addblog",component: addblogComponent},
     {path : "viewblog/:date/:time",component : viewblogComponent},
