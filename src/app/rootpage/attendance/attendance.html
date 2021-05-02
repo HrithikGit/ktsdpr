@@ -3,20 +3,19 @@
 
 <StackLayout class="top">
     <Label *ngIf="this.notready" class="loading" fontSize="20" text="Loading.. Please Wait"></Label>
-    <Label *ngIf="!this.notready"  class="heading" fontSize="20" text="Select a Class"></Label>
   </StackLayout>
 
   <GridLayout>
       <label text=" "></label>
       <ListView *ngIf="!this.notready" [items]="this.students">
         <ng-template let-item="item">
-          <GridLayout rows="*,*" columns="auto,auto,auto,auto">
-            <Label text="Student :" row="0" col="0"></Label>
-            <Label [text]="item.name" row="0" col="1" ></Label>
-            <Label text="Today : " row="0" col="2"></Label>
-            <Label [text]="item.today" row="0" col="3"></Label>
-            <Label text="Total Attendance : " row="1" col="0"></Label>
-            <Label [text]="item.Average_Attendance" row="1" col="1"></Label>
+          <GridLayout rows="*,*" columns="auto,auto,auto,auto,*">
+            <Label text="Student :" class="local-heading" row="0" col="0"></Label>
+            <Label [text]="item.Student_Name" row="0" col="1" ></Label>
+            <Label text="Today : " class="local-heading" row="0" col="2"></Label>
+            <Label [text]="item.displaytod" fontWeight="500" style="color: {{ item.color}} " row="0" col="3"></Label>
+            <Label text="Total Attendance : " class="local-heading" row="1" col="0"></Label>
+            <Label [text]="item.Student_Attendance" row="1" col="1"></Label>
           </GridLayout>
         </ng-template>
       </ListView>
