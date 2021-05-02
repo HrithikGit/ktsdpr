@@ -44,8 +44,8 @@ import {addmarksComponent} from "./teacherpage/teacherpagemarks/addmarks/addmark
 
 const routes: Routes = [
     // { path: "", redirectTo: "/items", pathMatch: "full" },
-    { path: "", redirectTo: "/root", pathMatch: "full" },
-    //{path:"",redirectTo: "/teacher", pathMatch:"full"},
+    //{ path: "", redirectTo: "/root", pathMatch: "full" },
+    {path:"",redirectTo: "/teacher", pathMatch:"full"},
     { path: "items", component: ItemsComponent },
     { path: "root", component: rootpageComponent},
     { path: "teacher", component:teacherpageComponent},
