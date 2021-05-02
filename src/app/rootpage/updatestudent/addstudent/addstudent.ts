@@ -81,7 +81,9 @@ export class addstudentComponent {
             Class_Section : this.student_section,
             Student_Name : this.student_name,
             Student_Attendance : parseInt(this.student_attendance),
-            Student_Address : this.student_address
+            Student_Address : this.student_address,
+            Is_Present_Today : "0",
+            Is_Present_Yesterday : "0"
         }).then((result)=>{
             // this.succeded = true;
             // console.log("Added document with id "+ result.id);

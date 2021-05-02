@@ -43,7 +43,7 @@ export class addteacherComponent implements OnInit {
       }
 
     onCheckedChange(args: EventData) {
-        
+
         if(this.checked==true){this.checked=false;}
         else{this.checked=true;}
         /*let sw = args.object as Switch;
@@ -192,7 +192,7 @@ export class addteacherComponent implements OnInit {
             Class_Section : section_tobeAdded,
             Subject_Name : this.subject_name
         })
-        
-        
+
+
     }
 }

@@ -41,7 +41,7 @@ export class displaytimetableComponent {
         var day = new Date();
         var TodayDay = Wday[day.getDay()];
         var getdata = firebase.firestore().collection("Monday");
-        var check = getdata.where("Class_Id","==",this.class_id).where("Class_Section","==",this.section);
+        var check = getdata.where("Class_Id","==",parseInt(this.class_id)).where("Class_Section","==",this.section);
         await check.get().then(result=>{
             result.forEach(doc=>{
                 // console.log(JSON.stringify(doc.data()));
@@ -54,7 +54,7 @@ export class displaytimetableComponent {
 
 
         getdata = firebase.firestore().collection("Tuesday");
-        check = getdata.where("Class_Id","==",this.class_id).where("Class_Section","==",this.section);
+        check = getdata.where("Class_Id","==",parseInt(this.class_id)).where("Class_Section","==",this.section);
         await check.get().then(result=>{
             result.forEach(doc=>{
                 // console.log(JSON.stringify(doc.data()));
@@ -66,7 +66,7 @@ export class displaytimetableComponent {
         })
 
         getdata = firebase.firestore().collection("Wednesday");
-        check = getdata.where("Class_Id","==",this.class_id).where("Class_Section","==",this.section);
+        check = getdata.where("Class_Id","==",parseInt(this.class_id)).where("Class_Section","==",this.section);
         await check.get().then(result=>{
             result.forEach(doc=>{
                 // console.log(JSON.stringify(doc.data()));
@@ -79,7 +79,7 @@ export class displaytimetableComponent {
 
 
         getdata = firebase.firestore().collection("Thursday");
-        check = getdata.where("Class_Id","==",this.class_id).where("Class_Section","==",this.section);
+        check = getdata.where("Class_Id","==",parseInt(this.class_id)).where("Class_Section","==",this.section);
         await check.get().then(result=>{
             result.forEach(doc=>{
                 // console.log(JSON.stringify(doc.data()));
@@ -91,7 +91,7 @@ export class displaytimetableComponent {
         })
 
         getdata = firebase.firestore().collection("Friday");
-        check = getdata.where("Class_Id","==",this.class_id).where("Class_Section","==",this.section);
+        check = getdata.where("Class_Id","==",parseInt(this.class_id)).where("Class_Section","==",this.section);
         await check.get().then(result=>{
             result.forEach(doc=>{
                 // console.log(JSON.stringify(doc.data()));
@@ -104,7 +104,7 @@ export class displaytimetableComponent {
 
 
         getdata = firebase.firestore().collection("Saturday");
-        check = getdata.where("Class_Id","==",this.class_id).where("Class_Section","==",this.section);
+        check = getdata.where("Class_Id","==",parseInt(this.class_id)).where("Class_Section","==",this.section);
         await check.get().then(result=>{
             result.forEach(doc=>{
                 // console.log(JSON.stringify(doc.data()));
@@ -132,7 +132,9 @@ export class displaytimetableComponent {
         this.satcol='white';
     }
     sun(): void{this.mon();}
-    mon(): void{this.rows=this.monday; this.color(); this.moncol='green';}
+    mon(): void{this.rows=this.monday;
+        console.log(this.rows);
+        this.color(); this.moncol='green';}
     tue(): void{this.rows=this.tuesday; this.color(); this.tuecol='green';}
     wed():void{this.rows=this.wednesday; this.color(); this.wedcol='green';}
     thu(): void{this.rows=this.thursday; this.color(); this.thucol='green';}

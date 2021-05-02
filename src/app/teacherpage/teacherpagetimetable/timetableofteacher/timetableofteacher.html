@@ -9,6 +9,8 @@
     <Button *ngIf="!this.loading" text="Friday" row="1" col="1" width="33%" (tap)="fri()" style="background-color:{{this.fricol}}"></Button>
     <Button *ngIf="!this.loading" text="Saturday" row="1" col="2" width="33%" (tap)="sat()" style="background-color:{{this.satcol}}"></Button>
   </GridLayout>
+  <Label text="Hey ! Here is your schedule for today" fontSize="17px" horizontalAlignment="center"></Label>
+  <Label text=""></Label>
   <GridLayout rows="*" columns="4*,21*,25*,25*,25*">
       <Label text="Class" class="local-heading" row="0" col="1"></Label>
       <Label text="Subject" class="local-heading" row="0" col="2"></Label>

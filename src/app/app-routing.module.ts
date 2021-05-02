@@ -20,7 +20,6 @@ import {successComponent} from "./rootpage/success/success";
 import {failComponent} from "./rootpage/fail/fail";
 import {deletestudentComponent} from "./rootpage/updatestudent/deletestudent/deletestudent";
 import {addstudentComponent} from "./rootpage/updatestudent/addstudent/addstudent";
-import {addtimetableComponent} from "./rootpage/timetable/addtimetable/addtimetable";
 import {displaytimetableComponent} from "./rootpage/timetable/displaytimetable/displaytimetable";
 import {timetableclassselectComponent} from "./rootpage/timetable/timetableclassselect/timetableclassselect";
 import {updatetimetableComponent} from "./rootpage/timetable/updatetimetable/updatetimetable";
@@ -44,7 +43,11 @@ import {addmarksComponent} from "./teacherpage/teacherpagemarks/addmarks/addmark
 
 const routes: Routes = [
     // { path: "", redirectTo: "/items", pathMatch: "full" },
+<<<<<<< HEAD
     //{ path: "", redirectTo: "/root", pathMatch: "full" },
+=======
+    // { path: "", redirectTo: "/root", pathMatch: "full" },
+>>>>>>> 26377e2fe0d9e15feeaf8b98c4ba92b8d9264987
     {path:"",redirectTo: "/teacher", pathMatch:"full"},
     { path: "items", component: ItemsComponent },
     { path: "root", component: rootpageComponent},
@@ -59,7 +62,6 @@ const routes: Routes = [
     {path: "addstudent/:name/:section", component:addstudentComponent},
     {path: "deletestudent/:name/:section", component: deletestudentComponent},
     {path: "attendance/:name/:section", component:attendanceComponent},
-    {path: "addtimetable",component:addtimetableComponent},
     {path:"updatetimetable/:name/:section", component:updatetimetableComponent},
     {path:"timetableclassselect/:name",component:timetableclassselectComponent},
     {path: "displaytimetable/:name/:section", component:displaytimetableComponent},
