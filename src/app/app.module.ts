@@ -6,6 +6,7 @@ import { NativeScriptCommonModule } from "@nativescript/angular";
 // Uncomment and add to NgModule imports if you need to use the HttpClient wrapper
 // import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 
+
 //Components
 import { AppComponent } from "./app.component";
 import { ItemsComponent } from "./item/items.component";
@@ -39,7 +40,11 @@ import {teacherpagetimetableComponent} from "./teacherpage/teacherpagetimetable/
 import {teacherpageupdatestudentComponent} from "./teacherpage/teacherpageupdatestudent/teacherpageupdatestudent";
 import {timetableofteacherComponent} from "./teacherpage/teacherpagetimetable/timetableofteacher/timetableofteacher";
 import {selectclassComponent} from "./teacherpage/teacherpagemarks/selectclass/selectclass";
-import {addmarksComponent} from "./teacherpage/teacherpagemarks/addmarks/addmarks";
+import {marksclassselectComponent} from "./teacherpage/teacherpagemarks/marksclassselect/marksclassselect";
+import {marksviewComponent} from "./teacherpage/teacherpagemarks/marksclassselect/marksview/marksview";
+import {exampageComponent} from "./teacherpage/teacherpagemarks/selectclass/exampage/exampage";
+import {marksupdatepageComponent} from "./teacherpage/teacherpagemarks/selectclass/exampage/marksupdatepage/marksupdatepage";
+
 @NgModule({
     bootstrap: [
         AppComponent
@@ -79,7 +84,10 @@ import {addmarksComponent} from "./teacherpage/teacherpagemarks/addmarks/addmark
         teacherpagetimetableComponent,
         teacherpageupdatestudentComponent,
         timetableofteacherComponent,
-        addmarksComponent
+        marksclassselectComponent,
+        marksviewComponent,
+        exampageComponent,
+        marksupdatepageComponent
     ],
     providers: [],
     schemas: [
