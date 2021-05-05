@@ -23,37 +23,47 @@ export class attendanceComponent {
         this.notready = true;
         this.getdata();
     }
+
+    func(a,b){
+        return parseInt(a["Student_Id"])-parseInt(b["Student_Id"]);
+    }
+
+    getColor(str){
+        if(str=="1"){
+            return "#a4de02";
+        }
+        else if(str=="-1"){
+            return "red";
+        }
+        else{
+            return "gray";
+        }
+    }
+    getToday(str){
+        if(str=="1"){
+            return "Present";
+        }
+        else if(str=="-1"){
+            return "Absent";
+        }
+        else{
+            return "--";
+        }
+    }
+
+
     async getdata(){
-        console.log("Came here");
-        const attendanceCollection = firebase.firestore().collection("Attendance");
-        const check = attendanceCollection.where("Class_Id","==",parseInt(this.class)).where("Class_Section","==",this.section);
-        await check.get().then(result=>{
+        // console.log("YO");
+        await firebase.firestore().collection("Student").where("Class_Id","==",parseInt(this.class))
+        .where("Class_Section","==",this.section).get().then(result=>{
             result.forEach(doc=>{
-                this.students.push(doc.data());
+                var check = doc.data();
+                check["displaytod"]=this.getToday(check["Is_Present_Today"]);
+                check["color"]= this.getColor(check["Is_Present_Today"]);
+                this.students.push(check);
             })
         })
 
-        //Changing Data to Display
-
-        for(var i=0;i<this.students.length;i++){
-            const data=this.students[i];
-            if(data["Is_Present_Today"]==1){
-                data["today"]="Present"
-            }
-            else if(data["Is_Present_Today"]==0){
-                data["today"]="Absent"
-            }
-            else{
-                data["today"]="--";
-            }
-            await firebase.firestore().collection("Student").where("Student_Id","==",data["Student_Id"]).get().then(
-                result=>{
-                    result.forEach(doc=>{
-                        data["name"] = doc.data()["Student_Name"];
-                    })
-                }
-            )
-        }
         this.notready = false;
     }
 

@@ -72,16 +72,10 @@ export class teacherpageattendanceComponent {
         }
     }
 
-    start; end;
-
 
     longpress(i) {
-        prompt({
-            title: "Details",
-            message: "Student Name : "+this.rows[Math.floor(i/3)][i%3]["Student_Name"]+"\n"+
-                    "Student Attendance : "+this.rows[Math.floor(i/3)][i%3]["Student_Attendance"],
-            okButtonText: "Ok"
-        })
+        alert("Student Name :"+this.rows[Math.floor(i/3)][i%3]["Student_Name"]+"\n"+
+        "Student Attendance :"+this.rows[Math.floor(i/3)][i%3]["Student_Attendance"]);
       }
 
     change(i){
