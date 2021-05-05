@@ -13,14 +13,15 @@ export class teacherpagemarksComponent {
         this.route.params.subscribe((params)=>{
             this.ClassTeacherClass=params["class"];
             this.ClassTeacherSection=params["section"];
+            this.teacherid=parseInt(params["teacherid"]);
         });
     }
 
     add():void{
-        this.router.navigate(["selectclass",this.teacherid,"add"]);
+        this.router.navigate(["selectclass",this.teacherid]);
     }
 
     view():void{
-        this.router.navigate(["selectclass",this.teacherid,"view"]);
+        this.router.navigate(["marksclassselect"]);
     }
 }

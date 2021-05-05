@@ -1,0 +1,19 @@
+<StackLayout>
+    <StackLayout height="4%">
+        <Label *ngIf="this.waiting" text="Loading... please wait"></Label>
+        <Label *ngIf="!this.waiting" text="{{this.examtype}} Marks of class {{this.class}}{{this.section}}"></Label>
+    </StackLayout>
+    <ScrollView height="87%">
+        <StackLayout>
+        <template *ngFor="let result of this.marks; index as i">
+            <GridLayout rows="auto" columns="*,auto,auto,*">
+                <Label [text]="result.Student_Id" row="0" col="1" style="padding-right:10" horizontalAlignment="right"></Label>
+                <Label [text]="result.Student_Marks" row="0" col="2" width="10%"></Label>
+            </GridLayout>
+            <Label text="" class="line"></Label>
+        </template>
+        </StackLayout>
+    </ScrollView>
+
+</StackLayout>
+    

@@ -39,7 +39,10 @@ import {teacherpagetimetableComponent} from "./teacherpage/teacherpagetimetable/
 import {teacherpageupdatestudentComponent} from "./teacherpage/teacherpageupdatestudent/teacherpageupdatestudent";
 import {timetableofteacherComponent} from "./teacherpage/teacherpagetimetable/timetableofteacher/timetableofteacher";
 import {selectclassComponent} from "./teacherpage/teacherpagemarks/selectclass/selectclass";
-import {addmarksComponent} from "./teacherpage/teacherpagemarks/addmarks/addmarks";
+import {marksclassselectComponent} from "./teacherpage/teacherpagemarks/marksclassselect/marksclassselect";
+import {marksviewComponent} from "./teacherpage/teacherpagemarks/marksclassselect/marksview/marksview";
+import {exampageComponent} from "./teacherpage/teacherpagemarks/selectclass/exampage/exampage";
+import {marksupdatepageComponent} from "./teacherpage/teacherpagemarks/selectclass/exampage/marksupdatepage/marksupdatepage";
 
 const routes: Routes = [
     { path: "", redirectTo: "/items", pathMatch: "full" },
@@ -69,13 +72,16 @@ const routes: Routes = [
     {path: "marks/:class/:section", component:marksComponent},
     {path: "teacherpageupdatestudent/:class/:section",component:teacherpageupdatestudentComponent},
     {path:"teacherpagetimetable/:class/:section",component:teacherpagetimetableComponent},
-    {path:"teacherpagemarks/:class/:section",component:teacherpagemarksComponent},
+    {path:"teacherpagemarks/:class/:section/:teacherid",component:teacherpagemarksComponent},
     {path:"teacherpageattendance/:class/:section",component:teacherpageattendanceComponent},
     {path:"timetableofteacher/:teacherid",component:timetableofteacherComponent},
-    {path:"selectclass/:teacherid/:message",component:selectclassComponent},
-    {path: "addmarks/:class/:section/:subject", component:addmarksComponent},
+    {path:"selectclass/:teacherid",component:selectclassComponent},
     {path :"viewteacher/:teacherid", component: viewteacherComponent},
-    {path : "viewstudent/:studentid/:class/:section", component: viewstudentComponent}
+    {path : "viewstudent/:studentid/:class/:section", component: viewstudentComponent},
+    {path: "marksclassselect",component:marksclassselectComponent},
+    {path:"marksview/:class/:section/:subject/:examtype",component:marksviewComponent},
+    {path:"exampage/:class/:section/:teacherid/:subject",component:exampageComponent},
+    {path: "marksupdatepage/:class/:section/:teacherid/:examtype",component:marksupdatepageComponent}
 
 ];
 

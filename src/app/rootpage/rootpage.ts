@@ -35,6 +35,6 @@ export class rootpageComponent implements OnInit{
     }
 
     marks():void{
-        this.router.navigate(["timetableclassselect","Marks"]);
+        this.router.navigate(["marksclassselect"])
     }
 }

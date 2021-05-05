@@ -89,3 +89,9 @@ Button.-primary {
     color:white;
     background-color: #00C3FF;
 }
+
+.local-side-heading{
+    color:#0074d9;
+    font-size: 18;
+    padding-bottom: 8;
+}

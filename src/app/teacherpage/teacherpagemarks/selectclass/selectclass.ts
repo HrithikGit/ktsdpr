@@ -6,44 +6,30 @@ const firebase = require("nativescript-plugin-firebase/app");
     selector: "selectclass",
     templateUrl: "./selectclass.html"
 })
-
-
-
 export class selectclassComponent{
     teacherid;
-    message;
-    notready;
+    waiting=true;
     classes=[];
-    navigateto;
+    subject;
     public constructor(private router:Router,private route:ActivatedRoute){
         this.route.params.subscribe((params)=>{
-            this.teacherid=params["teacherid"];
-            this.message=params["message"];
+            this.teacherid=parseInt(params["teacherid"]);
         })
-        this.notready=true;
-        if(this.message=="add"){
-            this.add();
-        }
-        else if(this.message="view"){
-            this.view();
-        }
-    }
-    async add(){
-        // ikkada teacherid tho cheppe classes anni ravali
-        this.navigateto="addmarks";
+        console.log(this.teacherid);
+        this.getclasses();
 
-        //for time being dinini kuda view() ki pampthunna
-        this.view();
     }
-    async view(){
-        this.navigateto="marks";
-        const avail_classes = firebase.firestore().collection("Class");
-        await avail_classes.get().then(result=>{
+    async getclasses(){
+        console.log(this.teacherid+"  insideee");
+        const classes=firebase.firestore().collection("Teacher").where("Teacher_Id","==",this.teacherid);
+        await classes.get().then(result=>{
             result.forEach(doc=>{
-                this.classes.push(doc.data());
+                var data=doc.data();
+                console.log(doc.data());
+                this.subject=data.Subject_Name;
+                this.classes.push({"Class_Id":data.Class_Id,"Class_Section":data.Class_Section});
             })
-        })
-        this.classes.reverse();
-        this.notready = false;
+        });
+        this.waiting=false;
     }
 }
