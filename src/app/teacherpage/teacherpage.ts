@@ -21,4 +21,7 @@ export class teacherpageComponent {
     attendance():void{
         this.router.navigate(["teacherpageattendance",this.obj.classteacherclass,this.obj.classteachersection]);
     }
+    blog(): void{
+        this.router.navigate(["blog","teacher"]);
+    }
 }

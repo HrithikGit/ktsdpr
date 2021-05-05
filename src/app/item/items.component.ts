@@ -46,4 +46,13 @@ export class ItemsComponent implements OnInit {
             this.notcorrect = true;
         }
     }
+    rootpage(){
+        this.router.navigate(["root"]);
+    }
+    studentpage(){
+        this.router.navigate(["student"])
+    }
+    teacherpage(){
+        this.router.navigate(["teacher"])
+    }
 }

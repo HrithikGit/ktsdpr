@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {Router} from "@angular/router";
+import {Router,ActivatedRoute} from "@angular/router";
 
 const firebase = require("nativescript-plugin-firebase/app");
 
@@ -13,9 +13,14 @@ export class blogComponent {
     loading;
     nodata;
     blogs;
-    public constructor(private router:Router){
+    person;
+    isRoot;
+    public constructor(private router:Router,private route: ActivatedRoute){
         this.loading = true;
         this.nodata = false;
+        this.route.params.subscribe((params)=>{
+            this.isRoot= (params["person"]=="Root");
+        })
     }
     ngOnInit(): void {
         this.blogs=[];
@@ -33,7 +38,7 @@ export class blogComponent {
             })
         })
         this.blogs.sort(function(a,b){
-            console.log(a.Date);
+            // console.log(a.Date);
             var date1 = a.Date.split('').reverse().join('');
             var date2 = b.Date.split('').reverse().join('');
             date1.replace("-","");
@@ -44,7 +49,6 @@ export class blogComponent {
             return parseInt(date2)-parseInt(date1);
         })
         this.nodata = this.blogs.length==0;
-        console.log(this.blogs);
         this.loading  = false;
     }
     add(): void{

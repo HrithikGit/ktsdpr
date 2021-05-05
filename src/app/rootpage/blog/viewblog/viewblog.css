@@ -8,3 +8,13 @@
     text-justify: auto;
     padding : 10% 10%;
 }
+
+.checkheading{
+    align-items : center;
+    text-align: center;
+    padding-left:17%;
+    background-color: #f1f1f1;
+    border-radius: 5%;
+    border-color: gray;
+    border-width: 1px;
+}

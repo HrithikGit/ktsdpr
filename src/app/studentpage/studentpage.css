@@ -1,0 +1,13 @@
+.part {
+    align-items: center;
+    flex-direction: column;
+    background: white;
+  }
+
+.page{
+  background-color: rgba(224, 162, 82, 0.842); 
+}
+
+.yo{
+  background-color: white;
+} 

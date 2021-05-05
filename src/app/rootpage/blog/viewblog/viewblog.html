@@ -1,6 +1,12 @@
-<ScrollView height="100%">
 <StackLayout>
-    <Label [text]="this.heading" isEditable="false" fontSize="20" textWrap="true" class="local-heading"></Label>
-    <Label [text]="this.content" isEditable="false" textWrap="true" fontSize="15" class="local-content"></Label>
+<Label *ngIf="this.loading" class="loading" text="Loading ... Please Wait !!"></Label>
 </StackLayout>
-</ScrollView>
+<StackLayout *ngIf="!this.loading">
+    <ScrollView height ="90%">
+        <StackLayout>
+            <TextField editable="{{this.isRoot}}" [(ngModel)]="this.heading" class="checkheading" fontSize="17px"></TextField>
+            <TextView editable="{{this.isRoot}}" [(ngModel)]="this.content" class="input-add-db" textWrap="true" fontSize="15"></TextView>
+        </StackLayout>
+    </ScrollView>
+    <Button *ngIf="this.isRoot" height="8%" text="Update" (tap)="updateData()" class="deletebutton"></Button>
+</StackLayout>

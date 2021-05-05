@@ -42,14 +42,15 @@ import {selectclassComponent} from "./teacherpage/teacherpagemarks/selectclass/s
 import {addmarksComponent} from "./teacherpage/teacherpagemarks/addmarks/addmarks";
 
 const routes: Routes = [
-    // { path: "", redirectTo: "/items", pathMatch: "full" },
-    //{ path: "", redirectTo: "/root", pathMatch: "full" },
-    {path:"",redirectTo: "/teacher", pathMatch:"full"},
+    { path: "", redirectTo: "/items", pathMatch: "full" },
+    // { path: "", redirectTo: "/root", pathMatch: "full" },
+    // { path : "",redirectTo: "/student", pathMatch: "full"}
+    // {path:"",redirectTo: "/teacher", pathMatch:"full"},
     { path: "items", component: ItemsComponent },
     { path: "root", component: rootpageComponent},
     { path: "teacher", component:teacherpageComponent},
     { path: "student", component: studentpageComponent},
-    {path: "blog", component: blogComponent},
+    {path: "blog/:person", component: blogComponent},
     {path: "timetable", component: timetableComponent},
     {path: "addteacher", component:addteacherComponent},
     {path: "deleteteacher", component: deleteteacherComponent},
@@ -64,7 +65,7 @@ const routes: Routes = [
     {path : "addclass/:name/:section",component:addclassComponent},
     {path : "deleteclass", component: deleteclassComponent},
     {path : "addblog",component: addblogComponent},
-    {path : "viewblog/:date/:time",component : viewblogComponent},
+    {path : "viewblog/:date/:time/:isRoot",component : viewblogComponent},
     {path: "marks/:class/:section", component:marksComponent},
     {path: "teacherpageupdatestudent/:class/:section",component:teacherpageupdatestudentComponent},
     {path:"teacherpagetimetable/:class/:section",component:teacherpagetimetableComponent},
