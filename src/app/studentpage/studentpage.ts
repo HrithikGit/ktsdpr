@@ -7,9 +7,23 @@ import {Router} from "@angular/router";
     styleUrls : ["./studentpage.css"]
 })
 export class studentpageComponent {
-
-    public constructor() {
+    studentclass ;
+    studentsection;
+    public constructor(private router: Router) {
     }
+    attendance(){
+        
+    }
+    timetable(){
+
+    }
+    blog(){
+        this.router.navigate(["blog","Student"]);
+    }
+    about(){
+        this.router.navigate(["studentpageabout"]);
+    }
+    
 
 }
  

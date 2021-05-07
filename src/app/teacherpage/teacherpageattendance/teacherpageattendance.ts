@@ -12,10 +12,15 @@ export class teacherpageattendanceComponent {
     ClassTeacherClass;
     ClassTeacherSection;
     waiting ;
+    updatingData;
     loading=true;
     attendance=[];
     ref=[];
     rows=[[]];
+    getdate;
+    today;
+    sofar;
+    dateupdate;
     public constructor(private router:Router,private route:ActivatedRoute) {
         this.route.params.subscribe((params)=>{
             this.ClassTeacherClass=params["class"];
@@ -26,7 +31,6 @@ export class teacherpageattendanceComponent {
     }
 
     initialize(){
-        this.attendance =[];
         this.ref=[];
         this.rows=[[]];
     }
@@ -35,6 +39,27 @@ export class teacherpageattendanceComponent {
 
         var classid=1;
         var section ="A";
+        var date = new Date();
+        this.today = date.getDay().toString()+"-"+date.getMonth().toString()+":"+date.getFullYear().toString();
+        this.waiting = true;
+
+        this.getdate ="";
+        this.sofar=0;
+        const  checkdate = firebase.firestore().collection("Generate_Id");
+        this.dateupdate =""; 
+        await checkdate.get().then(result=>{
+            result.forEach(doc=>{
+                this.dateupdate = doc.id;
+                this.sofar = doc.data()["Classes_So_Far"];
+                this.getdate = doc.data()["Today_Date"];
+            })
+        })
+        console.log(this.today+" "+this.getdate);
+        if(this.today==this.getdate){
+            this.updatingData = true;
+        }
+
+
 
         const collect = firebase.firestore().collection("Student").where("Class_Id","==",classid)
         .where("Class_Section","==",section);
@@ -47,7 +72,12 @@ export class teacherpageattendanceComponent {
                 check["Student_Attendance"] = doc.data()["Student_Attendance"];
                 check["Is_Present_Today"] = doc.data()["Is_Present_Today"];
                 check["Classes_Attended"]= doc.data()["Classes_Attended"];
-                this.attendance.push(doc.data()["Is_Present_Today"]);
+                if(this.updatingData){
+                    this.attendance.push(doc.data()["Is_Present_Today"]);
+                }
+                else{
+                    this.attendance.push("0");
+                }
                 this.ref.push(doc.id);
                 this.rows[k].push(check);
                 if(this.rows[k].length==3){
@@ -56,6 +86,7 @@ export class teacherpageattendanceComponent {
                 }
             })
         })
+
         this.loading = false;
 
     }
@@ -88,35 +119,17 @@ export class teacherpageattendanceComponent {
     }
 
     async commit(){
-        var date = new Date();
-        var today = date.getDay().toString()+"-"+date.getMonth().toString()+":"+date.getFullYear().toString();
-        this.waiting = true;
         const updating = firebase.firestore().collection("Student");
-
-        var getdate ="";
-        var sofar=0;
-        const  checkdate = firebase.firestore().collection("Generate_Id");
-        var dateupdate ="";
-        await checkdate.get().then(result=>{
-            result.forEach(doc=>{
-                dateupdate = doc.id;
-                sofar = doc.data()["Classes_So_Far"];
-                getdate = doc.data()["Today_Date"];
-            })
-        })
-
-
-        if(getdate!=today){
-            sofar+=1;
-           await firebase.firestore().collection("Generate_Id").doc(dateupdate).update({
-                Previous_Date: getdate,
-                Today_Date : today,
-                Classes_So_Far : sofar
+        if(!this.updatingData){
+            this.sofar+=1;
+           await firebase.firestore().collection("Generate_Id").doc(this.dateupdate).update({
+                Previous_Date: this.getdate,
+                Today_Date : this.today,
+                Classes_So_Far : this.sofar
             })
             for(var i=0;i<this.ref.length;i++){
                 await firebase.firestore().collection("Student").doc(this.ref[i]).update({
-                    Is_Present_Yesterday : this.rows[Math.floor(i/3)][i%3]["Is_Present_Today"],
-                    Is_Present_Today : "0"
+                    Is_Present_Yesterday : this.rows[Math.floor(i/3)][i%3]["Is_Present_Today"]
                 })
             }
         }
@@ -127,7 +140,7 @@ export class teacherpageattendanceComponent {
             var attended = parseInt(this.rows[Math.floor(i/3)][i%3]["Classes_Attended"]);
             var ispresenttoday = this.rows[Math.floor(i/3)][i%3]["Is_Present_Today"];
 
-            if(getdate==today){
+            if(this.getdate==this.today){
                 if(ispresenttoday==this.attendance[i]){
                     continue;
                 }
@@ -146,7 +159,7 @@ export class teacherpageattendanceComponent {
             await updating.doc(this.ref[i]).update({
                 Is_Present_Today : this.attendance[i],
                 Classes_Attended :attended,
-                Student_Attendance : (attended/sofar)*100
+                Student_Attendance : (attended/this.sofar)*100
             });
         }
         this.initialize();
@@ -155,3 +168,4 @@ export class teacherpageattendanceComponent {
         alert("Attendance has been updated !");
     }
 }
+ 
