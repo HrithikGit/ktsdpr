@@ -1,10 +1,7 @@
 import {Component} from "@angular/core";
 import {Router,ActivatedRoute} from "@angular/router";
 //import { DropDownModule } from "nativescript-drop-down/angular";
-<<<<<<< HEAD
 // import { SelectedIndexChangedEventData } from "nativescript-drop-down";
-=======
->>>>>>> efa387f20ee90ee017f4026d99c47ea7abc7b398
 
 const firebase = require("nativescript-plugin-firebase/app");
 

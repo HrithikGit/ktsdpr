@@ -1,7 +1,5 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {Router,ActivatedRoute} from "@angular/router";
-import { TouchGestureEventData } from "tns-core-modules/ui/gestures";
-import { prompt } from "tns-core-modules/ui/dialogs";
 const firebase = require("nativescript-plugin-firebase/app");
 
 @Component({
@@ -20,6 +18,7 @@ export class teacherpageattendanceComponent {
     getdate;
     today;
     sofar;
+    olddate;
     dateupdate;
     public constructor(private router:Router,private route:ActivatedRoute) {
         this.route.params.subscribe((params)=>{
@@ -40,30 +39,15 @@ export class teacherpageattendanceComponent {
         var classid=1;
         var section ="A";
         var date = new Date();
-        this.today = date.getDay().toString()+"-"+date.getMonth().toString()+":"+date.getFullYear().toString();
+        this.today = date.getDay().toString()+"-"+date.getMonth().toString()+"-"+date.getFullYear().toString();
         this.waiting = true;
 
         this.getdate ="";
         this.sofar=0;
-        const  checkdate = firebase.firestore().collection("Generate_Id");
-        this.dateupdate =""; 
-        await checkdate.get().then(result=>{
-            result.forEach(doc=>{
-                this.dateupdate = doc.id;
-                this.sofar = doc.data()["Classes_So_Far"];
-                this.getdate = doc.data()["Today_Date"];
-            })
-        })
-        console.log(this.today+" "+this.getdate);
-        if(this.today==this.getdate){
-            this.updatingData = true;
-        }
-
-
 
         const collect = firebase.firestore().collection("Student").where("Class_Id","==",classid)
         .where("Class_Section","==",section);
-
+ 
         await collect.get().then(result=>{
             result.forEach(doc=>{
                 var check = {};
@@ -71,12 +55,16 @@ export class teacherpageattendanceComponent {
                 check["Student_Name"]=doc.data()["Student_Name"];
                 check["Student_Attendance"] = doc.data()["Student_Attendance"];
                 check["Is_Present_Today"] = doc.data()["Is_Present_Today"];
+                check["Is_Present_Yesterday"] = doc.data()["Is_Present_Yesterday"];
                 check["Classes_Attended"]= doc.data()["Classes_Attended"];
-                if(this.updatingData){
+                this.sofar = doc.data()["Classes_So_Far"];
+                this.getdate = doc.data()["Today_Date"];
+                this.olddate = doc.data()["Previous_Previous_Date"];
+                if(this.getdate==this.today){
                     this.attendance.push(doc.data()["Is_Present_Today"]);
                 }
                 else{
-                    this.attendance.push("0");
+                    this.attendance.push("1");
                 }
                 this.ref.push(doc.id);
                 this.rows[k].push(check);
@@ -86,7 +74,7 @@ export class teacherpageattendanceComponent {
                 }
             })
         })
-
+        this.sofar=4;
         this.loading = false;
 
     }
@@ -116,24 +104,26 @@ export class teacherpageattendanceComponent {
         else{
             this.attendance[i]="1";
         }
-    }
+    } 
 
     async commit(){
         const updating = firebase.firestore().collection("Student");
-        if(!this.updatingData){
+        console.log(this.today+" "+this.getdate+" "+this.sofar);
+        if(this.today!=this.getdate){
             this.sofar+=1;
-           await firebase.firestore().collection("Generate_Id").doc(this.dateupdate).update({
-                Previous_Date: this.getdate,
-                Today_Date : this.today,
-                Classes_So_Far : this.sofar
-            })
             for(var i=0;i<this.ref.length;i++){
                 await firebase.firestore().collection("Student").doc(this.ref[i]).update({
+                    Previous_Previous_Date : this.olddate,
+                    Previous_Date: this.getdate,
+                    Today_Date : this.today,
+                    Classes_So_Far : this.sofar,
+                    Is_Present_DayBefore : this.rows[Math.floor(i/3)][i%3]["Is_Present_Yesterday"],
                     Is_Present_Yesterday : this.rows[Math.floor(i/3)][i%3]["Is_Present_Today"]
                 })
             }
         }
-
+ 
+        // console.log("HERE");
 
         for(var i=0;i<this.ref.length;i++){
             console.log(i+" "+Math.floor(i/3)+" "+i%3);
@@ -142,7 +132,7 @@ export class teacherpageattendanceComponent {
 
             if(this.getdate==this.today){
                 if(ispresenttoday==this.attendance[i]){
-                    continue;
+                    continue; 
                 }
                 else if(ispresenttoday!=this.attendance[i] && this.attendance[i]=="1"){
                     attended++;
