@@ -13,6 +13,7 @@ export class attendanceComponent {
     section;
     notready;
     students=[];
+    date;
     public constructor(private router:Router,private route:ActivatedRoute){
         this.route.params.subscribe((params)=>{
             this.class=params["name"];
@@ -34,9 +35,6 @@ export class attendanceComponent {
         }
         else if(str=="-1"){
             return "red";
-        }
-        else{
-            return "gray";
         }
     }
     getToday(str){
@@ -63,7 +61,7 @@ export class attendanceComponent {
                 this.students.push(check);
             })
         })
-
+        
         this.notready = false;
     }
 

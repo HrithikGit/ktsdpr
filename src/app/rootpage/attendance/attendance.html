@@ -9,13 +9,15 @@
       <label text=" "></label>
       <ListView *ngIf="!this.notready" [items]="this.students">
         <ng-template let-item="item">
-          <GridLayout rows="*,*" columns="auto,auto,auto,auto,*">
+          <GridLayout rows="*,*,*" columns="auto,auto,auto,auto,*">
             <Label text="Student :" class="local-heading" row="0" col="0"></Label>
             <Label [text]="item.Student_Name" row="0" col="1" ></Label>
             <Label text="Today : " class="local-heading" row="0" col="2"></Label>
             <Label [text]="item.displaytod" fontWeight="500" style="color: {{ item.color}} " row="0" col="3"></Label>
             <Label text="Total Attendance : " class="local-heading" row="1" col="0"></Label>
             <Label [text]="item.Student_Attendance" row="1" col="1"></Label>
+            <Label text="Last Recorded : " row="2" col="0"></Label>
+            <Label [text]="item.Today_Date" row="2" col="1" class="example"></Label>
           </GridLayout>
         </ng-template>
       </ListView>
