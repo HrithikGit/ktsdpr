@@ -146,7 +146,7 @@ export class addteacherComponent implements OnInit {
 
 
         for(var i=0;i<this.rows.length;i++){
-            this.addteacher(parseInt(this.rows[i].class.trim()),this.rows[i].section.trim());
+           await this.addteacher(parseInt(this.rows[i].class.trim()),this.rows[i].section.trim());
         }
 
 
@@ -160,7 +160,7 @@ export class addteacherComponent implements OnInit {
                 })
             })
             const classDoc = firebase.firestore().collection("Class").doc(classdoc)
-            classDoc.update({
+            await classDoc.update({
                 Teacher_Id : this.teacherid+1
             })
         }
@@ -170,13 +170,18 @@ export class addteacherComponent implements OnInit {
             Teacher_No : this.teacherid+1
         })
 
+        //Adding UserId and PassWord in User Database;
+        const userCollection = firebase.firestore().collection("Users");
+        userCollection.add({
+            Username : this.teacher_name.trim()+this.teacherid,
+            Password : 1234,
+            Type : "Teacher"
+        })
         this.waiting = false;
-        alert("Teacher Added Successfully !")
+        alert("Teacher Added Successfully ! with id : "+this.teacher_name+this.teacherid);
 
 
     }
-
-
 
     async addteacher(class_tobeAdded,section_tobeAdded){
         this.teacher_name.trim();
@@ -192,6 +197,7 @@ export class addteacherComponent implements OnInit {
             Class_Section : section_tobeAdded,
             Subject_Name : this.subject_name
         })
+
 
 
     }

@@ -4,6 +4,8 @@ import { Page } from "tns-core-modules/ui/page";
 import {Router} from "@angular/router";
 
 const firebase = require("nativescript-plugin-firebase/app");
+const appSettings = require("tns-core-modules/application-settings");
+
 
 firebase.initializeApp({
   persist: false
@@ -18,6 +20,9 @@ export class ItemsComponent implements OnInit {
     pass="";
     notcorrect ;
     constructor(private router: Router,private page: Page) {
+        if(appSettings.getString("AlreadyLoggedIn")=="Yes"){
+            this.router.navigate([appSettings.getString("TypeOfUser")]);
+        }
         this.notcorrect = false;
     }
     ngOnInit(): void {
@@ -25,22 +30,34 @@ export class ItemsComponent implements OnInit {
         // this.page.actionBar.title="Title check"         (Action Bar Title)
     }
 
-    loginAuthenicate() :void{
+    async loginAuthenicate(){
         this.user.trim();
         if(this.user.length==0 || this.pass.length==0){
             alert("Invalid Email or PassWord\n Try Re-entering Details");
             return ;
         }
-        var check = false;
-        var passdb ="";
-        const usercollection = firebase.firestore().collection("Users").where("Username","==",this.user)
-        usercollection.get().then(result=>{
+        var isValid = false;
+        var type ="";
+        const userCollection = firebase.firestore().collection("Users").where("Username","==",this.user)
+        .where("Password","==",this.pass);
+        await userCollection.get().then(result=>{
             result.forEach(doc=>{
-                passdb = doc.data()["Password"];
+                isValid = true;
+                if(doc.data()["Type"]=="Teacher"){
+                    type="teacher";
+                }
+                else if(doc.data()["Type"]=="Root"){
+                    type ="root";
+                }
+                else{
+                    type="student";
+                }
             })
         })
-        if(this.pass==passdb){
-            this.router.navigate(["root"]);
+        if(isValid){
+            appSettings.setString("AlreadyLoggedIn","Yes");
+            appSettings.setString("TypeOfUser",type);
+            this.router.navigate([type])
         }
         else{
             this.notcorrect = true;

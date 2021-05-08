@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import { confirm } from "tns-core-modules/ui/dialogs";
 
 const firebase = require("nativescript-plugin-firebase/app");
+const appSettings = require("tns-core-modules/application-settings");
 
 @Component({
     selector: "deleteteacher",
@@ -18,6 +19,7 @@ export class deleteteacherComponent {
     public constructor(private router: Router) {
         this.waiting = true;
         this.getData();
+        console.log("Frome teacher "+appSettings.getNumber("check"))
     }
 
     async getData(){
@@ -57,12 +59,26 @@ export class deleteteacherComponent {
         if(stop){
             return ;
         }
-        const remcollection = firebase.firestore().collection("Teacher").doc(this.teachers[i].id);
         this.waiting = true;
+        
+        var username = this.teachers[i].Teacher_Name+this.teachers[i].Teacher_Id;
+
+        const remcollection = firebase.firestore().collection("Teacher").doc(this.teachers[i].id);
         await remcollection.delete();
         var removeddata=this.teachers.splice(i,1);
-        this.waiting = false;
+        
+        //Removing user details from User Collection
+        var storedoc="";
+        const userCollection = firebase.firestore().collection("Users").where("Username","==",username);
+        await userCollection.get().then(result=>{
+            result.forEach(doc=>{
+                storedoc = doc.id;
+            })
+        })
 
+        await firebase.firestore().collection("Users").doc(storedoc).delete();
+
+        this.waiting = false; 
         // console.log(i);
         // console.log("TAPPED ON REMOVE");
     }
