@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import { confirm } from "tns-core-modules/ui/dialogs";
 import { FirebaseTrace } from "nativescript-plugin-firebase/performance/performance";
 
+const appSettings = require("tns-core-modules/application-settings");
 const firebase = require("nativescript-plugin-firebase/app");
 
 @Component({
@@ -13,7 +14,7 @@ export class deletestudentComponent {
     student_class;
     student_section;
     waiting;
-
+    editable;
     students=[];
     public constructor(private router: Router,private route:ActivatedRoute) {
         this.route.params.subscribe((params)=>{
@@ -61,11 +62,22 @@ export class deletestudentComponent {
             return ;
         }
         const remcollection = firebase.firestore().collection("Student").doc(this.students[i].id);
+        var idtoremove = (this.students[i].Unq_Id);
         this.waiting = true;
         await remcollection.delete();
         var removeddata=this.students.splice(i,1);
-        this.waiting = false;
 
+        var userdocid ="";
+        await firebase.firestore().collection("Users").where("Type","==","Student").where("Id","==",
+        idtoremove).get().then(result=>{
+            result.forEach(doc=>{
+                userdocid = doc.id;
+            })
+        })
+
+        await firebase.firestore().collection("Users").doc(userdocid).delete();
+
+        this.waiting = false;
         // console.log(i);
         // console.log("TAPPED ON REMOVE");
     }

@@ -49,7 +49,18 @@ export class attendanceComponent {
         }
     }
 
+    getAttColor(num){
+        if(num<=40){
+            return "red";
+        }
+        else if(num>=75){
+            return "green";
+        }
+        else{
+            return "orange";
+        }
 
+    }
     async getdata(){
         // console.log("YO");
         await firebase.firestore().collection("Student").where("Class_Id","==",parseInt(this.class))
@@ -58,6 +69,7 @@ export class attendanceComponent {
                 var check = doc.data();
                 check["displaytod"]=this.getToday(check["Is_Present_Today"]);
                 check["color"]= this.getColor(check["Is_Present_Today"]);
+                check["attcolor"] = this.getAttColor(check["Student_Attendance"]);
                 this.students.push(check);
             })
         })

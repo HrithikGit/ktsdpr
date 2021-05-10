@@ -1,28 +1,25 @@
 import {Component, OnInit} from "@angular/core";
 import {Router,ActivatedRoute} from "@angular/router";
 
+const appSettings = require("tns-core-modules/application-settings");
+
 @Component({
     selector: "teacherpageupdatestudent",
     templateUrl: "./teacherpageupdatestudent.html",
 })
 export class teacherpageupdatestudentComponent {
-    ClassTeacherClass;
     ClassTeacherSection;
-    isClassTeacher="";
+    isClassTeacher;
     public constructor(private router:Router,private route:ActivatedRoute) {
-        this.route.params.subscribe((params)=>{
-            this.ClassTeacherClass=params["class"];
-            this.ClassTeacherSection=params["section"];
-        });
-
+        this.isClassTeacher = appSettings.getString("IsClassTeacher")=="True"?true:false;
     }
 
     view(){
-        this.router.navigate([]);
+        this.router.navigate(["deletestudent"]);
     }
 
     update(){
-        this.router.navigate([]);
+        this.router.navigate(["deletestudent"]);
     }
 
-}
+} 

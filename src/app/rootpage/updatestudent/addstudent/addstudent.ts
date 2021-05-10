@@ -73,9 +73,18 @@ export class addstudentComponent {
 
 
         // console.log("Got Value ");
+        var value =0;
+        var doccheck ="";
+        await firebase.firestore().collection("Generate_Id").get().then(result=>{
+            result.forEach(doc=>{
+                doccheck = doc.id;
+                value = doc.data()["Student_No"]
+            })
+        })
 
-
+        var unqid = this.student_name+this.student_id+this.student_class+this.student_section;
         await studentCollection.add({
+            Unq_Id : value,
             Student_Id : parseInt(this.student_id),
             Class_Id : parseInt(this.student_class),
             Class_Section : this.student_section,
@@ -83,13 +92,20 @@ export class addstudentComponent {
             Student_Attendance : parseInt(this.student_attendance),
             Student_Address : this.student_address,
             Is_Present_Today : "0",
+            Classes_So_Far : 0, 
+            Classes_Attended : 0,
             Is_Present_Yesterday : "0"
-        }).then((result)=>{
-            // this.succeded = true;
-            // console.log("Added document with id "+ result.id);
-            // setTimeout(()=>{
-            //     this.succeded= false;
-            // },3000);
+        })
+        
+        await firebase.firestore().collection("Users").add({
+            Username: unqid,
+            Password : "1234",
+            Type : "Student", 
+            Id : value
+        })
+
+        await firebase.firestore().collection("Generate_Id").doc(doccheck).update({
+            Student_No : value+1
         })
         alert("Added Successfully !");
         this.intialize();
