@@ -16,29 +16,23 @@
   <Button *ngIf="this.bool" text="Change" row="0" col="1" width="50%" (tap)="change()" style="background-color: #76D7C4 ;"></Button>
 </GridLayout>
 
-<ScrollView height="80%">
-    <StackLayout *ngIf="this.bool">
-     <GridLayout columns="17*,14*,12*,14*,7*,20*,12*" rows="auto">
-      <Label text="Start Time" col="1" row="0" ></Label>
-      <Label text="End Time" col="3" row="0"></Label>
-      <Label text="Period" col="5" row="0" margin-top="50"></Label>
+   <ScrollView height="100%" *ngIf="this.bool">
+     <StackLayout>
+     <GridLayout rows="auto" columns="13*,15*,12*,15*,12*,20*,13*">
+      <Label text="Start Time" col="1" row="0" width="15%" horizontalAlignment="center"></Label>
+      <Label text="End Time" col="3" row="0" width="15%" horizontalAlignment="center"></Label>
+      <Label text="Subject" col="5" row="0" width="20%" horizontalAlignment="center"></Label>
      </GridLayout>
-    <template *ngFor="let col of this.rows; let i=index">
-     <GridLayout columns="11*,14*,1*,14*,14*,1*,14*,20*,10*,11*" rows="auto">
-      <TextField [(ngModel)]="col.Start_Hour" col="1" row="0" ></TextField>
-      <Label style="padding-top: 29px;"  horizontalAlignment="center" text=":" col="2" row="0" ></Label>
-      <TextField [(ngModel)]="col.Start_Minute" col="3" row="0" ></TextField>
-
-      <TextField [(ngModel)]="col.End_Hour" col="4" row="0" ></TextField>
-      <Label style="padding-top: 30px;" text=":" col="5" row="0"></Label>
-      <TextField [(ngModel)]="col.End_Minute" col="6" row="0"></TextField>
-
-      <TextField [(ngModel)]="col.Subject_Name" width="50" col="7" row="0"></TextField>
-      <StackLayout (tap)="remove(i)" col="8" row="0"><Image src="~/images/minus.png" height="30" width="30" col="3" row="0"></Image></StackLayout>
-     </GridLayout>
-    </template>
+     <template *ngFor="let col of this.rows; let i=index">
+      <GridLayout rows="auto" columns="13*,15*,12*,15*,12*,20*,13*" style="padding-bottom: 10px;">
+        <TextField [(ngModel)]="col.Start" col="1" row="0" style="background-color: lightgray;" width="15%"></TextField>
+        <TextField [(ngModel)]="col.End" col="3" row="0" style="background-color: lightgray;" width="15%"></TextField>
+        <TextField [(ngModel)]="col.Subject" col="5" row="0" style="background-color: lightgray;" width="20%"></TextField>
+        <StackLayout (tap)="remove(i)" col="6" row="0">
+        <Image src="~/images/minus.png" height="30" width="30"></Image></StackLayout>
+       </GridLayout>
+     </template>
     </StackLayout>
    </ScrollView>
-   <Label text="Don't forget to press change button ! Else your changes wont be saved" class="example"></Label>
 
 </StackLayout>

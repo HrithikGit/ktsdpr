@@ -145,12 +145,12 @@ export class updatetimetableComponent {
         this.satcol='white';
     }
     sun(): void{this.mon();}
-    mon(): void{this.currday ="Monday" ;this.rows=[...this.monday];   this.color(); this.moncol='green';}
-    tue(): void{this.currday ="Tuesday" ;this.rows=[]; this.rows=[...this.tuesday];  this.color(); this.tuecol='green';}
-    wed():void{this.currday ="Wednesday" ; console.log("INSIDEEEEEEEEEEEEEEEEEEEEEEE"); this.rows=[...this.wednesday]; this.color(); this.wedcol='green';}
-    thu(): void{ this.currday ="Thrusday" ; this.rows=[...this.thursday];  this.color(); this.thucol='green';}
-    fri(): void{this.currday ="Friday" ; this.rows=[...this.friday];  this.color(); this.fricol='green';}
-    sat(): void{this.currday ="Saturday" ; this.rows=[...this.saturday];  this.color(); this.satcol='green';}
+    mon(): void{this.currday ="Monday" ;this.rows=[...this.monday];   this.color(); this.moncol="#50C878";}
+    tue(): void{this.currday ="Tuesday" ;this.rows=[]; this.rows=[...this.tuesday];  this.color(); this.tuecol="#50C878";}
+    wed():void{this.currday ="Wednesday" ; this.rows=[...this.wednesday]; this.color(); this.wedcol="#50C878";}
+    thu(): void{ this.currday ="Thrusday" ; this.rows=[...this.thursday];  this.color(); this.thucol="#50C878";}
+    fri(): void{this.currday ="Friday" ; this.rows=[...this.friday];  this.color(); this.fricol="#50C878";}
+    sat(): void{this.currday ="Saturday" ; this.rows=[...this.saturday];  this.color(); this.satcol="#50C878";}
 
 
     remove(val){
@@ -160,11 +160,15 @@ export class updatetimetableComponent {
     }
 
     addcol(){
-        var rw={"End_Minute": "","End_Hour": "","Start_Hour": "","Sequence":this.rows.length+1,"Start_Minute": "","Subject_Name": ""}
+        var rw={"Start": "","End": "","Subject": "","Sequence":this.rows.length+1}
         this.rows.push(rw);
     }
 
     async change(){
+        for(var i=0;i<this.rows.length;i++){
+            if(this.rows[i].Start=="" || this.rows[i].End=="" || this.rows[i].Subject=="")
+                {alert("Please check "+(i+1)+"th column"); return;}
+        }
         var todel=[] ;
         if(this.currday=="Monday"){
             todel = [...this.monday];
@@ -197,12 +201,10 @@ export class updatetimetableComponent {
             await toadd.add({
                 Class_Id : parseInt(this.class_id),
                 Class_Section : this.section,
-                Start_Hour : parseInt(this.rows[i]["Start_Hour"]),
-                Start_Minute : parseInt(this.rows[i]["Start_Minute"]),
-                End_Hour : parseInt(this.rows[i]["End_Hour"]),
-                End_Minute : parseInt(this.rows[i]["End_Minute"]),
+                Start : this.rows[i]["Start"],
+                End : this.rows[i]["End"],
                 Sequence : parseInt(this.rows[i]["Sequence"]),
-                Subject_Name : this.rows[i]["Subject_Name"]
+                Subject : this.rows[i]["Subject"].toUpperCase()
             })
         }
         alert("Added Successfully !");

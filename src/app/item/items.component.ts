@@ -73,6 +73,8 @@ export class ItemsComponent implements OnInit {
                         appSettings.setString("RollNumber",doc.data()["Student_Id"]+"");  
                         appSettings.setString("Attendance",doc.data()["Student_Attendance"]+"");
                         appSettings.setString("LastDate",doc.data()["Today_Date"]);
+                        appSettings.setString("StudentClass",doc.data()["Class_Id"]+"");
+                        appSettings.setString("StudentSection",doc.data()["Class_Section"])
                     }) 
                 })
                 this.updateandmove(type); 

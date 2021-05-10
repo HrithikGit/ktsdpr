@@ -16,6 +16,8 @@ export class studentpageComponent {
     exit_tapped ;
     public constructor(private router: Router) {
         this.exit_tapped = false;
+        this.studentclass = parseInt(appSettings.getString("StudentClass"));
+        this.studentsection = parseInt(appSettings.getString("StudentSection"));
     }
     
     ngOnInit() {
@@ -51,7 +53,7 @@ export class studentpageComponent {
           alert(alertOptions);
     }
     timetable(){
-
+        this.router.navigate(["displaytimetable",this.studentclass,this.studentsection]);
     }
     blog(){
         this.router.navigate(["blog","Student"]);
