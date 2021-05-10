@@ -50,6 +50,7 @@ export class ItemsComponent implements OnInit {
             result.forEach(doc=>{
                 isValid = true;
                 documentid = doc.id;
+                console.log(doc.data());
                 personid = doc.data()["Id"];
                 if(doc.data()["Type"]=="Teacher"){
                     type="teacher";
