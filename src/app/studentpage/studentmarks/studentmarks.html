@@ -1,0 +1,31 @@
+<ScrollView height="100%">
+<StackLayout verticalAlignment="center">
+    <Label *ngIf="this.waiting" text="Please Wait"></Label>
+    <StackLayout *ngIf="!this.waiting">
+        <Button (tap)="openmarks()" [text]="this.Exam"  class="plusbutton" height="10%" width="90%" row="0" col="2"></Button>
+        <StackLayout>
+        <ScrollView *ngIf="this.openMarks" width="90%" height="25%" style="background-color: #c0c0c0;">
+            <StackLayout>
+                <template *ngFor="let item of this.tests; index as i">
+                    <StackLayout (tap)="setexamtype(i)">
+                    <Label [text]="item" horizontalAlignment="center" fontSize="20"></Label>
+                    <Label text="" class="line" width="90%"></Label>
+                    </StackLayout>
+                </template>
+            </StackLayout>
+        </ScrollView>
+        </StackLayout>
+        <StackLayout>
+            <template *ngFor="let item of this.selected_exams">
+                <StackLayout>
+                <GridLayout rows="auto" columns="*,auto,auto,auto,*">
+                    <Label [text]="item" row="0" col="1" fontSize="20"></Label>
+                    <Label text=":" row="0" col="2" fontSize="20"></Label>
+                    <Label [text]="this.selectedexam_marks[item]" fontSize="20" row="0" col="3"></Label>
+                </GridLayout>
+                </StackLayout>
+            </template>
+        </StackLayout>
+    </StackLayout>
+    </StackLayout>
+</ScrollView>

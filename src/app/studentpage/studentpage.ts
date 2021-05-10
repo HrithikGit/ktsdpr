@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 export class studentpageComponent {
     studentclass =1;
     studentsection="A";
+    studentid=16;
     public constructor(private router: Router) {
     }
     attendance(){
@@ -22,6 +23,9 @@ export class studentpageComponent {
     }
     about(){
         this.router.navigate(["studentpageabout"]);
+    }
+    marks(){
+        this.router.navigate(["studentmarks",this.studentclass,this.studentsection,this.studentid]);
     }
     
 
