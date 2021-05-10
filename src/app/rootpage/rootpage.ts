@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
-
+import * as application from "tns-core-modules/application";
+import { AndroidApplication, AndroidActivityBackPressedEventData } from "tns-core-modules/application";
 
 
 @Component({
@@ -10,11 +11,30 @@ import {Router} from "@angular/router";
 })
 export class rootpageComponent implements OnInit{
     check="";
+    exit_tapped ;
     public constructor(private router: Router) {
+        this.exit_tapped = false;
     }
-    ngOnInit(): void {
+    ngOnInit() {
+        if (application.android) {
+          application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
+              data.cancel = true; // prevents default back button behavior
+              this.getExit();
+          });
+        }
+      }
 
-    }
+      getExit(){
+          if(!this.exit_tapped){
+            this.exit_tapped = true;
+            var Toast = require("nativescript-toast");
+            var toast = Toast.makeText("Press again to Exit");
+            toast.show();
+            return ;
+          }
+        android.os.Process.killProcess(android.os.Process.myPid());
+      }
+
     teacherdetails(): void{
         console.log(this.check);
         this.router.navigate(["deleteteacher"]);

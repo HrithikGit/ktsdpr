@@ -12,7 +12,7 @@ const firebase = require("nativescript-plugin-firebase/app");
 export class blogComponent {
     loading;
     nodata;
-    blogs;
+    blogs; 
     person;
     isRoot;
     public constructor(private router:Router,private route: ActivatedRoute){

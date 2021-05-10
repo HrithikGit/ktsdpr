@@ -2,7 +2,7 @@
     <StackLayout>
     <Label *ngIf="this.waiting" text="Loading.... Please wait"></Label>
     <Label *ngIf="!this.waiting" class="title-heading" text="Add Student/Delete Student/Update Student"></Label>
-    <Button *ngIf="!this.waiting" (tap)="add()" text="Add Student" width="90%" class="addbutton"></Button>
+    <Button *ngIf="!this.waiting && this.editable" (tap)="add()" text="Add Student" width="90%" class="addbutton"></Button>
     </StackLayout>
     <ScrollView height="100%">
     <StackLayout>

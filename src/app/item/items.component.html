@@ -5,12 +5,14 @@
     <StackLayout class="form">
         <StackLayout>
             <Image class="logo" src="~/images/logo.png"></Image>
+            <ActivityIndicator class="activity-indicator" [busy]="this.waiting"></ActivityIndicator>
         </StackLayout>
+
         <StackLayout>
             <TextField [(ngModel)]="this.user" style="margin-top: 15px" paddingLeft="10%" borderRadius="5%" borderColor="#DEDEDE" borderWidth="1" height="auto" hint="Username..." autocorrect="false"
              autocapitalizationType="none" ></TextField>
         </StackLayout>
-
+        
         <StackLayout>
             <TextField [(ngModel)]="this.pass" secure="true" style="margin-top: 15px" paddingLeft="10%" borderRadius="5%" borderColor="#DEDEDE" borderWidth="1" height="auto" hint="Password..." autocorrect="false"
              autocapitalizationType="none" ></TextField>

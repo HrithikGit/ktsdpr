@@ -15,10 +15,12 @@
             <Label text="Today : " class="local-heading" row="0" col="2"></Label>
             <Label [text]="item.displaytod" fontWeight="500" style="color: {{ item.color}} " row="0" col="3"></Label>
             <Label text="Total Attendance : " class="local-heading" row="1" col="0"></Label>
-            <Label [text]="item.Student_Attendance" row="1" col="1"></Label>
-            <Label text="Last Recorded : " row="2" col="0"></Label>
+            <Label [text]="item.Student_Attendance" row="1" col="1" fontWeight="500" style="color: {{ item.attcolor}} " ></Label>
+            <Label text="Last Recorded : " class="local-heading" row="2" col="0"></Label>
             <Label [text]="item.Today_Date" row="2" col="1" class="example"></Label>
           </GridLayout>
+          <Label class="line"></Label>
         </ng-template>
       </ListView>
     </GridLayout>
+ 

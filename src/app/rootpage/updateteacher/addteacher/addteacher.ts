@@ -174,13 +174,14 @@ export class addteacherComponent implements OnInit {
         const userCollection = firebase.firestore().collection("Users");
         userCollection.add({
             Username : this.teacher_name.trim()+this.teacherid,
-            Password : 1234,
-            Type : "Teacher"
+            Password : "1234",
+            Type : "Teacher",
+            Id: this.teacherid
         })
         this.waiting = false;
         alert("Teacher Added Successfully ! with id : "+this.teacher_name+this.teacherid);
 
-
+ 
     }
 
     async addteacher(class_tobeAdded,section_tobeAdded){
