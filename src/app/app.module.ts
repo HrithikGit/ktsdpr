@@ -45,6 +45,10 @@ import {marksviewComponent} from "./teacherpage/teacherpagemarks/marksclassselec
 import {exampageComponent} from "./teacherpage/teacherpagemarks/selectclass/exampage/exampage";
 import {marksupdatepageComponent} from "./teacherpage/teacherpagemarks/selectclass/exampage/marksupdatepage/marksupdatepage";
 
+
+//studentpage
+import {studentmarksComponent} from "./studentpage/studentmarks/studentmarks";
+
 @NgModule({
     bootstrap: [
         AppComponent
@@ -87,7 +91,8 @@ import {marksupdatepageComponent} from "./teacherpage/teacherpagemarks/selectcla
         marksclassselectComponent,
         marksviewComponent,
         exampageComponent,
-        marksupdatepageComponent
+        marksupdatepageComponent,
+        studentmarksComponent
     ],
     providers: [],
     schemas: [

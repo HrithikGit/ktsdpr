@@ -44,6 +44,10 @@ import {marksviewComponent} from "./teacherpage/teacherpagemarks/marksclassselec
 import {exampageComponent} from "./teacherpage/teacherpagemarks/selectclass/exampage/exampage";
 import {marksupdatepageComponent} from "./teacherpage/teacherpagemarks/selectclass/exampage/marksupdatepage/marksupdatepage";
 
+
+//studentpage
+import {studentmarksComponent} from "./studentpage/studentmarks/studentmarks";
+
 const routes: Routes = [
     { path: "", redirectTo: "/items", pathMatch: "full" },
     // { path: "", redirectTo: "/root", pathMatch: "full" },
@@ -81,7 +85,8 @@ const routes: Routes = [
     {path: "marksclassselect",component:marksclassselectComponent},
     {path:"marksview/:class/:section/:subject/:examtype",component:marksviewComponent},
     {path:"exampage/:class/:section/:teacherid/:subject",component:exampageComponent},
-    {path: "marksupdatepage/:class/:section/:teacherid/:examtype",component:marksupdatepageComponent}
+    {path: "marksupdatepage/:class/:section/:teacherid/:examtype",component:marksupdatepageComponent},
+    {path: "studentmarks/:class/:section/:roll", component:studentmarksComponent}
 
 ];
 

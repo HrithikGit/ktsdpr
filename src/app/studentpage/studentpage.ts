@@ -14,6 +14,7 @@ export class studentpageComponent {
     studentclass ;
     studentsection;
     exit_tapped ;
+    studentid=16;
     public constructor(private router: Router) {
         this.exit_tapped = false;
         this.studentclass = parseInt(appSettings.getString("StudentClass"));
@@ -62,6 +63,9 @@ export class studentpageComponent {
     }
     about(){
         this.router.navigate(["studentpageabout"]);
+    }
+    marks(){
+        this.router.navigate(["studentmarks",this.studentclass,this.studentsection,this.studentid]);
     }
     
     public logout(){
