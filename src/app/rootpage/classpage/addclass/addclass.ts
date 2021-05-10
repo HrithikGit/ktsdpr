@@ -151,4 +151,7 @@ export class addclassComponent{
         reqdoc.delete();
         console.log("deleted Successfully");
     }
+    public goHome(){
+        this.router.navigate(["/root"], { replaceUrl: true });
+    }
 }

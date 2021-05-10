@@ -54,5 +54,7 @@ export class addblogComponent {
         alert("Added Successfully !");
         this.router.navigate(["success","Done"]);
     }
-
+    public goHome(){
+        this.router.navigate(["/root"], { replaceUrl: true });
+    }
 }

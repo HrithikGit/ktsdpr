@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {Router,ActivatedRoute} from "@angular/router";
-
 const firebase = require("nativescript-plugin-firebase/app");
+const appSettings = require("tns-core-modules/application-settings")
 
 @Component({
     selector: "blog",
@@ -9,7 +9,7 @@ const firebase = require("nativescript-plugin-firebase/app");
     styleUrls : ["./blog.css"]
 })
 
-export class blogComponent {
+export class blogComponent { 
     loading;
     nodata;
     blogs; 
@@ -62,4 +62,15 @@ export class blogComponent {
         // console.log(i);
         // console.log("TAPPED ON REMOVE");
     }
+
+    public actioncheck(){
+        console.log("Came here");
+        appSettings.clear();
+        this.router.navigate(["items"]);
+    }
+    public goHome(){
+        this.router.navigate(["/root"], { replaceUrl: true });
+    }
+    
 }
+ 

@@ -46,4 +46,8 @@ export class marksviewComponent{
         console.log(this.marks);
         this.waiting=false;
     }
+
+    public goHome(){
+        this.router.navigate(["/teacher"], { replaceUrl: true });
+    }
 }

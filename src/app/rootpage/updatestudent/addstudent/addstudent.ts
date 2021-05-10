@@ -110,6 +110,10 @@ export class addstudentComponent {
         alert("Added Successfully !");
         this.intialize();
     }
+    
+    public goHome(){
+        this.router.navigate(["/root"], { replaceUrl: true });
+    }
 }
 
 

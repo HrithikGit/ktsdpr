@@ -66,4 +66,7 @@ export class marksupdatepageComponent{
         }
         alert("Success..!");
     }
+    public goHome(){
+        this.router.navigate(["/teacher"], { replaceUrl: true });
+    }
 }

@@ -19,7 +19,9 @@ export class deleteclassComponent {
         this.getdata();
     }
 
-
+    public goHome(){
+        this.router.navigate(["/root"], { replaceUrl: true });
+    }
 
     async getdata(){
         const all_classes=firebase.firestore().collection("Class");
@@ -66,5 +68,6 @@ export class deleteclassComponent {
             alert("Delete Sucessful");
         })
     }
+
 
 }

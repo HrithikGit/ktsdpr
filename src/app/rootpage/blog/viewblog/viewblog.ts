@@ -79,4 +79,8 @@ export class viewblogComponent {
         alert("Update Successfull !");
         this.waiting = false;
     }
+
+    public goHome(){
+        this.router.navigate(["/root"], { replaceUrl: true });
+    }
 }

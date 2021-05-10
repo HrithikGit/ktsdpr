@@ -63,7 +63,7 @@ export class ItemsComponent implements OnInit {
                     type="student";
                 }
             })
-        })
+        }) 
         if(isValid){ 
             this.waiting = true;
             if(type=="student"){

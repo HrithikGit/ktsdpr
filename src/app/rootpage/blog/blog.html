@@ -1,3 +1,9 @@
+<ActionBar title="Blog">
+  <ActionItem position="right" (tap)="goHome()">
+      <Image height=40 width=40 src="~/images/homeicon.png"></Image>
+  </ActionItem>
+</ActionBar>  
+
 <StackLayout>
     <StackLayout>
     <Button *ngIf="this.isRoot" text="Add Blog" (tap)="add()" class="addbutton"></Button>

@@ -1,6 +1,10 @@
-<ActionBar title="Teacher Page">
+<ActionBar title="Student">
+    <ActionItem position="right" (tap)="logout()">
+        <Image src="~/images/logouticon.png"></Image>
+    </ActionItem>
 </ActionBar>
-<ScrollView height="100%">
+
+<ScrollView>
     <StackLayout style="vertical-align:'center'">
         <GridLayout rows="0,auto,auto,auto,auto,auto,auto,*" columns="*,*" >
 

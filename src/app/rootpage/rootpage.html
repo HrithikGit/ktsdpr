@@ -1,5 +1,9 @@
-<ActionBar title="Root Page">
+<ActionBar title="Root">
+    <ActionItem position="right" (tap)="logout()">
+        <Image src="~/images/logouticon.png"></Image>
+    </ActionItem>
 </ActionBar>
+
 <ScrollView>
     <StackLayout>
         <GridLayout rows="10,auto,auto,auto,auto,auto,auto,auto,auto,*" columns="*,*">
