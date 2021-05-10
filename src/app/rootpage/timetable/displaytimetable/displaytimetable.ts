@@ -17,16 +17,15 @@ const firebase = require("nativescript-plugin-firebase/app");
 })
 export class displaytimetableComponent {
     monday=[]; tuesday=[]; wednesday=[]; thursday=[]; friday=[]; saturday=[]; sunday=[];
-    rows;
-    moncol;
-    tuecol;
-    wedcol;
-    thucol;
-    fricol;
-    satcol;
     class_id;
     section;
-    bool=false;
+    waiting=true;
+    openmonday=false;
+    opentuesday=false;
+    openwednesday=false;
+    openthursday=false;
+    openfriday=false;
+    opensaturday=false;
     vals : Array<JSON> =[];
     public constructor(private router:Router,private route: ActivatedRoute){
         this.route.params.subscribe((params)=>{
@@ -44,7 +43,7 @@ export class displaytimetableComponent {
         var check = getdata.where("Class_Id","==",parseInt(this.class_id)).where("Class_Section","==",this.section);
         await check.get().then(result=>{
             result.forEach(doc=>{
-                // console.log(JSON.stringify(doc.data()));
+                console.log(doc.data());
                 this.monday.push(doc.data());
             })
         })
@@ -114,31 +113,39 @@ export class displaytimetableComponent {
         this.saturday.sort(function(a,b){
             return parseInt(a["Sequence"])-parseInt(b["Sequence"]);
         });
-        if(TodayDay=="Mon"){this.mon();}
-        else if(TodayDay=="Tue"){this.tue();}
-        else if(TodayDay=="Wed"){this.wed();}
-        else if(TodayDay=="Thu"){this.thu();}
-        else if(TodayDay=="Fri"){this.fri();}
-        else if(TodayDay=="Sat"){this.sat();}
-        else if(TodayDay=="Sun"){this.sun();}
-        this.bool=true;
+        if(TodayDay=="Mon"){this.openmonday=true;}
+        else if(TodayDay=="Tue"){this.opentuesday=true;}
+        else if(TodayDay=="Wed"){this.openwednesday=true;}
+        else if(TodayDay=="Thu"){this.openthursday=true;}
+        else if(TodayDay=="Fri"){this.openfriday=true;}
+        else if(TodayDay=="Sat"){this.opensaturday=true;}
+        else if(TodayDay=="Sun"){this.openmonday=true;}
+        this.waiting=false;
     }
-    color(): void{
-        this.moncol='white';
-        this.tuecol='white';
-        this.wedcol='white';
-        this.thucol='white';
-        this.fricol='white';
-        this.satcol='white';
+
+    openMonday(){
+        if(this.openmonday==true){this.openmonday=false;}
+        else{this.openmonday=true;}
     }
-    sun(): void{this.mon();}
-    mon(): void{this.rows=this.monday;
-        console.log(this.rows);
-        this.color(); this.moncol='green';}
-    tue(): void{this.rows=this.tuesday; this.color(); this.tuecol='green';}
-    wed():void{this.rows=this.wednesday; this.color(); this.wedcol='green';}
-    thu(): void{this.rows=this.thursday; this.color(); this.thucol='green';}
-    fri(): void{this.rows=this.friday; this.color(); this.fricol='green';}
-    sat(): void{this.rows=this.saturday; this.color(); this.satcol='green';}
+    openTuesday(){
+        if(this.opentuesday==true){this.opentuesday=false;}
+        else{this.opentuesday=true;}
+    }
+    openWednesday(){
+        if(this.openwednesday==true){this.openwednesday=false;}
+        else{this.openwednesday=true;}
+    }
+    openThursday(){
+        if(this.openthursday==true){this.openthursday=false;}
+        else{this.openthursday=true;}
+    }
+    openFriday(){
+        if(this.openfriday==true){this.openfriday=false;}
+        else{this.openfriday=true;}
+    }
+    openSaturday(){
+        if(this.opensaturday==true){this.opensaturday=false;}
+        else{this.opensaturday=true;}
+    }
 
 }

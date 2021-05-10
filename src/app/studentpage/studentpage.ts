@@ -7,15 +7,15 @@ import {Router} from "@angular/router";
     styleUrls : ["./studentpage.css"]
 })
 export class studentpageComponent {
-    studentclass ;
-    studentsection;
+    studentclass =1;
+    studentsection="A";
     public constructor(private router: Router) {
     }
     attendance(){
         
     }
     timetable(){
-
+        this.router.navigate(["displaytimetable",this.studentclass,this.studentsection]);
     }
     blog(){
         this.router.navigate(["blog","Student"]);

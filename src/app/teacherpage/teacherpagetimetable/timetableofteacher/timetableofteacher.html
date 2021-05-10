@@ -1,4 +1,4 @@
-<Label *ngIf="this.loading" fontSize="15%" text="Loading... Please wait" class="loading"></Label>
+<!--<Label *ngIf="this.loading" fontSize="15%" text="Loading... Please wait" class="loading"></Label>
 
 <StackLayout *ngIf="!this.loading">
   <GridLayout columns="*,*,*" rows="auto,auto,auto" style="padding-bottom: 100px;">
@@ -22,9 +22,114 @@
         <GridLayout rows="*" columns="4*,21*,25*,25*,25*">
             <Label verticalAlignment="center" horizontalAlignment="right" text="col.Class_Id" row="0" col="1"></Label>
             <Label verticalAlignment="center" horizontalAlignment="right" text="col.Class_Section"  row="0" col="2"></Label>
-            <Label verticalAlignment="center" horizontalAlignment="right" text="col.Start_Time"  row="0" col="3"></Label>
-            <Label verticalAlignment="center" horizontalAlignment="right" text="col.End_Time"  row="0" col="4"></Label>
+            <Label verticalAlignment="center" horizontalAlignment="right" text="col.Start"  row="0" col="3"></Label>
+            <Label verticalAlignment="center" horizontalAlignment="right" text="col.End"  row="0" col="4"></Label>
         </GridLayout>
     </template>
 </StackLayout>
+</StackLayout>-->
+
+
+<StackLayout>
+  <ScrollView height="100%">
+  <StackLayout verticalAlignment="center">
+  <Label *ngIf="this.loading" text="Loading...Please wait" class="loading"></Label>
+  <StackLayout *ngIf="!this.loading">
+      <Button (tap)="openMonday()" text="Monday"  class="plusbutton" height="10%" width="100%"></Button>
+      <StackLayout *ngIf="openmonday" style="background-color: #c0c0c0;">
+        <template *ngFor="let item of this.monday">
+          <StackLayout>
+            <GridLayout rows="auto" columns="*,auto,auto,auto,*,auto,*">
+              <Label [text]="item.Start" horizontalAlignment="center" fontSize="20" row="0" col="1"></Label>
+              <Label text="-" row="0" col="2" horizontalAlignment="center" fontSize="20"></Label>
+              <Label [text]="item.End" horizontalAlignment="center" fontSize="20" row="0" col="3"></Label>
+              <Label [text]="item.Subject" horizontalAlignment="center" fontSize="20" row="0" col="5"></Label>
+            </GridLayout>
+            <Label text="" class="line" width="100%"></Label>
+          </StackLayout>
+        </template>
+      </StackLayout>
+  </StackLayout>
+  <StackLayout *ngIf="!this.loading">
+    <Button (tap)="openTuesday()" text="Tuesday"  class="plusbutton" height="10%" width="100%"></Button>
+    <StackLayout *ngIf="opentuesday" style="background-color: #c0c0c0;">
+      <template *ngFor="let item of this.tuesday">
+        <StackLayout>
+          <GridLayout rows="auto" columns="*,auto,auto,auto,*,auto,*">
+            <Label [text]="item.Start" horizontalAlignment="center" fontSize="20" row="0" col="1"></Label>
+            <Label text="-" row="0" col="2" horizontalAlignment="center" fontSize="20"></Label>
+            <Label [text]="item.End" horizontalAlignment="center" fontSize="20" row="0" col="3"></Label>
+            <Label [text]="item.Subject" horizontalAlignment="center" fontSize="20" row="0" col="5"></Label>
+          </GridLayout>
+          <Label text="" class="line" width="100%"></Label>
+        </StackLayout>
+      </template>
+    </StackLayout>
+  </StackLayout>
+  <StackLayout *ngIf="!this.loading">
+    <Button (tap)="openWednesday()" text="Wednesday"  class="plusbutton" height="10%" width="100%"></Button>
+    <StackLayout *ngIf="openwednesday" style="background-color: #c0c0c0;">
+      <template *ngFor="let item of this.wednesday">
+        <StackLayout>
+          <GridLayout rows="auto" columns="*,auto,auto,auto,*,auto,*">
+            <Label [text]="item.Start" horizontalAlignment="center" fontSize="20" row="0" col="1"></Label>
+            <Label text="-" row="0" col="2" horizontalAlignment="center" fontSize="20"></Label>
+            <Label [text]="item.End" horizontalAlignment="center" fontSize="20" row="0" col="3"></Label>
+            <Label [text]="item.Subject" horizontalAlignment="center" fontSize="20" row="0" col="5"></Label>
+          </GridLayout>
+          <Label text="" class="line" width="100%"></Label>
+        </StackLayout>
+      </template>
+    </StackLayout>
+  </StackLayout>
+  <StackLayout *ngIf="!this.loading">
+    <Button (tap)="openThursday()" text="Thursday"  class="plusbutton" height="10%" width="100%"></Button>
+    <StackLayout *ngIf="openthursday" style="background-color: #c0c0c0;">
+      <template *ngFor="let item of this.thursday">
+        <StackLayout>
+          <GridLayout rows="auto" columns="*,auto,auto,auto,*,auto,*">
+            <Label [text]="item.Start" horizontalAlignment="center" fontSize="20" row="0" col="1"></Label>
+            <Label text="-" row="0" col="2" horizontalAlignment="center" fontSize="20"></Label>
+            <Label [text]="item.End" horizontalAlignment="center" fontSize="20" row="0" col="3"></Label>
+            <Label [text]="item.Subject" horizontalAlignment="center" fontSize="20" row="0" col="5"></Label>
+          </GridLayout>
+          <Label text="" class="line" width="100%"></Label>
+        </StackLayout>
+      </template>
+    </StackLayout>
+  </StackLayout>
+  <StackLayout *ngIf="!this.loading">
+    <Button (tap)="openFriday()" text="Friday"  class="plusbutton" height="10%" width="100%"></Button>
+    <StackLayout *ngIf="openfriday" style="background-color: #c0c0c0;">
+      <template *ngFor="let item of this.friday">
+        <StackLayout>
+          <GridLayout rows="auto" columns="*,auto,auto,auto,*,auto,*">
+            <Label [text]="item.Start" horizontalAlignment="center" fontSize="20" row="0" col="1"></Label>
+            <Label text="-" row="0" col="2" horizontalAlignment="center" fontSize="20"></Label>
+            <Label [text]="item.End" horizontalAlignment="center" fontSize="20" row="0" col="3"></Label>
+            <Label [text]="item.Subject" horizontalAlignment="center" fontSize="20" row="0" col="5"></Label>
+          </GridLayout>
+          <Label text="" class="line" width="100%"></Label>
+        </StackLayout>
+      </template>
+    </StackLayout>
+  </StackLayout>
+  <StackLayout *ngIf="!this.loading">
+    <Button (tap)="openSaturday()" text="Saturday"  class="plusbutton" height="10%" width="100%"></Button>
+    <StackLayout *ngIf="opensaturday" style="background-color: #c0c0c0;">
+      <template *ngFor="let item of this.saturday">
+        <StackLayout>
+          <GridLayout rows="auto" columns="*,auto,auto,auto,*,auto,*">
+            <Label [text]="item.Start" horizontalAlignment="center" fontSize="20" row="0" col="1"></Label>
+            <Label text="-" row="0" col="2" horizontalAlignment="center" fontSize="20"></Label>
+            <Label [text]="item.End" horizontalAlignment="center" fontSize="20" row="0" col="3"></Label>
+            <Label [text]="item.Subject" horizontalAlignment="center" fontSize="20" row="0" col="5"></Label>
+          </GridLayout>
+          <Label text="" class="line" width="100%"></Label>
+        </StackLayout>
+      </template>
+    </StackLayout>
+  </StackLayout>
+</StackLayout>
+</ScrollView>
 </StackLayout>
