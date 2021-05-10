@@ -11,15 +11,10 @@ const appSettings = require("tns-core-modules/application-settings");
     styleUrls : ["./studentpage.css"]
 })
 export class studentpageComponent {
-<<<<<<< HEAD
-    studentclass =1;
-    studentsection="A";
-    studentid=16;
-=======
     studentclass ;
     studentsection;
     exit_tapped ;
->>>>>>> e4a6ac132ee993bce15cebc22c02cf98589a579f
+    studentid=16;
     public constructor(private router: Router) {
         this.exit_tapped = false;
         this.studentclass = parseInt(appSettings.getString("StudentClass"));
