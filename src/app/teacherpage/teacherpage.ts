@@ -3,7 +3,6 @@ import {Router} from "@angular/router";
 import * as application from "tns-core-modules/application";
 import { AndroidApplication, AndroidActivityBackPressedEventData } from "tns-core-modules/application";
 
-
 const appSettings = require("tns-core-modules/application-settings");
 
 @Component({
@@ -30,8 +29,10 @@ export class teacherpageComponent {
     ngOnInit() {
         if (application.android) {
           application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
-              data.cancel = true; // prevents default back button behavior
-              this.getExit();
+            if (this.router.isActive("/teacher", false)) {
+                data.cancel = true; // prevents default back button behavior
+                this.getExit();
+              }
           });
         }
       }
@@ -66,15 +67,10 @@ export class teacherpageComponent {
     blog(): void{
         this.router.navigate(["blog","teacher"]);
     }
-    public actioncheck(){
-        console.log("Came here");
-        actioncheck()
+
+    public logout(){
+        appSettings.clear();
+        this.router.navigate(["items"]);
     }
 }
-
-export function actioncheck(){
-    console.log("YOUYOu")
-    appSettings.clear();
-    var router:Router;
-    router.navigate(["items"]);
-}   
+ 

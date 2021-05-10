@@ -23,8 +23,10 @@ export class studentpageComponent {
     ngOnInit() {
         if (application.android) {
           application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
-              data.cancel = true; // prevents default back button behavior
-              this.getExit();
+            if (this.router.isActive("/student", false)) {
+                data.cancel = true; // prevents default back button behavior
+                this.getExit();
+              }
           });
         }
       }
@@ -62,6 +64,10 @@ export class studentpageComponent {
         this.router.navigate(["studentpageabout"]);
     }
     
+    public logout(){
+      appSettings.clear();
+      this.router.navigate(["items"]);
+    }
 
 }
   

@@ -143,4 +143,7 @@ export class marksclassselectComponent{
 
     }
     
+    public goHome(){
+        this.router.navigate(["/teacher"], { replaceUrl: true });
+    }
 }

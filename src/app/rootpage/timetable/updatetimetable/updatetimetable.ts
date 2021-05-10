@@ -227,4 +227,8 @@ export class updatetimetableComponent {
             this.saturday = [...this.rows];
         }
     }
+
+    public goHome(){
+        this.router.navigate(["/root"], { replaceUrl: true });
+    }
 }

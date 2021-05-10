@@ -73,4 +73,8 @@ export class exampageComponent{
         }
         this.examtypes.splice(i,1);
     }
+    public goHome(){
+        this.router.navigate(["/teacher"], { replaceUrl: true });
+    }
+    
 }

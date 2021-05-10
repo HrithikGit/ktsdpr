@@ -73,4 +73,8 @@ export class viewstudentComponent {
         alert("Added Successfully !");
         this.waiting = false;
     }
+
+    public goHome(){
+        this.router.navigate(["/root"], { replaceUrl: true });
+    }
 }

@@ -21,5 +21,8 @@ export class teacherpageupdatestudentComponent {
     update(){
         this.router.navigate(["deletestudent"]);
     }
+    public goHome(){
+        this.router.navigate(["/teacher"], { replaceUrl: true });
+    }
 
 } 

@@ -1,5 +1,8 @@
-<ActionBar title="Attendance Page">
-</ActionBar>
+<ActionBar title="Attendance">
+  <ActionItem position="right" (tap)="goHome()">
+      <Image height=40 width=40 src="~/images/homeicon.png"></Image>
+  </ActionItem>
+</ActionBar>  
 
 <StackLayout class="top">
     <Label *ngIf="this.notready" class="loading" fontSize="20" text="Loading.. Please Wait"></Label>

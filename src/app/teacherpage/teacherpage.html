@@ -1,7 +1,9 @@
 <ActionBar title="Teacher Page">
-    <ActionItem position="right" icon="font://&#xf0a8;" class="fas" (tap)="actioncheck()"></ActionItem>
-</ActionBar>
-  
+    <ActionItem position="right" (tap)="logout()">
+        <Image height=40 width=40 src="~/images/logouticon.png"></Image>
+    </ActionItem>
+</ActionBar>  
+    
 <ScrollView>
     <StackLayout style="vertical-align:'center'">
         <GridLayout rows="0,auto,auto,auto,auto,auto,auto,*" columns="*,*" >

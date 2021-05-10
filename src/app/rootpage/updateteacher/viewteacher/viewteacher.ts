@@ -180,4 +180,9 @@ export class viewteacherComponent {
         
         
     }
+
+    public goHome(){
+        this.router.navigate(["/root"], { replaceUrl: true });
+    }
 }
+ 

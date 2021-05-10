@@ -1,3 +1,10 @@
+<ActionBar title="Class">
+  <ActionItem position="right" (tap)="goHome()">
+      <Image height=40 width=40 src="~/images/homeicon.png"></Image>
+  </ActionItem>
+</ActionBar> 
+
+
 <StackLayout>
     <StackLayout>
       <Label *ngIf="this.waiting" class="loading" fontSize="20" text="Loading.. Please Wait"></Label>

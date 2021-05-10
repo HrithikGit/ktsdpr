@@ -24,4 +24,7 @@ export class teacherpagemarksComponent {
     view():void{
         this.router.navigate(["marksclassselect"]);
     }
+    public goHome(){
+        this.router.navigate(["/teacher"], { replaceUrl: true });
+    }
 }

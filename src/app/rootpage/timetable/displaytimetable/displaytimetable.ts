@@ -147,5 +147,9 @@ export class displaytimetableComponent {
         if(this.opensaturday==true){this.opensaturday=false;}
         else{this.opensaturday=true;}
     }
+    
+    public goHome(){
+        this.router.navigate(["/root"], { replaceUrl: true });
+    }
 
 }

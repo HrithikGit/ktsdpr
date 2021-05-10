@@ -32,4 +32,8 @@ export class selectclassComponent{
         });
         this.waiting=false;
     }
+
+    public goHome(){
+        this.router.navigate(["/teacher"], { replaceUrl: true });
+    }
 }

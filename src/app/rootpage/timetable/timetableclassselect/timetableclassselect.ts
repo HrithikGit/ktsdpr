@@ -46,4 +46,8 @@ export class timetableclassselectComponent {
         this.notready = false;
     }
 
+    public goHome(){
+        this.router.navigate(["/root"], { replaceUrl: true });
+    }
+
 }

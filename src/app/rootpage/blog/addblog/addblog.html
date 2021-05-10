@@ -1,4 +1,8 @@
-
+<ActionBar title="Blog">
+    <ActionItem position="right" (tap)="goHome()">
+        <Image height=40 width=40 src="~/images/homeicon.png"></Image>
+    </ActionItem>
+  </ActionBar>  
 <StackLayout class="input-form">
     <Label text="Heading" fontSize="17%" class="local-heading"></Label>
     <TextField textWrap="true" [(ngModel)]="this.heading"  style="margin-top:15px" backgroundColor="#f1f1f1" paddingLeft="10%" borderRadius="5%" borderColor="#DEDEDE" borderWidth="1" hint="Please Enter the heading"></TextField>

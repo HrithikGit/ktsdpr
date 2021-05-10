@@ -157,5 +157,9 @@ export class teacherpageattendanceComponent {
         this.waiting = false;
         alert("Attendance has been updated !");
     }
+
+    public goHome(){
+        this.router.navigate(["/teacher"], { replaceUrl: true });
+    }
 }
  

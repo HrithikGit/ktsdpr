@@ -202,4 +202,8 @@ export class addteacherComponent implements OnInit {
 
 
     }
+
+    public goHome(){
+        this.router.navigate(["/root"], { replaceUrl: true });
+    }
 }

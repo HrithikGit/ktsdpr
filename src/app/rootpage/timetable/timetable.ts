@@ -16,5 +16,9 @@ export class timetableComponent {
     updatetimetable():void{this.router.navigate(["timetableclassselect","Update"]);}
     deletetimetable():void{this.router.navigate(["timetableclassselect","Delete"]);}
     displaytimetable():void{this.router.navigate(["timetableclassselect","Display"]);}
+    
+    public goHome(){
+        this.router.navigate(["/root"], { replaceUrl: true });
+    }
 
 }

@@ -1,3 +1,8 @@
+<ActionBar title="Manage Classes">
+    <ActionItem position="right" (tap)="goHome()">
+        <Image height=40 width=40 src="~/images/homeicon.png"></Image>
+    </ActionItem>
+  </ActionBar>  
 <StackLayout>
     <Label text="Class Year" fontSize="17" class="local-heading"></Label>
     <TextField [(ngModel)]="class_year" class="input-add-db" hint=".." ></TextField>

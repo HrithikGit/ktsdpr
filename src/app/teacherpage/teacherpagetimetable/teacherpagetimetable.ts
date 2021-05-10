@@ -25,4 +25,7 @@ export class teacherpagetimetableComponent {
     update(){
         this.router.navigate(["updatetimetable",this.ClassTeacherClass,this.ClassTeacherSection]);
     }
+    public goHome(){
+        this.router.navigate(["/teacher"], { replaceUrl: true });
+    }
 }

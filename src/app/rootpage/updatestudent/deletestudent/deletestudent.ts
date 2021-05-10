@@ -84,4 +84,7 @@ export class deletestudentComponent {
     add():void{
         this.router.navigate(["addstudent",this.student_class,this.student_section]);
     }
+    public goHome(){
+        this.router.navigate(["/root"], { replaceUrl: true });
+    }
 }

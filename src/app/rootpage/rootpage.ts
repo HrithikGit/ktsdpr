@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import * as application from "tns-core-modules/application";
 import { AndroidApplication, AndroidActivityBackPressedEventData } from "tns-core-modules/application";
 
+const appSettings = require("tns-core-modules/application-settings")
 
 @Component({
     selector: "rootpage",
@@ -18,10 +19,12 @@ export class rootpageComponent implements OnInit{
     ngOnInit() {
         if (application.android) {
           application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
-              data.cancel = true; // prevents default back button behavior
-              this.getExit();
+            if (this.router.isActive("/root", false)) {
+                data.cancel = true; // prevents default back button behavior
+                this.getExit();
+              }
           });
-        }
+        } 
       }
 
       getExit(){
@@ -59,4 +62,10 @@ export class rootpageComponent implements OnInit{
     marks():void{
         this.router.navigate(["marksclassselect"])
     }
+
+    public logout(){
+        appSettings.clear();
+        this.router.navigate(["items"]);
+    }
+    
 }
