@@ -192,7 +192,7 @@ export class updatetimetableComponent {
         console.log(todel);
         for(var i=0;i<todel.length;i++){
             const del = firebase.firestore().collection(this.currday).doc(todel[i]["id"]);
-            del.delete();
+            await del.delete();
         }
 
         const toadd = firebase.firestore().collection(this.currday);

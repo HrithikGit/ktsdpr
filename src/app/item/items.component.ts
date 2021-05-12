@@ -69,12 +69,7 @@ export class ItemsComponent implements OnInit {
                 await firebase.firestore().collection("Student").where("Unq_Id","==",personid).get()
                 .then(result=>{
                     result.forEach(doc=>{
-                        appSettings.setString("Name : ")
-                        appSettings.setString("RollNumber",doc.data()["Student_Id"]+"");  
-                        appSettings.setString("Attendance",doc.data()["Student_Attendance"]+"");
-                        appSettings.setString("LastDate",doc.data()["Today_Date"]);
-                        appSettings.setString("StudentClass",doc.data()["Class_Id"]+"");
-                        appSettings.setString("StudentSection",doc.data()["Class_Section"])
+                        appSettings.setString("unq_id",doc.data().Unq_Id);
                     }) 
                 })
                 this.updateandmove(type); 
@@ -119,6 +114,7 @@ export class ItemsComponent implements OnInit {
         this.router.navigate(["root"]);
     }
     studentpage(){
+        appSettings.setString("unq_id","1")
         this.router.navigate(["student"])
     }
     teacherpage(){

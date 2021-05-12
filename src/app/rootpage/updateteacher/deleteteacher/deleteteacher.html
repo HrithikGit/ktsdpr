@@ -6,7 +6,7 @@
 
 <StackLayout>
   <StackLayout>
-    <Label *ngIf="this.waiting" text="Please wait.... Loading"></Label>
+    <Label *ngIf="this.waiting" class="loading" height=17 text="Please wait.... Loading"></Label>
     <Label *ngIf="!this.waiting" class="title-heading" text="Add Teacher/Delete Teacher/Update Teacher"></Label>
     <Button *ngIf="!this.waiting" (tap)="add()" width="90%" text="Add Teacher" class="addbutton"></Button>
   </StackLayout>

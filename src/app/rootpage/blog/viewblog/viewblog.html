@@ -3,19 +3,27 @@
         <Image height=40 width=40 src="~/images/homeicon.png"></Image>
     </ActionItem>
   </ActionBar>  
-  
-<StackLayout>
+<StackLayout> 
 <Label *ngIf="this.loading" class="loading" text="Loading ... Please Wait !!"></Label>
 </StackLayout>
-<StackLayout *ngIf="!this.loading">
-    <ScrollView height ="90">
+<StackLayout *ngIf="!this.loading && this.isRoot">
+    <ScrollView height ="90%">
         <StackLayout>
             <TextField editable="{{this.isRoot}}" [(ngModel)]="this.heading" class="checkheading" fontSize="17px"></TextField>
             <TextView editable="{{this.isRoot}}" [(ngModel)]="this.content" class="input-add-db" textWrap="true" fontSize="15"></TextView>
         </StackLayout>
     </ScrollView>
-    <StackLayout *ngIf="this.isRoot">
-        <Button height="8%" text="Update" (tap)="updateData()" class="deletebutton"></Button>
-    </StackLayout>
-</StackLayout>
- 
+    <Button text="Update" height="10%" (tap)="updateData()" class="deletebutton"></Button>
+</StackLayout> 
+
+<StackLayout *ngIf="!this.loading && !this.isRoot">
+    <ScrollView height ="100%">
+        <StackLayout>
+            <TextField editable="{{this.isRoot}}" [(ngModel)]="this.heading" class="checkheading" fontSize="17px"></TextField>
+            <TextView editable="{{this.isRoot}}" [(ngModel)]="this.content" class="input-add-db" textWrap="true" fontSize="15"></TextView>
+        </StackLayout>
+    </ScrollView>
+</StackLayout> 
+
+
+     

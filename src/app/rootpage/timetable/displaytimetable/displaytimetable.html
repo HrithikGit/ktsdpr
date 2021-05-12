@@ -22,6 +22,7 @@
             <Label text="" class="line" width="100%"></Label>
           </StackLayout>
         </template>
+        <Label *ngIf="this.monday.length==0" text="No Records as of now :-) " horizontalAlignment="center"></Label>
       </StackLayout>
   </StackLayout>
   <StackLayout *ngIf="!this.waiting">
@@ -39,6 +40,7 @@
         </StackLayout>
       </template>
     </StackLayout>
+    <Label *ngIf="this.tuesday.length==0" text="No Records as of now :-) " horizontalAlignment="center"></Label>
   </StackLayout>
   <StackLayout *ngIf="!this.waiting">
     <Button (tap)="openWednesday()" text="Wednesday"  class="plusbutton" height="10%" width="100%"></Button>
@@ -54,6 +56,7 @@
           <Label text="" class="line" width="100%"></Label>
         </StackLayout>
       </template>
+      <Label *ngIf="this.wednesday.length==0" text="No Records as of now :-) " horizontalAlignment="center"></Label>
     </StackLayout>
   </StackLayout>
   <StackLayout *ngIf="!this.waiting">
@@ -70,6 +73,7 @@
           <Label text="" class="line" width="100%"></Label>
         </StackLayout>
       </template>
+      <Label *ngIf="this.thursday.length==0" text="No Records as of now :-) " horizontalAlignment="center"></Label>
     </StackLayout>
   </StackLayout>
   <StackLayout *ngIf="!this.waiting">
@@ -86,6 +90,7 @@
           <Label text="" class="line" width="100%"></Label>
         </StackLayout>
       </template>
+      <Label *ngIf="this.friday.length==0" text="No Records as of now :-) " horizontalAlignment="center"></Label>
     </StackLayout>
   </StackLayout>
   <StackLayout *ngIf="!this.waiting">
@@ -102,8 +107,9 @@
           <Label text="" class="line" width="100%"></Label>
         </StackLayout>
       </template>
+      <Label *ngIf="this.saturday.length==0" text="No Records" horizontalAlignment="center"></Label>
     </StackLayout>
   </StackLayout>
 </StackLayout>
 </ScrollView>
-</StackLayout>
+</StackLayout>    

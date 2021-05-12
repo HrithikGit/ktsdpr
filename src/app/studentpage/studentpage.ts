@@ -31,7 +31,7 @@ export class studentpageComponent {
           });
         }
       }
-      getExit(){
+      getExit(){ 
         if(!this.exit_tapped){
             this.exit_tapped = true;
             var Toast = require("nativescript-toast");
@@ -43,17 +43,7 @@ export class studentpageComponent {
       }
 
     attendance(){
-        var name = appSettings.getString("Name");
-        var attendance = appSettings.getString("Attendance");
-        var lastdate = appSettings.getString("LastDate");
-        const alertOptions = {
-            title: 'Your Attendance',
-            message: "Name : "+name+"\n\n"+"Attendance Percentage : "+attendance+"\n\n"+"Last Attendance Taken On : "+
-            lastdate,
-            okButtonText: 'Okay',
-            cancelable: false // [Android only] Gets or sets if the dialog can be canceled by taping outside of the dialog.
-          }
-          alert(alertOptions);
+        this.router.navigate(["studentattendance",appSettings.getString("unq_id")]);
     }
     timetable(){
         this.router.navigate(["displaytimetable",this.studentclass,this.studentsection]);

@@ -47,6 +47,7 @@ import {marksupdatepageComponent} from "./teacherpage/teacherpagemarks/selectcla
 
 //studentpage
 import {studentmarksComponent} from "./studentpage/studentmarks/studentmarks";
+import {studentpageattendanceComponent} from "./studentpage/studentpageattendance/studentpageattendance"
 
 const routes: Routes = [
     { path: "", redirectTo: "/items", pathMatch: "full" },
@@ -86,7 +87,8 @@ const routes: Routes = [
     {path:"marksview/:class/:section/:subject/:examtype",component:marksviewComponent},
     {path:"exampage/:class/:section/:teacherid/:subject",component:exampageComponent},
     {path: "marksupdatepage/:class/:section/:teacherid/:examtype",component:marksupdatepageComponent},
-    {path: "studentmarks/:class/:section/:roll", component:studentmarksComponent}
+    {path: "studentmarks/:class/:section/:roll", component:studentmarksComponent},
+    {path : "studentattendance/:unq_id",component : studentpageattendanceComponent}
 
 ];
 
