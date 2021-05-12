@@ -43,6 +43,14 @@ Button.-primary {
     border-width: 1px;
 }
 
+.txtfld{
+    height :6%;
+    background-color: #f1f1f1;
+    border-radius: 5%;
+    border-color: gray;
+    border-width: 1px;
+}
+
 .line {
     background: linear-gradient(to left, orangered, green, lightblue);
     height: 2px;
