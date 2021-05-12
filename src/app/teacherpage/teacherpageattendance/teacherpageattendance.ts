@@ -39,7 +39,7 @@ export class teacherpageattendanceComponent {
         var classid=1;
         var section ="A";
         var date = new Date();
-        this.today = date.getDay().toString()+"-"+date.getMonth().toString()+"-"+date.getFullYear().toString();
+        this.today = date.getDate().toString()+"-"+date.getMonth().toString()+"-"+date.getFullYear().toString();
         this.waiting = true;
 
         this.getdate ="";
@@ -59,7 +59,7 @@ export class teacherpageattendanceComponent {
                 check["Classes_Attended"]= doc.data()["Classes_Attended"];
                 this.sofar = doc.data()["Classes_So_Far"];
                 this.getdate = doc.data()["Today_Date"];
-                this.olddate = doc.data()["Previous_Previous_Date"];
+                this.olddate = doc.data()["Previous_Date"];
                 if(this.getdate==this.today){
                     this.attendance.push(doc.data()["Is_Present_Today"]);
                 }

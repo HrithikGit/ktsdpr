@@ -13,7 +13,7 @@ export class teacherpageComponent {
     isClassTeacher;
     teacherid="13";
     exit_tapped;
-    obj={classteacherclass:"1", classteachersection:"A"};
+    obj={classteacherclass:"1", classteachersection:"A"}; 
     public constructor(private router:Router) {
         this.exit_tapped = false;
         if(appSettings.getString("IsClassTeacher")=="True"){

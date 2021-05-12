@@ -15,6 +15,7 @@ export class marksupdatepageComponent{
     examtype;
     marks=[];
     waiting=true;
+    max_scoreable;
     public constructor(private router:Router,private route:ActivatedRoute){
         this.route.params.subscribe((params)=>{
             this.class=parseInt(params["class"]);
@@ -23,6 +24,7 @@ export class marksupdatepageComponent{
             this.examtype=params["examtype"];
         });
         this.getdetails();
+        this.max_scoreable=-1;
     }
 
     async getdetails(){
@@ -51,6 +53,13 @@ export class marksupdatepageComponent{
     }
 
     async makechanges(){
+        var Toast = require("nativescript-toast");
+        if(this.max_scoreable==-1 || this.max_scoreable==0){
+            var toast = Toast.makeText("Maximum Marks cannot be "+this.max_scoreable);
+            toast.show();
+            return ;
+            
+        }
         console.log(this.marks);
         for(var i=0;i<this.marks.length;i++){
             if(parseInt(this.marks[i].Student_Marks)<0){
@@ -58,13 +67,15 @@ export class marksupdatepageComponent{
                 return;
             }
         }
-
+ 
         for(var i=0;i<this.marks.length;i++){
-            const reqdoc = firebase.firestore().collection("Marks").doc(this.marks[i].id).update({
-                "Student_Marks":parseInt(this.marks[i].Student_Marks)
+            await firebase.firestore().collection("Marks").doc(this.marks[i].id).update({
+                "Student_Marks":parseInt(this.marks[i].Student_Marks),
+                "Maximum_Marks" : parseInt(this.max_scoreable)
             });
         }
-        alert("Success..!");
+
+        var toast = Toast.makeText("Updated Successfully!");
     }
     public goHome(){
         this.router.navigate(["/teacher"], { replaceUrl: true });

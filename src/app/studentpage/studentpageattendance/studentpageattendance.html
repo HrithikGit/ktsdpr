@@ -1,0 +1,37 @@
+<ActionBar title="Marks">
+    <ActionItem position="right" (tap)="goHome()">
+        <Image height=40 width=40 src="~/images/homeicon.png"></Image>
+    </ActionItem>
+</ActionBar> 
+
+<StackLayout *ngIf="this.loading">
+    <Label text="Loading Please Wait !" class="loading"></Label>
+</StackLayout>
+<ScrollView class="page" *ngIf="!this.loading" height="100%"> 
+    <StackLayout>
+        <Label  color="#422040"  class="heading" text="Your Current Attendance Percentage : " horizontalAlignment="center" textWrap="true" fontWeight="700" fontSize=18></Label>
+        <GridLayout [columns]="columns" class="progressbar">
+            <StackLayout col="0" class="progressbar-value"></StackLayout>
+        </GridLayout> 
+
+        <GridLayout marginTop="8" rows="auto,auto,auto" columns="10*,30*,60*">
+            <Label row="0" col="1" text="Name : " horizontalAlignment="center" textWrap="true" fontWeight="700" fontSize=14></Label>
+            <Label row="0" col="2" [text]="this.data.Student_Name" textWrap="true" fontWeight="600" fontSize=14></Label>
+            <Label row="1" col="1" text="Class : " horizontalAlignment="center" textWrap="true" fontWeight="700" fontSize=14></Label>
+            <Label row="1" col="2" [text]="this.data.Class_Id+this.data.Class_Section"  textWrap="true" fontWeight="600" fontSize=14></Label>
+            <Label row="2" col="1" text ="Roll Number :" horizontalAlignment="center" textWrap="true" fontWeight="700" fontSize=14></Label>
+            <Label row="2" col="2" [text]="this.data.Student_Id" textWrap="true" fontWeight="600" fontSize=14></Label>
+        </GridLayout>
+        <Label class="heading" color="#422040" marginTop="8" text="Your Last Recorded Attendance are :" horizontalAlignment="center" textWrap="true" fontWeight="700" fontSize=18></Label>
+        
+        <StackLayout marginTop="8">
+            <template *ngFor="let row of this.rows; let i=index">
+                <GridLayout rows="*", columns="15*,35*,35*,15*">
+                    <Label [text]= "row[0]" row="0" col="1" marginTop="6" textWrap="true" fontWeight="700" fontSize=14></Label>
+                    <Label [text]="row[1]"  row="0" col="2" textWrap="true" fontWeight="600" fontSize=14 style="color : {{this.colors[i]}}"></Label>
+                </GridLayout> 
+            </template>
+        </StackLayout>
+
+    </StackLayout>
+</ScrollView> 

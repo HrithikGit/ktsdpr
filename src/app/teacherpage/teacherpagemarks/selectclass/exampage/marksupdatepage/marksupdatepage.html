@@ -5,23 +5,29 @@
 </ActionBar> 
 
 
-<StackLayout>
-    <StackLayout height="4%">
-        <Label *ngIf="this.waiting" text="Loading... please wait"></Label>
-        <Label *ngIf="!this.waiting" text="{{this.examtype}} Marks of class {{this.class}}{{this.section}}"></Label>
-    </StackLayout>
-    <ScrollView height="87%">
+<StackLayout *ngIf="this.waiting">
+    <Label class="loading" fontSize="17" text="Loading... please wait"></Label>
+</StackLayout>
+
+<StackLayout *ngIf="!this.waiting">
+    <Label horizontalAlignment="center" class="title-heading" fontSize=12 text="{{this.examtype}} Marks of class {{this.class}}{{this.section}}"></Label>
+        <GridLayout rows="auto" columns="10*,auto,auto,10*">
+            <Label class="local-heading" height="30" fontSize="13" verticalAlignment="center" horizontalAlignment="center" text="Maximum Scorable Marks" row="0" col="1"></Label>
+            <TextField class="input-add-db" size="13" height="40" verticalAlignment="center" horizontalAlignment="center" [(ngModel)]="this.max_scoreable" row="0" col="2"></TextField>
+        </GridLayout> 
+      
+    <ScrollView paddingTop="2%" height="80%">
         <StackLayout>
         <template *ngFor="let result of this.marks; index as i">
             <GridLayout rows="auto" columns="*,auto,auto,*">
                 <Label [text]="result.Student_Id" row="0" col="1" horizontalAlignment="right"></Label>
                 <TextField [(ngModel)]="result.Student_Marks" row="0" col="2" width="10%"></TextField>
             </GridLayout>
-            <Label text="" class="line"></Label>
+            <Label text="" class="line"></Label> 
         </template>
         </StackLayout>
     </ScrollView>
     <Button text="Make Changes" class="addbutton" width="93%" height="8%" (tap)="makechanges()"></Button>
-
-</StackLayout>
-    
+  
+</StackLayout> 
+     

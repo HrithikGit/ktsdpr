@@ -48,6 +48,7 @@ import {marksupdatepageComponent} from "./teacherpage/teacherpagemarks/selectcla
 
 //studentpage
 import {studentmarksComponent} from "./studentpage/studentmarks/studentmarks";
+import {studentpageattendanceComponent} from "./studentpage/studentpageattendance/studentpageattendance";
 
 @NgModule({
     bootstrap: [
@@ -92,7 +93,8 @@ import {studentmarksComponent} from "./studentpage/studentmarks/studentmarks";
         marksviewComponent,
         exampageComponent,
         marksupdatepageComponent,
-        studentmarksComponent
+        studentmarksComponent,
+        studentpageattendanceComponent
     ],
     providers: [],
     schemas: [

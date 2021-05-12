@@ -26,7 +26,7 @@ export class addteacherComponent implements OnInit {
     docid="";
     Class_Id;
     Section_Id;
-    rows=[{"class":"", "section":""}];
+    rows=[{"class":"", "section":"","subject":""}];
     constructor(private router: Router,private page: Page) {}
     ngOnInit(): void {
         this.waiting = false;
@@ -54,7 +54,15 @@ export class addteacherComponent implements OnInit {
         sw.checked = this.checked;*/
     }
     addrow():void{
-        this.rows.push({"class":"","section":""});
+        if(this.rows[this.rows.length-1].class.trim().length==0 ||
+        this.rows[this.rows.length-1].subject.trim().length==0 ||
+        this.rows[this.rows.length-1].section.trim().length==0){
+            var Toast = require("nativescript-toast");
+            var toast = Toast.makeText("Above Fields Cannot be empty");
+            toast.show();
+            return ;
+        }
+        this.rows.push({"class":"","section":"","subject":""});
     }
     remove(i){
         this.rows.splice(i,1);
@@ -82,12 +90,21 @@ export class addteacherComponent implements OnInit {
             })
             if(stop){
                 this.checked =false;
-            }
+            } 
     }
 
 
 
     async submit(){
+        if(this.rows[this.rows.length-1].class.trim().length==0 ||
+        this.rows[this.rows.length-1].subject.trim().length==0 ||
+        this.rows[this.rows.length-1].section.trim().length==0){
+            var Toast = require("nativescript-toast");
+            var toast = Toast.makeText("Above Fields Cannot be empty");
+            toast.show();
+            return ;
+        }
+
         await firebase.firestore().collection("Generate_Id").get().then(result=>{
             result.forEach(doc=>{
                 this.docid=doc.id;
@@ -146,7 +163,8 @@ export class addteacherComponent implements OnInit {
 
 
         for(var i=0;i<this.rows.length;i++){
-           await this.addteacher(parseInt(this.rows[i].class.trim()),this.rows[i].section.trim());
+           await this.addteacher(parseInt(this.rows[i].class.trim()),this.rows[i].section.trim(),
+           this.rows[i].subject.trim());
         }
 
 
@@ -184,7 +202,7 @@ export class addteacherComponent implements OnInit {
  
     }
 
-    async addteacher(class_tobeAdded,section_tobeAdded){
+    async addteacher(class_tobeAdded,section_tobeAdded,sub_tobeAdded){
         this.teacher_name.trim();
         this.subject_name.trim();
         this.succeded = false;
@@ -196,7 +214,7 @@ export class addteacherComponent implements OnInit {
             Teacher_Name : this.teacher_name,
             Class_Id : class_tobeAdded,
             Class_Section : section_tobeAdded,
-            Subject_Name : this.subject_name
+            Subject_Name : sub_tobeAdded
         })
 
 

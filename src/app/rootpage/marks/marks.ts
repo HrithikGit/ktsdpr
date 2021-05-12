@@ -201,4 +201,9 @@ export class marksComponent {
         var exams=this.class_units.splice(i,1);
         alert("Removed "+exams+" data from "+this.sel_class+"-"+this.sel_sec+" Class");
     }
+<<<<<<< HEAD
 }
+=======
+}
+  
+>>>>>>> ed6187f48324de42184eb4b4e7714aa0cc711933

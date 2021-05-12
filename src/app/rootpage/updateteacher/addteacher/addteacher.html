@@ -8,18 +8,18 @@
 <StackLayout>
     <Label text="Teacher Name" class="local-heading"></Label>
     <TextField [(ngModel)]="this.teacher_name" class="input-add-db" ></TextField>
-    <Label text="Subject" class="local-heading"></Label>
-    <TextField [(ngModel)]="this.subject_name" class="input-add-db"></TextField>
     <Button (tap)="addrow()" text="Add a class and section" class="addbutton" width="10%" class="plusbutton" width="90%" horizontalAlignment="left"></Button>
 
     <StackLayout>
     <template *ngFor="let row of this.rows; let i=index">
-    <GridLayout rows="auto,auto" columns="40*,40*,10*">
-    <Label text="Class" row="0" col="0" class="local-heading"></Label>
-    <Label text="Section" row="0" col="1" class="local-heading"></Label>
-    <TextField height="8%" [(ngModel)]="this.rows[i].class" row="1" col="0" class="input-add-db"></TextField>
-    <TextField height="8%" [(ngModel)]="this.rows[i].section" row="1" col="1" class="input-add-db"></TextField>
-    <StackLayout row="1" col="2" (tap)="remove(i)"><Image src="~/images/minus.png" height="25" width="25" stretch="aspectFill"></Image></StackLayout>
+    <GridLayout rows="auto,auto,auto,auto" columns="40*,40*,10*">
+        <Label text="Class" row="0" col="0" class="local-heading"></Label>
+        <Label text="Section" row="0" col="1" class="local-heading"></Label>
+        <TextField height="8%" [(ngModel)]="this.rows[i].class" row="1" col="0" class="input-add-db"></TextField>
+        <TextField height="8%" [(ngModel)]="this.rows[i].section" row="1" col="1" class="input-add-db"></TextField>
+        <StackLayout row="1" col="2" (tap)="remove(i)"><Image src="~/images/minus.png" height="25" width="25" stretch="aspectFill"></Image></StackLayout>
+        <Label text="Subject" row="2" col="0" class="local-heading"></Label>
+        <TextField height="8%" [(ngModel)]="this.rows[i].subject" row="3" col="0" class="input-add-db"></TextField>
     </GridLayout>
     </template>
     </StackLayout>

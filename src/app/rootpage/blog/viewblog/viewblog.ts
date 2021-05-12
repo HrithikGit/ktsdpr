@@ -30,10 +30,10 @@ export class viewblogComponent {
         this.route.params.subscribe((params)=>{
             this.date = params["date"],
             this.time = params["time"]
-            this.isRoot = params["isRoot"];
+            this.isRoot = params["isRoot"]=="true"?true:false;
         })
         console.log(this.isRoot);
-        this.getData();
+        this.getData(); 
     }
     async getData(){
         console.log(this.date);
@@ -48,8 +48,9 @@ export class viewblogComponent {
         })
         this.opacity = 0.5;
         this.loading = false;
-    }
+    } 
     async updateData(){
+
         var stop = false;
         await confirm({
             title: "Your title",
@@ -83,4 +84,4 @@ export class viewblogComponent {
     public goHome(){
         this.router.navigate(["/root"], { replaceUrl: true });
     }
-}
+} 
