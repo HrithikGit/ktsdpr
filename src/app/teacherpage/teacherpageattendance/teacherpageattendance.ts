@@ -74,7 +74,6 @@ export class teacherpageattendanceComponent {
                 }
             })
         })
-        this.sofar=4;
         this.loading = false;
 
     }
@@ -131,10 +130,7 @@ export class teacherpageattendanceComponent {
             var ispresenttoday = this.rows[Math.floor(i/3)][i%3]["Is_Present_Today"];
 
             if(this.getdate==this.today){
-                if(ispresenttoday==this.attendance[i]){
-                    continue; 
-                }
-                else if(ispresenttoday!=this.attendance[i] && this.attendance[i]=="1"){
+                if(ispresenttoday!=this.attendance[i] && this.attendance[i]=="1"){
                     attended++;
                 }
                 else if(ispresenttoday!=this.attendance[i] && this.attendance[i]=="-1"){
@@ -146,6 +142,7 @@ export class teacherpageattendanceComponent {
                     attended++;
                 }
             }
+            
             await updating.doc(this.ref[i]).update({
                 Is_Present_Today : this.attendance[i],
                 Classes_Attended :attended,

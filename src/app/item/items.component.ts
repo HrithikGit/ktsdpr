@@ -111,13 +111,17 @@ export class ItemsComponent implements OnInit {
         this.router.navigate([type]);
     }
     rootpage(){
+        appSettings.setString("TypeOfUser","root");
         this.router.navigate(["root"]);
     }
     studentpage(){
+        appSettings.setString("TypeOfUser","student");
         appSettings.setString("unq_id","1")
         this.router.navigate(["student"])
     }
     teacherpage(){
+        appSettings.setString("TypeOfUser","teacher");
         this.router.navigate(["teacher"])
     }
 }
+ 

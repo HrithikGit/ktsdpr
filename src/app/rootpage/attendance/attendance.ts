@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {Router,ActivatedRoute} from "@angular/router";
 
 const firebase = require("nativescript-plugin-firebase/app")
+const appSettings = require("tns-core-modules/application-settings")
 
 @Component({
     selector: "attendance",
@@ -78,6 +79,6 @@ export class attendanceComponent {
     }
 
     public goHome(){
-        this.router.navigate(["/root"], { replaceUrl: true });
+        this.router.navigate(["/"+appSettings.getString("TypeOfUser")], { replaceUrl: true });
     }
 }
