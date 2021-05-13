@@ -2,68 +2,54 @@
     <ActionItem position="right" (tap)="logout()">
         <Image src="~/images/logouticon.png"></Image>
     </ActionItem>
-</ActionBar>
+</ActionBar>   
+<StackLayout>
+<ScrollView height="100%" class="page">   
+    <StackLayout>  
+        <GridLayout rows="15,auto,15,auto,15,auto,15,auto,15" columns="6*,41*,6*,41*,6*">
+            
+            <StackLayout  class="item" row="1" col="1" (tap)="studentdetails()">
+                <Image src="~/images/student.png" height="110" width="110"  stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
+                <Label text="Student Details" fontWeight="500" verticalAlignment="center"  horizontalAlignment="center"></Label>
+            </StackLayout> 
 
-<ScrollView>
-    <StackLayout>
-        <GridLayout rows="10,auto,auto,auto,auto,auto,auto,auto,auto,*" columns="*,*">
-            <StackLayout row="1" col="0" (tap)="studentdetails()">
-                <Image src="~/images/student.png" height="130" width="130"  stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
-            </StackLayout>
-            <StackLayout row="2" col="0" (tap)="studentdetails()">
-                <Label text="Student Details" verticalAlignment="center" style="padding-bottom: 20px;" horizontalAlignment="center"></Label>
-            </StackLayout>
-
-            <StackLayout row="1" col="1" (tap)="teacherdetails()">
-                <Image src="~/images/teacher.png"  height="130" width="130" stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
-            </StackLayout>
-            <StackLayout row="2" col="1" (tap)="teacherdetails()">
-                <Label text="Teacher Details" verticalAlignment="center" style="padding-bottom: 20px;" horizontalAlignment="center"></Label>
+            <StackLayout class="item" row="1" col="3" (tap)="teacherdetails()">
+                <Image src="~/images/teacher.png"  height="110" width="110" stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
+                <Label text="Teacher Details" fontWeight="500" verticalAlignment="center"  horizontalAlignment="center"></Label>
             </StackLayout>
 
-            <StackLayout row="3" col="0" (tap)="timetable()">
-                <Image src="~/images/timetable.png" height="130" width="130"  stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
-            </StackLayout>
-            <StackLayout row="4" col="0" (tap)="timetable()">
-                <Label text="Time Table" verticalAlignment="center" style="padding-bottom: 20px;" horizontalAlignment="center"></Label>
+            <StackLayout class="item" row="3" col="1" (tap)="timetable()">
+                <Image src="~/images/timetable.png" height="110" width="110"  stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
+                <Label text="Time Table" fontWeight="500" verticalAlignment="center"  horizontalAlignment="center"></Label>
             </StackLayout>
 
-            <StackLayout row="3" col="1" (tap)="blog()">
-                <Image src="~/images/blog.png" height="130" width="130"  stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
-            </StackLayout>
-            <StackLayout row="4" col="1" (tap)="blog()">
-                <Label text="blog" verticalAlignment="center" style="padding-bottom:20px;" horizontalAlignment="center"></Label>
+            <StackLayout  class="item" row="3" col="3" (tap)="blog()">
+                <Image src="~/images/blog.png" height="110" width="110"  stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
+                <Label text="Blog" fontWeight="500" verticalAlignment="center"  horizontalAlignment="center"></Label>
             </StackLayout>
 
-
-            <StackLayout row="5" col="0" (tap)="attendance()">
-                <Image src="~/images/attendance.png" height="130" width="130" stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
-            </StackLayout>
-            <StackLayout row="6" col="0" (tap)="attendance()">
-                <Label text="Attendance" verticalAlignment="center" style="padding-bottom: 20px;" horizontalAlignment="center"></Label>
+ 
+            <StackLayout  class="item" row="5" col="1" (tap)="attendance()">
+                <Image src="~/images/attendance.png" height="110" width="110" stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
+                <Label text="Attendance" fontWeight="500" verticalAlignment="center" horizontalAlignment="center"></Label>
             </StackLayout>
 
-            <StackLayout row="5" col="1" (tap)="addclass()">
-                <Image src="~/images/manageclass.png" height="130" width="130" stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
-            </StackLayout>
-            <StackLayout row="6" col="1" (tap)="addclass()">
-                <Label text="Manage Classes" verticalAlignment="center" style="padding-bottom: 20px;" horizontalAlignment="center"></Label>
+            <StackLayout  class="item" row="5" col="3" (tap)="addclass()">
+                <Image src="~/images/manageclass.png" height="110" width="110" stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
+                <Label text="Manage Classes" fontWeight="500" verticalAlignment="center" horizontalAlignment="center"></Label>
             </StackLayout>
 
-            <StackLayout row="7" col="0" (tap)="marks()">
-                <Image src="~/images/marks.png" height="130" width="130"  stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
-            </StackLayout>
-            <StackLayout row="8" col="0" (tap)="marks()">
-                <Label text="Marks" verticalAlignment="center" style="padding-bottom: 20px;" horizontalAlignment="center"></Label>
+            <StackLayout class="item" row="7" col="1" (tap)="marks()">
+                <Image src="~/images/marks.png" height="110" width="110"  stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
+                <Label text="Marks" fontWeight="500" verticalAlignment="center" horizontalAlignment="center"></Label>
             </StackLayout>
 
-            <StackLayout row="7" col="1" (tap)="exam()">
-                <Image src="~/images/marks.png" height="130" width="130"  stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
-            </StackLayout>
-            <StackLayout row="8" col="1" (tap)="exam()">
-                <Label text="Add Exams" verticalAlignment="center" style="padding-bottom: 20px;" horizontalAlignment="center"></Label>
+            <StackLayout class="item" row="7" col="3" (tap)="exam()">
+                <Image src="~/images/marks.png" height="110" width="110"  stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
+                <Label text="Add Exams" fontWeight="500" verticalAlignment="center" horizontalAlignment="center"></Label>
             </StackLayout>
 
         </GridLayout>
-    </StackLayout>
+    </StackLayout> 
 </ScrollView>
+</StackLayout>

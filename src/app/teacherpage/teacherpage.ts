@@ -9,6 +9,7 @@ const appSettings = require("tns-core-modules/application-settings");
     selector: "teacherpage",
     templateUrl: "./teacherpage.html",
 })
+ 
 export class teacherpageComponent {
     isClassTeacher;
     teacherid="13";
@@ -72,6 +73,6 @@ export class teacherpageComponent {
         appSettings.clear();
         this.router.navigate(["items"]);
     }
-    
+
 }
  

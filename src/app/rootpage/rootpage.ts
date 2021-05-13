@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import * as application from "tns-core-modules/application";
 import { AndroidApplication, AndroidActivityBackPressedEventData } from "tns-core-modules/application";
+import { Page } from "tns-core-modules/ui/page";
 
 const appSettings = require("tns-core-modules/application-settings")
 
@@ -10,11 +11,12 @@ const appSettings = require("tns-core-modules/application-settings")
     templateUrl: "./rootpage.html",
     styleUrls : ["./rootpage.css"]
 })
-export class rootpageComponent implements OnInit{
+export class rootpageComponent{
     check="";
     exit_tapped ;
-    public constructor(private router: Router) {
+    public constructor(private router: Router,private page: Page) {
         this.exit_tapped = false;
+        // page.actionBarHidden = true;
     }
     ngOnInit() {
         if (application.android) {
