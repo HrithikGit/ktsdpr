@@ -72,5 +72,6 @@ export class teacherpageComponent {
         appSettings.clear();
         this.router.navigate(["items"]);
     }
+    
 }
  

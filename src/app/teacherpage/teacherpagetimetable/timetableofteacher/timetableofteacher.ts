@@ -142,4 +142,9 @@ export class timetableofteacherComponent {
         if(this.opensaturday==true){this.opensaturday=false;}
         else{this.opensaturday=true;}
     }
+
+    public goHome(){
+        const appSettings = require("tns-core-modules/application-settings")
+        this.router.navigate(["/"+appSettings.getString("TypeOfUser")], { replaceUrl: true });
+    }
 }

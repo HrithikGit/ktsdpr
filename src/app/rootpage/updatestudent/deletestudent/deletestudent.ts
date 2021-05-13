@@ -85,6 +85,7 @@ export class deletestudentComponent {
         this.router.navigate(["addstudent",this.student_class,this.student_section]);
     }
     public goHome(){
-        this.router.navigate(["/root"], { replaceUrl: true });
+        const appSettings = require("tns-core-modules/application-settings")
+        this.router.navigate(["/"+appSettings.getString("TypeOfUser")], { replaceUrl: true });
     }
 }

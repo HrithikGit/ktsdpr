@@ -84,6 +84,7 @@ export class studentpageattendanceComponent{
       }
 
     public goHome(){
-        this.router.navigate(["/teacher"], { replaceUrl: true });
+        const appSettings = require("tns-core-modules/application-settings")
+        this.router.navigate(["/"+appSettings.getString("TypeOfUser")], { replaceUrl: true });
     }
 }

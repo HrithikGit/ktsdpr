@@ -69,5 +69,9 @@ export class studentmarksComponent{
         console.log(this.selectedexam_marks);
         this.selected_exams=Object.keys(this.selectedexam_marks);
     }
+    public goHome(){
+        const appSettings = require("tns-core-modules/application-settings")
+        this.router.navigate(["/"+appSettings.getString("TypeOfUser")], { replaceUrl: true });
+    }
 
 }

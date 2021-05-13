@@ -18,7 +18,8 @@ export class timetableComponent {
     displaytimetable():void{this.router.navigate(["timetableclassselect","Display"]);}
     
     public goHome(){
-        this.router.navigate(["/root"], { replaceUrl: true });
+        const appSettings = require("tns-core-modules/application-settings")
+        this.router.navigate(["/"+appSettings.getString("TypeOfUser")], { replaceUrl: true });
     }
 
 }
