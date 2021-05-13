@@ -68,4 +68,7 @@ export class rootpageComponent implements OnInit{
         this.router.navigate(["items"]);
     }
     
+    exam(){
+        this.router.navigate(["marks"]);
+    }
 }

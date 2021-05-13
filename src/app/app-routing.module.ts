@@ -74,7 +74,7 @@ const routes: Routes = [
     {path : "deleteclass", component: deleteclassComponent},
     {path : "addblog",component: addblogComponent},
     {path : "viewblog/:date/:time/:isRoot",component : viewblogComponent},
-    {path: "marks/:class/:section", component:marksComponent},
+    {path: "marks", component:marksComponent},
     {path: "teacherpageupdatestudent/:class/:section",component:teacherpageupdatestudentComponent},
     {path:"teacherpagetimetable/:class/:section",component:teacherpagetimetableComponent},
     {path:"teacherpagemarks/:class/:section/:teacherid",component:teacherpagemarksComponent},
