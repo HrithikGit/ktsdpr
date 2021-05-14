@@ -106,6 +106,7 @@ export class teacherpageattendanceComponent {
     } 
 
     async commit(){
+        this.loading = true;
         const updating = firebase.firestore().collection("Student");
         console.log(this.today+" "+this.getdate+" "+this.sofar);
         if(this.today!=this.getdate){
@@ -152,9 +153,10 @@ export class teacherpageattendanceComponent {
         this.initialize();
         await this.getdetails();
         this.waiting = false;
+        this.loading = false;
         alert("Attendance has been updated !");
     }
-
+ 
     public goHome(){
         const appSettings = require("tns-core-modules/application-settings")
         this.router.navigate(["/"+appSettings.getString("TypeOfUser")], { replaceUrl: true });

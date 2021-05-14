@@ -4,49 +4,50 @@
     </ActionItem>
 </ActionBar>   
 <StackLayout>
-<ScrollView height="100%" class="page">   
-    <StackLayout>  
+<ScrollView height="100%" class="home-page">   
+    <StackLayout> 
+        <Label fontWeight="700" color="white" fontSize="12" horizontalAlignment="center" text="Welcome, Administrator !"></Label> 
         <GridLayout rows="15,auto,15,auto,15,auto,15,auto,15" columns="6*,41*,6*,41*,6*">
             
-            <StackLayout  class="item" row="1" col="1" (tap)="studentdetails()">
+            <StackLayout  class="home-item" row="1" col="1" (tap)="studentdetails()">
                 <Image src="~/images/student.png" height="110" width="110"  stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
-                <Label text="Student Details" fontWeight="500" verticalAlignment="center"  horizontalAlignment="center"></Label>
+                <Label fontWeight="500"  text="Student Details" fontWeight="500" verticalAlignment="center"  horizontalAlignment="center"></Label>
             </StackLayout> 
 
-            <StackLayout class="item" row="1" col="3" (tap)="teacherdetails()">
+            <StackLayout class="home-item" row="1" col="3" (tap)="teacherdetails()">
                 <Image src="~/images/teacher.png"  height="110" width="110" stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
-                <Label text="Teacher Details" fontWeight="500" verticalAlignment="center"  horizontalAlignment="center"></Label>
+                <Label fontWeight="500"  text="Teacher Details" fontWeight="500" verticalAlignment="center"  horizontalAlignment="center"></Label>
             </StackLayout>
 
-            <StackLayout class="item" row="3" col="1" (tap)="timetable()">
+            <StackLayout class="home-item" row="3" col="1" (tap)="timetable()">
                 <Image src="~/images/timetable.png" height="110" width="110"  stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
-                <Label text="Time Table" fontWeight="500" verticalAlignment="center"  horizontalAlignment="center"></Label>
+                <Label fontWeight="500" text="Time Table" fontWeight="500" verticalAlignment="center"  horizontalAlignment="center"></Label>
             </StackLayout>
 
-            <StackLayout  class="item" row="3" col="3" (tap)="blog()">
+            <StackLayout  class="home-item" row="3" col="3" (tap)="blog()">
                 <Image src="~/images/blog.png" height="110" width="110"  stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
-                <Label text="Blog" fontWeight="500" verticalAlignment="center"  horizontalAlignment="center"></Label>
+                <Label fontWeight="500" text="Blog" fontWeight="500" verticalAlignment="center"  horizontalAlignment="center"></Label>
             </StackLayout>
 
  
-            <StackLayout  class="item" row="5" col="1" (tap)="attendance()">
+            <StackLayout  class="home-item" row="5" col="1" (tap)="attendance()">
                 <Image src="~/images/attendance.png" height="110" width="110" stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
-                <Label text="Attendance" fontWeight="500" verticalAlignment="center" horizontalAlignment="center"></Label>
+                <Label fontWeight="500" text="Attendance" fontWeight="500" verticalAlignment="center" horizontalAlignment="center"></Label>
             </StackLayout>
 
-            <StackLayout  class="item" row="5" col="3" (tap)="addclass()">
+            <StackLayout  class="home-item" row="5" col="3" (tap)="addclass()">
                 <Image src="~/images/manageclass.png" height="110" width="110" stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
-                <Label text="Manage Classes" fontWeight="500" verticalAlignment="center" horizontalAlignment="center"></Label>
+                <Label fontWeight="500" text="Manage Classes" fontWeight="500" verticalAlignment="center" horizontalAlignment="center"></Label>
             </StackLayout>
 
-            <StackLayout class="item" row="7" col="1" (tap)="marks()">
+            <StackLayout class="home-item" row="7" col="1" (tap)="marks()">
                 <Image src="~/images/marks.png" height="110" width="110"  stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
-                <Label text="Marks" fontWeight="500" verticalAlignment="center" horizontalAlignment="center"></Label>
+                <Label fontWeight="500" text="Marks" fontWeight="500" verticalAlignment="center" horizontalAlignment="center"></Label>
             </StackLayout>
 
-            <StackLayout class="item" row="7" col="3" (tap)="exam()">
+            <StackLayout class="home-item" row="7" col="3" (tap)="exam()">
                 <Image src="~/images/marks.png" height="110" width="110"  stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
-                <Label text="Add Exams" fontWeight="500" verticalAlignment="center" horizontalAlignment="center"></Label>
+                <Label fontWeight="500" text="Add Exams" fontWeight="500" verticalAlignment="center" horizontalAlignment="center"></Label>
             </StackLayout>
 
         </GridLayout>

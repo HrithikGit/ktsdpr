@@ -4,9 +4,15 @@
     </ActionItem>
 </ActionBar> 
 
-<StackLayout *ngIf="this.loading">
+<!-- <StackLayout *ngIf="this.loading">
     <Label text="Loading... Please Wait !" class="loading"></Label>
-</StackLayout>
+</StackLayout> -->
+
+<AbsoluteLayout *ngIf="this.loading" class="cv">
+    <Label class="cv-lbl" ></Label>
+    <Label class="inner-circle" ></Label>
+</AbsoluteLayout>
+
     <StackLayout *ngIf="!this.loading">
         <Label class="heading" horizontalAlignment="center" height="8%" text="Mark the Attendance"></Label>
         <GridLayout *ngIf="!this.loading" rows="auto" columns="auto,auto,*">
@@ -15,7 +21,7 @@
             <Label *ngIf="this.today==this.getdate" row="0" col="1" text="Today"></Label>
         </GridLayout>
         <ScrollView height="84%">
-            <StackLayout>
+            <StackLayout> 
                 <template *ngFor="let row of this.rows; let i=index">
                     <GridLayout columns="*,*,*" rows="auto">
                         <Button  *ngIf="row.length>=1" [text]="row[0].Student_Id" row="0" col="0" style="border-radius: 150%; background-color: {{get(3*i+0)}};" (tap)="change(3*i+0)" (longPress)="longpress(3*i+0)"></Button>

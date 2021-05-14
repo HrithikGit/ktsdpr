@@ -17,19 +17,7 @@
     text-align: center;
     padding : 10%;
 } 
-.page{  
-    margin-top: 0%;
-    background: linear-gradient(0deg, #f1f1f1 60%,navy 40%);
-} 
 
-.item{
-    padding-top: 10%;
-    margin-top:8%;
-    background-color: white;
-    border-width: 1;
-    border-color: gainsboro;
-    border-radius: 5%;
-}
 .custom-action-bar {
     background-color: navy;
     color: white;
