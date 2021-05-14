@@ -42,3 +42,24 @@ import { Page } from "tns-core-modules/ui/page";
 constructor(private router: Router,private page: Page) { 
     page.actionBarHidden = true;
 }
+
+
+//Loading 
+import {LoadingIndicator,Mode,OptionsCommon} from '@nstudio/nativescript-loading-indicator';
+const indicator = new LoadingIndicator();
+
+const options: OptionsCommon = {
+            message: 'Loading...',
+            details: 'Please Wait',
+            progress: 0.65, 
+            margin: 10,
+            dimBackground: true,
+            color: '#0074D9', 
+            backgroundColor: 'yellow',
+            userInteractionEnabled: false,
+            hideBezel: true,
+            mode: Mode.Indeterminate
+          };
+          indicator.show(options);
+        
+indicator.hide();

@@ -1,9 +1,10 @@
 import { Component, OnInit,NgModule,ViewChild,ElementRef } from "@angular/core";
-import { NativeScriptFormsModule } from "@nativescript/angular/forms";
 import { Page } from "tns-core-modules/ui/page";
 import {Router} from "@angular/router";
 import {ActivatedRoute} from "@angular/router";
 import { confirm } from "tns-core-modules/ui/dialogs";
+import {LoadingIndicator,Mode,OptionsCommon} from '@nstudio/nativescript-loading-indicator';
+const indicator = new LoadingIndicator();
 
 const firebase = require("nativescript-plugin-firebase/app");
 
@@ -88,6 +89,23 @@ export class marksComponent {
             return ;
         }
 
+        const options: OptionsCommon = {
+            message: 'Loading...',
+            details: 'Please Wait',
+            progress: 0.65, 
+            margin: 10,
+            dimBackground: true,
+            color: '#0074D9', 
+            backgroundColor: 'yellow',
+            userInteractionEnabled: false,
+            hideBezel: true,
+            mode: Mode.Indeterminate
+          };
+          indicator.show(options);
+
+
+
+
         for(var i=0;i<classes_selected.length;i++){
             const subs=firebase.firestore().collection("Teacher").where("Class_Id","==",parseInt(classes_selected[i]["Class_Id"]))
             .where("Class_Section","==",classes_selected[i]["Class_Section"]);
@@ -122,6 +140,7 @@ export class marksComponent {
             console.log("Added "+classes_selected[i]);
         }
         this.openClasses=false;
+        indicator.hide();
         alert("Added Successfully");
     }
 

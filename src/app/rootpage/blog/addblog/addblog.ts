@@ -1,6 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import { action } from "tns-core-modules/ui/dialogs";
+import {LoadingIndicator,Mode,OptionsCommon} from '@nstudio/nativescript-loading-indicator';
+const indicator = new LoadingIndicator();
+const appSettings = require("tns-core-modules/application-settings")
 
 const firebase = require("nativescript-plugin-firebase/app");
 
@@ -37,12 +40,26 @@ export class addblogComponent {
             if (result == "No") {
                 flag = true;
             } else {
-                console.log("The user selected option 2.");
             }
         });
         if(flag){
             return ;
         }
+
+        const options: OptionsCommon = {
+            message: 'Loading...',
+            details: 'Please Wait',
+            progress: 0.65, 
+            margin: 10,
+            dimBackground: true,
+            color: '#0074D9', 
+            backgroundColor: 'yellow',
+            userInteractionEnabled: false,
+            hideBezel: true,
+            mode: Mode.Indeterminate
+          };
+          indicator.show(options);
+
         const date = new Date();
         const blogCollection = firebase.firestore().collection("Blogs");
         await blogCollection.add({
@@ -52,10 +69,9 @@ export class addblogComponent {
             Date : date.getDate().toString()+"-"+date.getMonth().toString()+"-"+date.getFullYear().toString()
         });
         alert("Added Successfully !");
-        this.router.navigate(["success","Done"]);
+        indicator.hide()
     }
     public goHome(){
-        const appSettings = require("tns-core-modules/application-settings")
         this.router.navigate(["/"+appSettings.getString("TypeOfUser")], { replaceUrl: true });
     }
 }

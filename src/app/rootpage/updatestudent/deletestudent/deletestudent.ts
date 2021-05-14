@@ -22,6 +22,9 @@ export class deletestudentComponent {
             this.student_section = params["section"]
             console.log(this.student_class+" "+this.student_section);
         })
+        if(appSettings.getString("TypeOfUser")=="root"){
+            this.editable=true;
+        }
         this.waiting = true;
         this.getData();
     }
@@ -85,7 +88,6 @@ export class deletestudentComponent {
         this.router.navigate(["addstudent",this.student_class,this.student_section]);
     }
     public goHome(){
-        const appSettings = require("tns-core-modules/application-settings")
         this.router.navigate(["/"+appSettings.getString("TypeOfUser")], { replaceUrl: true });
     }
 }

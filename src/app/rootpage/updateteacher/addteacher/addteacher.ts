@@ -4,9 +4,12 @@ import { Page } from "tns-core-modules/ui/page";
 import { confirm } from "tns-core-modules/ui/dialogs";
 import { EventData } from "tns-core-modules/data/observable";
 import { Switch } from "tns-core-modules/ui/switch";
+import {LoadingIndicator,Mode,OptionsCommon} from '@nstudio/nativescript-loading-indicator';
 
+const indicator = new LoadingIndicator();
 const firebase = require("nativescript-plugin-firebase/app")
-
+const appSettings = require("tns-core-modules/application-settings")
+ 
 @Component({
     selector: "ns-items",
     templateUrl: "./addteacher.html"
@@ -105,6 +108,20 @@ export class addteacherComponent implements OnInit {
             return ;
         }
 
+        const options: OptionsCommon = {
+            message: 'Loading...',
+            details: 'Please Wait',
+            progress: 0.65, 
+            margin: 10,
+            dimBackground: true,
+            color: '#0074D9', 
+            backgroundColor: 'yellow',
+            userInteractionEnabled: false,
+            hideBezel: true,
+            mode: Mode.Indeterminate
+          };
+          indicator.show(options);
+
         await firebase.firestore().collection("Generate_Id").get().then(result=>{
             result.forEach(doc=>{
                 this.docid=doc.id;
@@ -117,6 +134,7 @@ export class addteacherComponent implements OnInit {
             var present_section=this.rows[i].section.trim();
             var present_class=parseInt(this.rows[i].class.trim());
             if(!(this.isCharacterALetter(present_section))){
+                indicator.hide();
                 this.notvalid = true;
                 alert("Please check sections");
                 return ;
@@ -139,6 +157,7 @@ export class addteacherComponent implements OnInit {
           );
             console.log(classdefined);
        if(!classdefined){
+           indicator.hide();
            alert("Given Class Doesn't Exist ! Try adding class in ManageClasses");
            this.waiting = false;
            return;
@@ -155,6 +174,7 @@ export class addteacherComponent implements OnInit {
         // If already teacher teaching subject in given class is found
 
         if(this.exists){
+            indicator.hide();
             alert("Teacher for given subject in given class already exists !");
             this.waiting = false;
             return;
@@ -197,6 +217,7 @@ export class addteacherComponent implements OnInit {
             Id: this.teacherid
         })
         this.waiting = false;
+        indicator.hide();
         alert("Teacher Added Successfully ! with id : "+this.teacher_name+this.teacherid);
 
  
@@ -222,7 +243,6 @@ export class addteacherComponent implements OnInit {
     }
 
     public goHome(){
-        const appSettings = require("tns-core-modules/application-settings")
         this.router.navigate(["/"+appSettings.getString("TypeOfUser")], { replaceUrl: true });
     }
 }

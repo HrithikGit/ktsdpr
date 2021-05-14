@@ -1,6 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {Router,ActivatedRoute} from "@angular/router";
 import { Page } from "tns-core-modules/ui/page";
+import {LoadingIndicator,Mode,OptionsCommon} from '@nstudio/nativescript-loading-indicator';
+const indicator = new LoadingIndicator();
 
 const firebase = require("nativescript-plugin-firebase/app");
 
@@ -96,6 +98,23 @@ export class addclassComponent{
             alert("Invalid Class Year !");
             return;
         }
+
+        const options: OptionsCommon = {
+            message: 'Loading...',
+            details: 'Please Wait',
+            progress: 0.65, 
+            margin: 10,
+            dimBackground: true,
+            color: '#0074D9', 
+            backgroundColor: 'yellow',
+            userInteractionEnabled: false,
+            hideBezel: true,
+            mode: Mode.Indeterminate
+          };
+          indicator.show(options);
+
+        
+
         this.waiting = true;
         const classCollection = firebase.firestore().collection("Class");
 
@@ -108,7 +127,7 @@ export class addclassComponent{
 
         if(this.exists){
             if(this.classid=="Add"){
-            this.waiting = false;
+                indicator.hide();
             alert("This Class Already exists ! Please Delete and Try or Add another Class");
             return;}
         }
@@ -129,6 +148,7 @@ export class addclassComponent{
             },3000);
         })
         this.waiting = false;
+        indicator.hide();
         alert("Success !");
         this.class_year = "";
         this.class_section="";
@@ -148,7 +168,7 @@ export class addclassComponent{
             }
         )
         const reqdoc = firebase.firestore().collection("Class").doc(val);
-        reqdoc.delete();
+        await reqdoc.delete();
         console.log("deleted Successfully");
     }
     

@@ -1,6 +1,10 @@
 import {Component} from "@angular/core";
 import {Router,ActivatedRoute} from "@angular/router";
 const firebase = require("nativescript-plugin-firebase/app");
+import {LoadingIndicator,Mode,OptionsCommon} from '@nstudio/nativescript-loading-indicator';
+  
+const indicator = new LoadingIndicator();
+  
 
 @Component({
     selector: "teacherpageattendance",
@@ -19,7 +23,8 @@ export class teacherpageattendanceComponent {
     today;
     sofar;
     olddate;
-    dateupdate;
+
+
     public constructor(private router:Router,private route:ActivatedRoute) {
         this.route.params.subscribe((params)=>{
             this.ClassTeacherClass=params["class"];
@@ -27,15 +32,14 @@ export class teacherpageattendanceComponent {
         });
         this.waiting = false;
         this.getdetails();
-    }
+    }  
 
     initialize(){
         this.ref=[];
         this.rows=[[]];
-    }
+    } 
     async getdetails(){
         var k=0;
-
         var classid=1;
         var section ="A";
         var date = new Date();
@@ -102,10 +106,27 @@ export class teacherpageattendanceComponent {
         }
         else{
             this.attendance[i]="1";
-        }
+        } 
     } 
 
     async commit(){
+        //Loading animation 
+
+        const options: OptionsCommon = {
+            message: 'Loading...',
+            details: 'Please Wait',
+            progress: 0.65, 
+            margin: 10,
+            dimBackground: true,
+            color: '#FF392E', 
+            backgroundColor: 'yellow',
+            userInteractionEnabled: false,
+            hideBezel: true,
+            mode: Mode.Indeterminate
+          };
+          indicator.show(options);
+
+        //
         this.loading = true;
         const updating = firebase.firestore().collection("Student");
         console.log(this.today+" "+this.getdate+" "+this.sofar);
@@ -144,7 +165,7 @@ export class teacherpageattendanceComponent {
                 }
             }
             
-            await updating.doc(this.ref[i]).update({
+            await updating.doc(this.ref[i]).update({ 
                 Is_Present_Today : this.attendance[i],
                 Classes_Attended :attended,
                 Student_Attendance : (attended/this.sofar)*100
@@ -154,6 +175,7 @@ export class teacherpageattendanceComponent {
         await this.getdetails();
         this.waiting = false;
         this.loading = false;
+        indicator.hide();
         alert("Attendance has been updated !");
     }
  

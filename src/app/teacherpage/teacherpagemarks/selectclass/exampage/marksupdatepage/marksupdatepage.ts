@@ -1,6 +1,8 @@
 import {Component} from "@angular/core";
 import {Router,ActivatedRoute} from "@angular/router";
 import "nativescript-plugin-firebase";
+import {LoadingIndicator,Mode,OptionsCommon} from '@nstudio/nativescript-loading-indicator';
+const indicator = new LoadingIndicator();
 
 const firebase = require("nativescript-plugin-firebase/app");
 
@@ -67,6 +69,20 @@ export class marksupdatepageComponent{
                 return;
             }
         }
+
+        const options: OptionsCommon = {
+            message: 'Loading...',
+            details: 'Please Wait',
+            progress: 0.65, 
+            margin: 10,
+            dimBackground: true,
+            color: '#0074D9', 
+            backgroundColor: 'yellow',
+            userInteractionEnabled: false,
+            hideBezel: true,
+            mode: Mode.Indeterminate
+          };
+          indicator.show(options);
  
         for(var i=0;i<this.marks.length;i++){
             await firebase.firestore().collection("Marks").doc(this.marks[i].id).update({
@@ -74,6 +90,7 @@ export class marksupdatepageComponent{
                 "Maximum_Marks" : parseInt(this.max_scoreable)
             });
         }
+        indicator.hide();
 
         var toast = Toast.makeText("Updated Successfully!");
     }

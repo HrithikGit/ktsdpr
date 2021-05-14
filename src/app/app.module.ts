@@ -11,6 +11,8 @@ import { NativeScriptCommonModule } from "@nativescript/angular";
 import { AppComponent } from "./app.component";
 import { ItemsComponent } from "./item/items.component";
 import { FormsModule } from '@angular/forms';
+import {rootpageComponent} from "./rootpage/rootpage";
+import {studentpageComponent} from "./studentpage/studentpage";
 import {teacherpageComponent} from "./teacherpage/teacherpage";
 import {timetableComponent} from "./rootpage/timetable/timetable";
 import {blogComponent} from "./rootpage/blog/blog";
@@ -67,6 +69,8 @@ import {studentpageattendanceComponent} from "./studentpage/studentpageattendanc
         viewteacherComponent,
         viewstudentComponent,
         teacherpageComponent,
+        rootpageComponent,
+        studentpageComponent,
         addteacherComponent,
         addstudentComponent,
         deletestudentComponent,

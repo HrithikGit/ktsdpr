@@ -3,6 +3,8 @@ import {Router,ActivatedRoute} from "@angular/router";
 import { CommonModule } from '@angular/common';
 import {NgModule} from "@angular/core";
 import { BrowserModule } from '@angular/platform-browser';
+import {LoadingIndicator,Mode,OptionsCommon} from '@nstudio/nativescript-loading-indicator';
+const indicator = new LoadingIndicator();
 
 const firebase = require("nativescript-plugin-firebase/app");
 
@@ -169,6 +171,21 @@ export class updatetimetableComponent {
             if(this.rows[i].Start=="" || this.rows[i].End=="" || this.rows[i].Subject=="")
                 {alert("Please check "+(i+1)+"th column"); return;}
         }
+
+        const options: OptionsCommon = {
+            message: 'Loading...',
+            details: 'Please Wait',
+            progress: 0.65, 
+            margin: 10,
+            dimBackground: true,
+            color: '#0074D9', 
+            backgroundColor: 'yellow',
+            userInteractionEnabled: false,
+            hideBezel: true,
+            mode: Mode.Indeterminate
+          };
+          indicator.show(options);
+
         var todel=[] ;
         if(this.currday=="Monday"){
             todel = [...this.monday];
@@ -207,6 +224,7 @@ export class updatetimetableComponent {
                 Subject : this.rows[i]["Subject"].toUpperCase()
             })
         }
+        indicator.hide();
         alert("Added Successfully !");
         if(this.currday=="Monday"){
             this.monday = [...this.rows];

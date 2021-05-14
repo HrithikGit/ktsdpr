@@ -1,6 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {Router,ActivatedRoute} from "@angular/router";
 import { Page } from "tns-core-modules/ui/page";
+import {LoadingIndicator,Mode,OptionsCommon} from '@nstudio/nativescript-loading-indicator';
+const indicator = new LoadingIndicator();
 
 const firebase = require("nativescript-plugin-firebase/app");
 
@@ -61,15 +63,13 @@ export class addstudentComponent {
         where("Class_Id","==",this.student_class).where("Class_Section","==",this.student_section).get().then(result=>{
             result.forEach(doc=>{
                 this.exists = true;
-                console.log(JSON.stringify(doc.data()));
             })
         })
-        console.log(this.exists);
 
         if(this.exists){
             alert("This Student with provided Roll No. Exists ! Please Delete and Try or Add another Student");
             return;
-        }
+        } 
 
 
         // console.log("Got Value ");
@@ -81,6 +81,22 @@ export class addstudentComponent {
                 value = doc.data()["Student_No"]
             })
         })
+
+
+        
+        const options: OptionsCommon = {
+            message: 'Loading...',
+            details: 'Please Wait',
+            progress: 0.65, 
+            margin: 10,
+            dimBackground: true,
+            color: '#FF392E', 
+            backgroundColor: 'yellow',
+            userInteractionEnabled: false,
+            hideBezel: true,
+            mode: Mode.Indeterminate
+          };
+          indicator.show(options);
 
         var unqid = this.student_name+this.student_id+this.student_class+this.student_section;
         await studentCollection.add({
@@ -107,6 +123,7 @@ export class addstudentComponent {
         await firebase.firestore().collection("Generate_Id").doc(doccheck).update({
             Student_No : value+1
         })
+        indicator.hide();
         alert("Added Successfully !");
         this.intialize();
     }
