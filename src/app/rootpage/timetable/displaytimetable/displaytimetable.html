@@ -39,8 +39,8 @@
           <Label text="" class="line" width="100%"></Label>
         </StackLayout>
       </template>
+      <Label *ngIf="this.tuesday.length==0" text="No Records as of now :-) " horizontalAlignment="center"></Label>
     </StackLayout>
-    <Label *ngIf="this.tuesday.length==0" text="No Records as of now :-) " horizontalAlignment="center"></Label>
   </StackLayout>
   <StackLayout *ngIf="!this.waiting">
     <Button (tap)="openWednesday()" text="Wednesday"  class="plusbutton" height="10%" width="100%"></Button>

@@ -11,11 +11,11 @@ const firebase = require("nativescript-plugin-firebase/app");
 
 export class marksclassselectComponent{
     selectedindex=1;
-    Class="Select a Class";
+    Class="-";
     Section="";
-    Subject="Select a Subject";
-    Exam="Select an Exam";
-    Class_Section="Select a Class";
+    Subject="-";
+    Exam="-";
+    Class_Section="-";
     classes=[];
     exams=["Please select a class and subject"];
     subjects=["Please select a Class"];
@@ -81,17 +81,26 @@ export class marksclassselectComponent{
 
 
     openClass(){
-        if(this.openclass==false){this.openclass=true;}
+        if(this.openclass==false){
+            this.opensubject=false;
+            this.openexam=false;
+            this.openclass=true;}
         else{this.openclass=false;}
     }
 
     openSubject(){
-        if(this.opensubject==false){this.opensubject=true;}
+        if(this.opensubject==false){
+            this.openexam=false;
+            this.openclass=false;
+            this.opensubject=true;}
         else{this.opensubject=false;}
     }
 
     openExam(){
-        if(this.openexam==false){this.openexam=true;}
+        if(this.openexam==false){
+            this.openclass=false;
+            this.opensubject=false;
+            this.openexam=true;}
         else{this.openexam=false;}
     }
 
@@ -102,8 +111,8 @@ export class marksclassselectComponent{
         this.openclass=false;
         this.Section=this.Class.substring(this.Class.length-1,this.Class.length);
         this.Class=this.Class.substring(0,this.Class.length-1).trim();
-        this.Subject="Select a Subject";
-        this.Exam="Select an Exam";
+        this.Subject="-";
+        this.Exam="-";
         this.subjects=["Please.. Wait..."];
         this.getsubject();
 
@@ -111,36 +120,56 @@ export class marksclassselectComponent{
     setsubject(i){
         this.Subject=this.subjects[i];
         this.opensubject=false;
-        this.Exam="Select an Exam";
+        this.Exam="-";
         this.exams=["Please... Wait..."];
         this.getexams();
         
     }
-    setexam(i){
+    loading=false;
+    displaymarks=false;
+    marks=[]
+    async setexam(i){
+        this.Class.trim();
         this.Exam=this.exams[i];
         this.openexam=false;
-    }
 
-    async getmarks(){
-        if(this.Class=="Select a Class"){
-            alert("Please select a Class");
+        var ero=false;
+        if(this.Class=="-"){
+            ero=true;
+        }
+        else if(this.Subject=="-" || this.Subject=="Please.. Wait..."){
+            ero=true;
+        }
+        else if(this.Exam=="-" || this.Exam=="Please... Wait..."){
+            ero=true;
+        }
+        else if(this.Exam=="Marks Were Not Added"){
+            ero=true;
+        }
+        if(ero){
+            alert("Please select appropriate details");
             return;
         }
-        if(this.Subject=="Select a Subject" || this.Subject=="Please.. Wait..."){
-            alert("Please select a Subject");
-            return;
-        }
-        if(this.Exam=="Select an Exam" || this.Exam=="Please... Wait..."){
-            alert("Please select an Exam");
-            return;
-        }
-        if(this.Exam=="Marks Were Not Added"){
-            alert("Marks for this subject were not added");
-            return;
-        }
-        
-        this.router.navigate(["marksview",this.Class,this.Section,this.Subject,this.Exam]);
 
+
+        this.marks=[];
+        const student=firebase.firestore().collection("Marks").where("Student_Class","==",parseInt(this.Class)).where("Student_Section","==",this.Section)
+        .where("Exam_Type","==",this.Exam).where("Subject","==",this.Subject);
+        this.loading=true;
+        await student.get().then(result=>{
+            result.forEach(doc=>{
+                var data=doc.data();
+                console.log(data);
+                this.marks.push({
+                    "Student_Id":data.Student_Id,
+                    "Student_Marks":data.Student_Marks,
+                    "Student_Name":data.Student_Name
+                });
+            })
+        })
+        console.log(this.marks);
+        this.loading=false;
+        this.displaymarks=true;
     }
     
     public goHome(){

@@ -5,49 +5,81 @@
 </ActionBar> 
 
 <StackLayout>
-<ScrollView height="88%">
-<StackLayout verticalAlignment="center">
-<Label *ngIf="this.waiting" text="Please Wait"></Label>
-<StackLayout *ngIf="!this.waiting">
-    <Button (tap)="openClass()" [text]="this.Class_Section"  class="plusbutton" height="10%" width="90%" row="0" col="2"></Button>
-    <ScrollView *ngIf="this.openclass" width="90%" height="25%" style="background-color: #c0c0c0;">
-        <StackLayout >
-            <template *ngFor="let item of this.classes; index as i">
-                <StackLayout (tap)="setclass(i)">
-                <Label [text]="item" horizontalAlignment="center" fontSize="20"></Label>
-                <Label text="" class="line" width="90%"></Label>
+    <Label *ngIf="this.waiting" text="Please Wait" class="loading"></Label>
+<ScrollView height="100%">
+<StackLayout>
+    <StackLayout style="padding-bottom: 10;">
+    <GridLayout *ngIf="!this.waiting" rows="auto" columns="*,*,*">
+        <Button (tap)="openClass()" textWrap="true" class="plusbutton" width="100%" row="0" col="0">
+            <FormattedString>
+                <Span style="color: black; font-weight: bold;" text="CLASS\n"></Span>
+                <Span [text]="this.Class_Section"></Span>
+            </FormattedString>
+        </Button>
+        <Button (tap)="openSubject()" class="plusbutton" textWrap="true" width="100%" row="0" col="1">
+            <FormattedString>
+                <Span style="color: black; font-weight: bold;" text="SUBJECT\n"></Span>
+                <Span [text]="this.Subject"></Span>
+            </FormattedString>
+        </Button>
+        <Button (tap)="openExam()" class="plusbutton" width="100%" textWrap="true" row="0" col="2">
+            <FormattedString>
+                <Span style="color: black; font-weight: bold;" text="EXAM\n"></Span>
+                <Span [text]="this.Exam"></Span>
+            </FormattedString>
+        </Button>
+    </GridLayout>
+    
+    <StackLayout *ngIf="!this.waiting && this.openclass" style="background-color: #c0c0c0;">
+        <template *ngFor="let item of this.classes; index as i">
+            <StackLayout (tap)="setclass(i)">
+            <Label [text]="item" horizontalAlignment="center" fontSize="20"></Label>
+            <Label text="" class="line" width="90%"></Label>
+            </StackLayout>
+        </template>
+    </StackLayout>
+    <StackLayout *ngIf="!this.waiting && this.opensubject" style="background-color: #c0c0c0;">
+        <template *ngFor="let item of this.subjects; index as i">
+            <StackLayout (tap)="setsubject(i)">
+            <Label [text]="item" horizontalAlignment="center" fontSize="20"></Label>
+            <Label text="" class="line" width="90%"></Label>
+            </StackLayout>
+        </template>
+    </StackLayout>
+    <StackLayout *ngIf="!this.waiting && this.openexam" style="background-color: #c0c0c0;">
+        <template *ngFor="let item of this.exams; index as i">
+            <StackLayout (tap)="setexam(i)">
+            <Label [text]="item" horizontalAlignment="center" fontSize="20"></Label>
+            <Label text="" class="line" width="90%"></Label>
+            </StackLayout>
+        </template>
+    </StackLayout>
+    </StackLayout>
+    <StackLayout *ngIf="this.loading && !this.waiting">
+        <Label text="Fetching data please wait..." fontSize="20" horizontalAlignment="center"></Label>
+    </StackLayout>
+    <StackLayout *ngIf="!this.waiting && this.displaymarks">
+        <Label horizontalAlignment="center" fontSize="20" text="{{this.Exam}} Marks of class {{this.Class}}{{this.Section}}"></Label>
+    </StackLayout>
+    
+    <StackLayout *ngIf="this.displaymarks" width="90%" style="background-color: bisque; border-radius: 5;">
+        <StackLayout style="padding-right: 15%; padding-left: 15%;">
+        <template *ngFor="let result of this.marks; index as i">
+            <GridLayout rows="auto" columns="auto,*,auto" style="padding-top: 5; padding-bottom: 5;">
+                <GridLayout rows="auto,auto" columns="auto,auto" col="0" row="0">
+                        <Label text="Name: " width="20%" fontSize="20" textWrap="true" row="0" col="0" ></Label>
+                        <Label [text]="result.Student_Name" width="20%" textWrap="true" row="0" col="1" style="color: #0074d9;" horizontalAlignment="left" fontSize="20"></Label>
+                        <Label text="Roll-no: " fontSize="20" width="20%" textWrap="true" row="1" col="0" ></Label>
+                        <Label [text]="result.Student_Id" horizontalAlignment="left" row="1" width="20%" textWrap="true" col="1" style="color:#0074d9;" fontSize="20"></Label>
+                </GridLayout>
+                <StackLayout  horizontalAlignment="center" verticalAlignment="center"  style="border-radius: 5%; border-width: 1; border-color: black;" row="0" col="2">
+                    <Label [text]="result.Student_Marks" textWrap="true" style="padding-top: 20%; padding-bottom:20%; padding-left: 20%; padding-right: 20%;" ></Label>
                 </StackLayout>
-            </template>
+            </GridLayout>
+            <Label text="" class="line"></Label>
+        </template>
         </StackLayout>
-    </ScrollView>
-</StackLayout>
-<StackLayout  *ngIf="!this.waiting">
-    <Button (tap)="openSubject()" [text]="this.Subject" class="plusbutton" height="10%" width="90%" row="0" col="2"></Button>
-    <ScrollView *ngIf="this.opensubject" width="90%" height="25%" style="background-color: #c0c0c0;">
-        <StackLayout >
-            <template *ngFor="let item of this.subjects; index as i">
-                <StackLayout (tap)="setsubject(i)">
-                <Label [text]="item" horizontalAlignment="center" fontSize="20"></Label>
-                <Label text="" class="line" width="90%"></Label>
-                </StackLayout>
-            </template>
-        </StackLayout>
-    </ScrollView>
-</StackLayout>
-<StackLayout  *ngIf="!this.waiting">
-    <Button (tap)="openExam()" [text]="this.Exam"  class="plusbutton" height="10%" width="90%" row="0" col="2"></Button>
-    <ScrollView *ngIf="this.openexam" width="90%" height="25%" style="background-color: #c0c0c0;">
-        <StackLayout >
-            <template *ngFor="let item of this.exams; index as i">
-                <StackLayout (tap)="setexam(i)">
-                <Label [text]="item" horizontalAlignment="center" fontSize="20"></Label>
-                <Label text="" class="line" width="90%"></Label>
-                </StackLayout>
-            </template>
-        </StackLayout>
-    </ScrollView>
-</StackLayout>
+    </StackLayout>
 </StackLayout>
 </ScrollView>
-<Button text="Get Marks" width="90%" class="addbutton" height="10%" (tap)="getmarks()"></Button>
 </StackLayout>

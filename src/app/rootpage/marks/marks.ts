@@ -131,7 +131,8 @@ export class marksComponent {
                         "Student_Marks":0,
                         "Student_Section":classes_selected[i]["Class_Section"],
                         "Subject":subjects[j],
-                        "Maximum_Marks":100
+                        "Maximum_Marks":100,
+                        "Student_Name":doc.data().Student_Name
                     })
                 }
                 })
