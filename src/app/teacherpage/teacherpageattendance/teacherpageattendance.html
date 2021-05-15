@@ -7,26 +7,34 @@
 <StackLayout *ngIf="this.loading">
     <Label text="Loading... Please Wait !" class="loading"></Label>
 </StackLayout>
-
+  
 
 <StackLayout *ngIf="!this.loading">
-    <Label class="heading" horizontalAlignment="center" height="8%" text="Mark the Attendance"></Label>
-    <GridLayout *ngIf="!this.loading" rows="auto" columns="auto,auto,*">
-        <Label text="Last Attendance Recorded: " row="0" col="0"></Label>
-        <Label *ngIf="this.today!=this.getdate" row="0" col="1" [text]="this.today"></Label>
-        <Label *ngIf="this.today==this.getdate" row="0" col="1" text="Today"></Label>
-    </GridLayout>
-    <ScrollView height="84%">
+ 
+    <!-- Heading Part -->
+    <Label class="heading" horizontalAlignment="center" fontWeight="900"  fontSize="17" text="Mark the Attendance"></Label>
+    <Label class="line"></Label>
+    <GridLayout backgroundColor="#f1f1f1" *ngIf="!this.loading" rows="auto" columns="auto,auto,*">
+        <Label paddingLeft="20" fontWeight="700" fontSize="15" text="Last Attendance Recorded: " row="0" col="0"></Label>
+        <Label  fontWeight="700" paddingLeft="10" fontSize="15" *ngIf="this.today!=this.getdate" row="0" col="1" [text]="this.today"></Label>
+        <Label  fontWeight="700" paddingLeft="10" fontSize="15" *ngIf="this.today==this.getdate" row="0" col="1" text="Today"></Label>
+    </GridLayout> 
+    <StackLayout>
+        <Label text="Long Press to view Student Details"></Label>
+    </StackLayout>
+    <Label class="line" paddingBottom="5"></Label>
+ 
+    <ScrollView paddingTop="6" *ngIf="!this.loading" height="80%">
         <StackLayout> 
-            <template *ngFor="let row of this.rows; let i=index">
+            <template *ngFor="let row of this.rows; let i=index"> 
                 <GridLayout columns="*,*,*" rows="auto">
-                <Button  *ngIf="row.length>=1" [text]="row[0].Student_Id" row="0" col="0" style="border-radius: 150%; background-color: {{get(3*i+0)}};" (tap)="change(3*i+0)" (longPress)="longpress(3*i+0)"></Button>
-                <Button  *ngIf="row.length>=2" [text]="row[1].Student_Id" row="0" col="1" style="border-radius: 150%; background-color: {{get(3*i+1)}};" (tap)="change(3*i+1)" (longPress)="longpress(3*i+1)"></Button>
-                    <Button  *ngIf="row.length==3" [text]="row[2].Student_Id" row="0" col="2" style="border-radius: 150%; background-color: {{get(3*i+2)}};" (tap)="change(3*i+2)" (longPress)="longpress(3*i+2)"></Button>
+                <Button  *ngIf="row.length>=1" [text]="row[0].Student_Id" fontWeight="800" fontSize="15" width="80" height="80" row="0" col="0" class="circular-button" style="border-radius: 50; background-color: {{get(3*i+0)}};" (tap)="change(3*i+0)" (longPress)="longpress(3*i+0)"></Button>
+                <Button  *ngIf="row.length>=2" [text]="row[1].Student_Id" fontWeight="800" fontSize="15" width="80" height="80" row="0" col="1" class="circular-button" style="border-radius: 50; background-color: {{get(3*i+1)}};" (tap)="change(3*i+1)" (longPress)="longpress(3*i+1)"></Button>
+                    <Button  *ngIf="row.length==3" [text]="row[2].Student_Id" fontWeight="800" fontSize="15" width="80" height="80" row="0" col="2" class="circular-button" style="border-radius: 50; background-color: {{get(3*i+2)}};" (tap)="change(3*i+2)" (longPress)="longpress(3*i+2)"></Button>
                 </GridLayout>
             </template>
         </StackLayout>
     </ScrollView>
-    <Button (tap)="commit()" class="addbutton" text="Update" height="11%"></Button>
+    <Button *ngIf="!this.loading" (tap)="commit()" height="7%" width="75%" fontWeight="700" color="white" borderRadius="10" backgroundColor="#3c99dc"  text="Update"></Button>
 </StackLayout>  
- 
+      

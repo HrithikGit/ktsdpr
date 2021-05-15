@@ -9,6 +9,7 @@ const indicator = new LoadingIndicator();
 @Component({
     selector: "teacherpageattendance",
     templateUrl: "./teacherpageattendance.html",
+    styleUrls : ["./teacherpageattendance.css"]
 })
 export class teacherpageattendanceComponent {
     ClassTeacherClass;
@@ -171,8 +172,8 @@ export class teacherpageattendanceComponent {
                 Student_Attendance : (attended/this.sofar)*100
             });
         }
-        this.initialize();
-        await this.getdetails();
+        // this.initialize();
+        // await this.getdetails();
         this.waiting = false;
         this.loading = false;
         indicator.hide();
