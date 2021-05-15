@@ -30,7 +30,7 @@ export class studentpageattendanceComponent{
             result.forEach(doc=>{
                 this.data = doc.data()
                 if("Today_Date" in this.data){
-                    this.rows.push([this.data.Today_Date, this.getVal(this.data.Is_Present_Today)]);
+                    this.rows.push([this.data.Today_Date, this.data.Is_Present_Today]);
                     this.colors.push(this.getCol(this.data.Is_Present_Today));
                 }
                 else{
@@ -39,7 +39,7 @@ export class studentpageattendanceComponent{
                 }
 
                 if("Previous_Date" in this.data){
-                    this.rows.push([this.data.Previous_Date, this.getVal(this.data.Is_Present_Yesterday)]);
+                    this.rows.push([this.data.Previous_Date,this.data.Is_Present_Yesterday]);
                     this.colors.push(this.getCol(this.data.Is_Present_Yesterday));
                 }
                 else{
@@ -48,8 +48,7 @@ export class studentpageattendanceComponent{
                 }
 
                 if("Previous_Previous_Date" in this.data){
-                    this.rows.push([this.data.Previous_Previous_Date, this.getVal(this.data.Is_Present_DayBefore)]);
-                    this.colors.push(this.getCol(this.data.Is_Present_DayBefore));
+                    this.rows.push([this.data.Previous_Previous_Date, this.data.Is_Present_DayBefore]);
                 }
                 else{
                     this.rows.push(["Data Not available ","----"])

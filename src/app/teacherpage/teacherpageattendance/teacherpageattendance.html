@@ -5,26 +5,27 @@
 </ActionBar> 
 
 <StackLayout *ngIf="this.loading">
-    <Label text="Loading... Please Wait !" class="loading"></Label>
+    <Label text="Loading... Please Wait !" class="loading"></Label> 
 </StackLayout>
   
-
+ 
 <StackLayout *ngIf="!this.loading">
  
     <!-- Heading Part -->
     <Label class="heading" horizontalAlignment="center" fontWeight="900"  fontSize="17" text="Mark the Attendance"></Label>
-    <Label class="line"></Label>
+    <Label *ngIf="!this.loading" class="line"></Label>
     <GridLayout backgroundColor="#f1f1f1" *ngIf="!this.loading" rows="auto" columns="auto,auto,*">
-        <Label paddingLeft="20" fontWeight="700" fontSize="15" text="Last Attendance Recorded: " row="0" col="0"></Label>
-        <Label  fontWeight="700" paddingLeft="10" fontSize="15" *ngIf="this.today!=this.getdate" row="0" col="1" [text]="this.today"></Label>
-        <Label  fontWeight="700" paddingLeft="10" fontSize="15" *ngIf="this.today==this.getdate" row="0" col="1" text="Today"></Label>
+        <Label paddingLeft="20" fontWeight="700" fontSize="15" color="#3c99dc" text="Last Attendance Recorded: " row="0" col="0"></Label>
+        <Label  fontWeight="700" paddingLeft="10" fontSize="15" color="#3c99dc" *ngIf="this.today!=this.getdate" row="0" col="1" [text]="this.today"></Label>
+        <Label  fontWeight="700" paddingLeft="10" fontSize="15" color="#3c99dc" *ngIf="this.today==this.getdate" row="0" col="1" text="Today"></Label>
     </GridLayout> 
-    <StackLayout>
-        <Label text="Long Press to view Student Details"></Label>
+    <Label *ngIf="!this.loading" class="line"></Label>
+    <StackLayout *ngIf="!this.loading">
+        <Label  text="Long Press to view Student Details" class="example"></Label>
     </StackLayout>
-    <Label class="line" paddingBottom="5"></Label>
+    <Label *ngIf="!this.loading" class="line" paddingBottom="5"></Label>
  
-    <ScrollView paddingTop="6" *ngIf="!this.loading" height="80%">
+    <ScrollView paddingTop="6" *ngIf="!this.loading" height="75%">
         <StackLayout> 
             <template *ngFor="let row of this.rows; let i=index"> 
                 <GridLayout columns="*,*,*" rows="auto">

@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
+import { RouterExtensions } from "@nativescript/angular/router";
 import * as application from "tns-core-modules/application";
 import { AndroidApplication, AndroidActivityBackPressedEventData } from "tns-core-modules/application";
 
@@ -15,7 +16,7 @@ export class teacherpageComponent {
     teacherid="13";
     exit_tapped;
     obj={classteacherclass:"1", classteachersection:"A"}; 
-    public constructor(private router:Router) {
+    public constructor(private rtr:RouterExtensions,private router: Router) {
         this.exit_tapped = false;
         if(appSettings.getString("IsClassTeacher")=="True"){
             this.isClassTeacher=true;
@@ -63,8 +64,9 @@ export class teacherpageComponent {
         this.router.navigate(["teacherpagemarks",this.obj.classteacherclass,this.obj.classteachersection,parseInt(this.teacherid)]);
     }
     attendance():void{
-        this.router.navigate(["teacherpageattendance",this.obj.classteacherclass,this.obj.classteachersection]);
-    }
+        this.router.navigate(["teacherpageattendance",this.obj.classteacherclass,this.obj.classteachersection]
+        
+        );    }
     blog(): void{
         this.router.navigate(["blog","teacher"]);
     }
