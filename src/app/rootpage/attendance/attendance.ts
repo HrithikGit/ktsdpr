@@ -68,6 +68,7 @@ export class attendanceComponent {
         .where("Class_Section","==",this.section).get().then(result=>{
             result.forEach(doc=>{
                 var check = doc.data();
+                check["Student_Attendance"] =doc.data()["Student_Attendance"].toFixed(2);
                 check["displaytod"]=this.getToday(check["Is_Present_Today"]);
                 check["color"]= this.getColor(check["Is_Present_Today"]);
                 check["attcolor"] = this.getAttColor(check["Student_Attendance"]);

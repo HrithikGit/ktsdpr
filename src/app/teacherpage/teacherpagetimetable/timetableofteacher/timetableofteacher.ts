@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Router,ActivatedRoute} from '@angular/router'
 
 const firebase = require("nativescript-plugin-firebase/app")
+const appSettings = require("tns-core-modules/application-settings")
 
 @Component({
     selector: "timetableofteacher",
@@ -23,6 +24,9 @@ export class timetableofteacherComponent {
     loading ;
     index;
     teacherid;
+    isclassteacher;
+    teacherclass;
+    teachersection;
     public constructor(private router:Router, private route:ActivatedRoute){
         this.index=0;
         this.tt =[];
@@ -31,6 +35,12 @@ export class timetableofteacherComponent {
         });
         this.loading = true;
         this.getData();
+        this.isclassteacher = false;
+        if(appSettings.getString("IsClassTeacher")=="True"){
+            this.isclassteacher= true;
+            this.teacherclass= parseInt(appSettings.getString("TeacherClass"));
+            this.teachersection = appSettings.getString("TeacherSection");
+        }
     }
 
 
@@ -144,7 +154,6 @@ export class timetableofteacherComponent {
     }
 
     public goHome(){
-        const appSettings = require("tns-core-modules/application-settings")
         this.router.navigate(["/"+appSettings.getString("TypeOfUser")], { replaceUrl: true });
     }
 }

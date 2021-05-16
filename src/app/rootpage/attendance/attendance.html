@@ -7,25 +7,35 @@
 <StackLayout class="top">
     <Label *ngIf="this.notready" class="loading" fontSize="20" text="Loading.. Please Wait"></Label>
   </StackLayout>
+   
+<ScrollView *ngIf="!this.notready" height="100%" backgroundColor="#f1f1f1">
+  <StackLayout> 
+  <template *ngFor="let row of this.students">
+    <GridLayout borderWidth="0.2" borderRadius="12" borderColor="gray" backgroundColor="white" marginRight="10" marginLeft="10" marginTop="10" rows="auto" columns="30*,70*">
+      <StackLayout row="0" col="0" verticalAlignment="center">
+        <Image width="80" height="80" stretch="aspectFill" marginTop="5" src="~/images/usericon.png"></Image> 
+        <Label horizontalAlignment="center" fontSize="15" fontWeight="500"  [text]="row.Student_Name" horizontalAlignment="center"></Label>
+      </StackLayout>  
+      <GridLayout row="0" col="1" rows="auto,auto,auto,auto" columns="40*,5*,55*">
+        <Label horizontalAlignment="center" color="#0074d9" fontSize="15" fontWeight="700"  text="Roll no. " row="0" col="0" textWrap="true"></Label> 
+        <Label horizontalAlignment="center" color="#0074d9" fontSize="15" fontWeight="700"  text=": " row="0" col="1" textWrap="true"></Label>
+        <Label horizontalAlignment="center" fontSize="15" fontWeight="500"  [text]="row.Student_Id" row="0" col="2" textWrap="true"></Label>
 
-  <GridLayout>
-      <label text=" "></label>
-      <ListView *ngIf="!this.notready" [items]="this.students">
-        <ng-template let-item="item">
-          <StackLayout>
-            <GridLayout rows="*,*,*" columns="auto,auto,auto,auto,*">
-              <Label text="Student :" class="local-heading" row="0" col="0"></Label>
-              <Label [text]="item.Student_Name" row="0" col="1" ></Label>
-              <Label text="Today : " class="local-heading" row="0" col="2"></Label>
-              <Label [text]="item.displaytod" fontWeight="500" style="color: {{ item.color}} " row="0" col="3"></Label>
-              <Label text="Total Attendance : " class="local-heading" row="1" col="0"></Label>
-              <Label [text]="item.Student_Attendance" row="1" col="1" fontWeight="500" style="color: {{ item.attcolor}} " ></Label>
-              <Label text="Last Recorded : " class="local-heading" row="2" col="0"></Label>
-              <Label [text]="item.Today_Date" row="2" col="1" class="example"></Label>
-            </GridLayout>
-            <Label class="line"></Label>
-          </StackLayout>
-        </ng-template> 
-      </ListView>
-    </GridLayout>
- 
+        <Label horizontalAlignment="center" color="#0074d9" fontSize="15" fontWeight="700"  text="Last Date" row="1" col="0" textWrap="true"></Label> 
+        <Label horizontalAlignment="center" color="#0074d9" fontSize="15" fontWeight="700"  text=": " row="1" col="1" textWrap="true"></Label>
+        <Label horizontalAlignment="center" fontSize="15" fontWeight="500"  [text]="row.Today_Date" row="1" col="2" textWrap="true"></Label> 
+        
+        <Label horizontalAlignment="center" color="#0074d9" fontSize="15" fontWeight="700"  text="Last Day" row="2" col="0" textWrap="true"></Label> 
+        <Label horizontalAlignment="center" color="#0074d9" fontSize="15" fontWeight="700"  text=": " row="2" col="1" textWrap="true"></Label>
+        <Label horizontalAlignment="center" color={{row.color}} fontSize="15" fontWeight="500"  [text]="row.displaytod" row="2" col="2" textWrap="true"  ></Label>
+        
+        <Label horizontalAlignment="center" color="#0074d9" fontSize="15" fontWeight="700"  text="Total" row="3" col="0" textWrap="true"></Label> 
+        <Label horizontalAlignment="center" color="#0074d9" fontSize="15" fontWeight="700"  text=": " row="3" col="1" textWrap="true"></Label>
+        <Label horizontalAlignment="center" color={{row.attcolor}} fontSize="15" fontWeight="500"  [text]="row.Student_Attendance+'%'" row="3" col="2" textWrap="true" ></Label>
+         
+      </GridLayout>   
+    </GridLayout>  
+  </template>  
+  </StackLayout> 
+</ScrollView>  
+    
