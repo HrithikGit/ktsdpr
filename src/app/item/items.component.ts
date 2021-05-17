@@ -113,6 +113,9 @@ export class ItemsComponent implements OnInit {
         this.waiting = false; 
         this.loading=false;
     }
+    issues(){
+        alert("Please Contact Administrator.!");
+    }
     updateandmove(type){
         appSettings.setString("AlreadyLoggedIn","Yes");
         appSettings.setString("TypeOfUser",type);
