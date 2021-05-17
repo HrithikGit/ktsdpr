@@ -28,16 +28,16 @@
     <Button (tap)="teacherpage()" text="Teacher"></Button>
     <Button (tap)="rootpage()" text="Root"></Button>
     <Button (tap)="studentpage()"text="Student"></Button>
-</StackLayout>-->
-
-
+</StackLayout>-->  
+ 
+ 
     
     <GridLayout rows="40*,20*,40*" columns="*" *ngIf="!this.loading">
         <StackLayout row="0" col="0">
 
-            <Image width="60%" height="60%" stretch="aspectFill" style="margin-top: 20%; padding-bottom: 10;" src="~/images/applogo.png"></Image>
+            <Image width="150" height="150" stretch="aspectFill" style="margin-top: 20%; padding-bottom: 10;" src="~/images/applogo.png"></Image>
             <Label text="Login" fontWeight="900" fontSize="30" horizontalAlignment="center"></Label>
-        </StackLayout>
+        </StackLayout> 
          
         <StackLayout width="80%" horizontalAlignment="left" row="1" col="0"  height="21%" style="border-width: 4px; border-top-right-radius: 80%; border-bottom-right-radius: 80%; border-right-color: black; background-color: #f1f1f1;">
             <GridLayout rows="*,auto,*" columns="*">
@@ -46,12 +46,13 @@
                 <TextField [(ngModel)]="this.pass" style="text-align: center;" secure="true" hint="Password" fontSize="20" style="border-bottom-width: 1; border-bottom-color: transparent; font-weight: bold;" row="2" col="0" width="100%" height="100%"></TextField>
             </GridLayout>
         </StackLayout>
+        
         <StackLayout row="1" col="0" style="margin-left:60%" verticalAlignment="center" (tap)="loginAuthenicate()">
-            <Image width="50%" height="50%" stretch="aspectFill" src="~/images/go.png" ></Image>
+            <Image width="70" height="70" stretch="aspectFill" src="~/images/go.png" ></Image>
         </StackLayout>
 
 
-        <StackLayout row="3" col="0">
+        <StackLayout row="3" col="0"> 
             <Label text="Having any login issues?" horizontalAlignment='center' fontSize="15" color="#0074d9" textDecoration="underline" style="margin-top:10%"></Label>
         </StackLayout>
     </GridLayout>
