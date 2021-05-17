@@ -1,27 +1,32 @@
 <ActionBar title="Classes">
   <ActionItem position="right" (tap)="goHome()">
       <Image height=40 width=40 src="~/images/homeicon.png"></Image>
-  </ActionItem>
+  </ActionItem> 
 </ActionBar> 
+ 
+<ScrollView height="100%">
+  <StackLayout>
+  <StackLayout backgroundColor="#f1f1f1">
+    <Label class="line" backgroundColor="gray"></Label> 
+    <Label *ngIf="this.notready" class="loading" fontSize="20" text="Loading.. Please Wait"></Label>
+    <Label *ngIf="!this.notready" class="heading" fontSize="20" fontWeight="700" text="Select a Class !"></Label>
+    <Label class="line" backgroundColor="gray"></Label>
+  </StackLayout>
 
-<StackLayout>
-
-<StackLayout>
-  <Label *ngIf="this.notready" class="loading" fontSize="20" text="Loading.. Please Wait"></Label>
-  <Label *ngIf="!this.notready" class="heading" fontSize="20" text="Select a Class"></Label>
+  <StackLayout *ngIf="!this.notready">
+  <template *ngFor="let row of this.classes; let i=index"> 
+    <GridLayout paddingTop="20" columns="*,*,*" rows="auto">
+    <Button  *ngIf="3*i<this.classes.length"   [nsRouterLink]="['/',this.detail,this.classes[3*i].Class_Id,this.classes[3*i].Class_Section]" pageTransition="fade" [text]="this.classes[3*i].Class_Id+' - '+this.classes[3*i].Class_Section" color="white" fontWeight="800" fontSize="15" width="75" height="60" row="0" col="0"  style="border-radius: 15; background-color: #0074d9;"></Button>
+    <Button  *ngIf="3*i+1<this.classes.length" [nsRouterLink]="['/',this.detail,this.classes[3*i+1].Class_Id,this.classes[3*i+1].Class_Section]" pageTransition="fade" [text]="this.classes[3*i+1].Class_Id+' - '+this.classes[3*i+1].Class_Section" color="white" fontWeight="800" fontSize="15" width="75" height="60" row="0" col="1"  style="border-radius: 15; background-color: #0074d9;" ></Button>
+    <Button  *ngIf="3*i+2<this.classes.length" [nsRouterLink]="['/',this.detail,this.classes[3*i+2].Class_Id,this.classes[3*i+2].Class_Section]" pageTransition="fade" [text]="this.classes[3*i+2].Class_Id+' - '+this.classes[3*i+2].Class_Section" color="white" fontWeight="800" fontSize="15" width="75" height="60" row="0" col="2"  style="border-radius: 15; background-color: #0074d9;"></Button>
+    </GridLayout>
+  </template>
 </StackLayout>
-
-<GridLayout>
-    <ListView *ngIf="!this.notready" [items]="this.classes">
-      <ng-template let-item="item">
-        <GridLayout [nsRouterLink]="['/'+this.detail, item.Class_Id,item.Class_Section]" rows="auto" columns="auto,auto,auto,auto">
-          <Label text="Class :" row="0" col="0"></Label>
-          <Label [text]="item.Class_Id" row="0" col="1" ></Label>
-          <Label text="Section : " row="0" col="2"></Label>
-          <Label [text]="item.Class_Section" row="0" col="3"></Label>
-        </GridLayout>
-      </ng-template>
-    </ListView>
-  </GridLayout>
-
-</StackLayout>
+ 
+  <Label paddingTop="20" *ngIf="!this.notready" [nsRouterLink]="['/deleteclass']" pageTransition="fade" fontWeight="300" horizontalAlignment="center" color="#0074d9">
+    <FormattedString>
+      <Span text="Add or Delete a Class " underline="true"></Span>
+    </FormattedString>
+  </Label> 
+  </StackLayout> 
+</ScrollView>      

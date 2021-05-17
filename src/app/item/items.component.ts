@@ -94,8 +94,8 @@ export class ItemsComponent implements OnInit {
                 .then(result=>{
                     result.forEach(doc=>{
                         appSettings.setString("IsClassTeacher","True");
-                        appSettings.setString("Class",doc.data()["Class_Id"]+"");
-                        appSettings.setString("Section",doc.data()["Class_Section"]);
+                        appSettings.setString("TeahcerClass",doc.data()["Class_Id"]+"");
+                        appSettings.setString("TeacherSection",doc.data()["Class_Section"]);
                     })
                 })
                 this.waiting = false;
@@ -128,6 +128,7 @@ export class ItemsComponent implements OnInit {
         this.router.navigate(["student"])
     }
     teacherpage(){
+        appSettings.setString("TeacherId","13");
         appSettings.setString("TypeOfUser","teacher");
         this.router.navigate(["teacher"])
     }

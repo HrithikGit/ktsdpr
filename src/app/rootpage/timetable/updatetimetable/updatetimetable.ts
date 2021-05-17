@@ -7,6 +7,7 @@ import {LoadingIndicator,Mode,OptionsCommon} from '@nstudio/nativescript-loading
 const indicator = new LoadingIndicator();
 
 const firebase = require("nativescript-plugin-firebase/app");
+const appSettings = require("tns-core-modules/application-settings")
 
 @Component({
     selector: "updatetimetable",
@@ -30,11 +31,23 @@ export class updatetimetableComponent {
     onday;
     currday;
 
+    isclassteacher;
+    teacherid;
+    isroot;
+
     public constructor(private router:Router,private route:ActivatedRoute){
         this.route.params.subscribe((params)=>{
             this.class_id=params["name"];
             this.section = params["section"];
         });
+        if(appSettings.getString("TypeOfUser")=="root"){
+            this.isroot = true;
+        }
+        this.isclassteacher = true; 
+        if(appSettings.getString("TypeOfUser")=="teacher"){
+            this.teacherid = parseInt(appSettings.getString("TeacherId"));
+        }
+
         this.onload();
         this.currday="";
     }
@@ -156,9 +169,9 @@ export class updatetimetableComponent {
 
 
     remove(val){
-        console.log(val+" IS Y+THE VALUE");
+        // console.log(val+" IS Y+THE VALUE");
         this.rows.splice(val,1);
-        console.log(this.rows);
+        // console.log(this.rows);
     }
 
     addcol(){
@@ -206,14 +219,14 @@ export class updatetimetableComponent {
             todel  = [...this.saturday];
         }
 
-        console.log(todel);
+        // console.log(todel);
         for(var i=0;i<todel.length;i++){
             const del = firebase.firestore().collection(this.currday).doc(todel[i]["id"]);
             await del.delete();
         }
 
         const toadd = firebase.firestore().collection(this.currday);
-        console.log(parseInt(this.class_id)+" "+this.section);
+        // console.log(parseInt(this.class_id)+" "+this.section);
         for(var i=0;i<this.rows.length;i++){
             await toadd.add({
                 Class_Id : parseInt(this.class_id),
@@ -247,7 +260,6 @@ export class updatetimetableComponent {
     }
 
     public goHome(){
-        const appSettings = require("tns-core-modules/application-settings")
         this.router.navigate(["/"+appSettings.getString("TypeOfUser")], { replaceUrl: true });
     }
 }

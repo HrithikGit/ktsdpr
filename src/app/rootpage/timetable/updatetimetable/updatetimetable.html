@@ -2,11 +2,25 @@
   <ActionItem position="right" (tap)="goHome()">
       <Image height=40 width=40 src="~/images/homeicon.png"></Image>
   </ActionItem>
-</ActionBar> 
+</ActionBar>
 
-<Label *ngIf="!this.bool" text="Loading... Please wait"></Label>
+<Label *ngIf="!this.bool" class="loading" fontWeight="700"  fontSize="17" text="Loading... Please wait"></Label>
 
-<StackLayout>
+<StackLayout *ngIf="this.isclassteacher && this.bool">
+  <Label text="" width="100%" height="2px" color="gray"></Label>
+  <GridLayout *ngIf="!this.isroot" rows="auto" columns="50*,50*">
+    <StackLayout [nsRouterLink]="['/timetableofteacher',this.teacherid]" pageTransition="slideRight"  backgroudColor="#f1f1f1" clearHistory="true" row="0" col="0">
+      <Label horizontalAlignment="center" text="Your Time Table" fontWeight="800"  fontSize="17" color="black"></Label>
+    </StackLayout>
+    <StackLayout  row="0" col="1" backgroundColor="black">
+      <Label horizontalAlignment="center" text="Class Time Table" fontWeight="800"  fontSize="17" color="#f1f1f1"></Label>
+    </StackLayout>
+  </GridLayout>
+  <Label text="" width="100%" height="2px" color="gray"></Label>
+ 
+ 
+
+<StackLayout *ngIf="this.bool">
 <GridLayout columns="*,*,*" rows="auto,auto,auto">
     <Button *ngIf="this.bool" text="Monday" row="0" col="0" width="33%" (tap)="mon()" style="background-color: {{this.moncol}}"></Button>
     <Button *ngIf="this.bool" text="Tuesday" row="0" col="1" width="33%" (tap)="tue()" style="background-color:{{this.tuecol}}"></Button>
@@ -22,7 +36,7 @@
   <Button *ngIf="this.bool" text="Change" row="0" col="1" width="50%" (tap)="change()" style="background-color: #76D7C4 ;"></Button>
 </GridLayout>
 
-   <ScrollView height="100%" *ngIf="this.bool">
+   <ScrollView height="80%" *ngIf="this.bool">
      <StackLayout>
      <GridLayout rows="auto" columns="13*,15*,12*,15*,12*,20*,13*">
       <Label text="Start Time" col="1" row="0" width="15%" horizontalAlignment="center"></Label>
@@ -40,5 +54,7 @@
      </template>
     </StackLayout>
    </ScrollView>
+
+</StackLayout>
 
 </StackLayout>

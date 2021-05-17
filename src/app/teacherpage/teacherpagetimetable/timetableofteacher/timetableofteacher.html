@@ -5,10 +5,22 @@
   </ActionItem>
 </ActionBar> 
 
-<StackLayout>
-  <ScrollView height="85%">
+<Label *ngIf="this.loading" fontWeight="700"  fontSize="17" text="Loading...Please wait" class="loading"></Label>
+
+<StackLayout *ngIf="!this.loading">
+  <GridLayout *ngIf="!this.loading" rows="auto" columns="50*,50*">
+    <StackLayout  backgroundColor="black" clearHistory="true" row="0" col="0">
+      <Label horizontalAlignment="center" text="Your Time Table" fontWeight="800"  fontSize="17" color="#f1f1f1"></Label>
+    </StackLayout>
+    <StackLayout [nsRouterLink]="['/updatetimetable',this.teacherclass,this.teachersection]" pageTransition="slideLeft" row="0" col="1" backgroundColor="#f1f1f1">
+      <Label horizontalAlignment="center" text="Class Time Table" fontWeight="800"  fontSize="17" color="black"></Label>
+    </StackLayout>
+  </GridLayout> 
+ 
+ 
+
+  <ScrollView *ngIf="!this.loading" height="85%">
   <StackLayout verticalAlignment="center">
-  <Label *ngIf="this.loading" text="Loading...Please wait" class="loading"></Label>
   <StackLayout *ngIf="!this.loading">
       <Button (tap)="openMonday()" text="Monday"  class="plusbutton" height="10%" width="100%"></Button>
       <StackLayout *ngIf="openmonday" style="background-color: #c0c0c0;">
