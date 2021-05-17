@@ -1,7 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit,NgModule } from "@angular/core";
 import { NativeScriptFormsModule } from "@nativescript/angular/forms";
 import { Page } from "tns-core-modules/ui/page";
 import {Router} from "@angular/router";
+
+
+
 
 const firebase = require("nativescript-plugin-firebase/app");
 const appSettings = require("tns-core-modules/application-settings");
@@ -10,6 +13,7 @@ const appSettings = require("tns-core-modules/application-settings");
 firebase.initializeApp({
   persist: false
 }).then(instance =>( console.log("Intialized from component ")));
+
 @Component({
     selector: "ns-items",
     templateUrl: "./items.component.html",
@@ -32,12 +36,14 @@ export class ItemsComponent implements OnInit {
         this.page.actionBarHidden = true;
         // this.page.actionBar.title="Title check"         (Action Bar Title)
     }
- 
+    loading=false;
     async loginAuthenicate(){
         this.waiting = true;
+        this.loading=true;
         this.user.trim();
         if(this.user.length==0 || this.pass.length==0){
             alert("Invalid Email or PassWord\n Try Re-entering Details");
+            this.loading=false;
             return ;
         }
         var isValid = false;
@@ -105,6 +111,7 @@ export class ItemsComponent implements OnInit {
             this.notcorrect = true; 
         }
         this.waiting = false; 
+        this.loading=false;
     }
     updateandmove(type){
         appSettings.setString("AlreadyLoggedIn","Yes");

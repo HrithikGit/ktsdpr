@@ -56,6 +56,10 @@ Button.-primary {
     height: 2px;
 }
 
+.single-line{
+    background: linear-gradient(to left, black,black,black);
+}
+
 
 .loading{
     color: lightseagreen;
