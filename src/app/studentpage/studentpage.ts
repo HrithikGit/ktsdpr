@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import * as application from "tns-core-modules/application";
 import { AndroidApplication, AndroidActivityBackPressedEventData } from "tns-core-modules/application";
+import { confirm } from "tns-core-modules/ui/dialogs";
 
 const appSettings = require("tns-core-modules/application-settings");
 
@@ -58,7 +59,28 @@ export class studentpageComponent {
         this.router.navigate(["studentmarks",this.studentclass,this.studentsection,this.studentid]);
     }
     
-    public logout(){
+    public async logout(){
+      var stop = false;
+        await confirm({
+            title: "Your title",
+            message: "Are you sure you want to logout?",
+            okButtonText: "Yes",
+            cancelButtonText: "No",
+            neutralButtonText: "Cancel"
+         }).then(result=>{
+             if(result==false){
+                 stop = true;
+             }
+             else if(result==true){
+                 stop = false;
+             }
+             else{
+                 stop = true;
+             }
+         })
+        if(stop){
+            return ;
+        }
       appSettings.clear();
       this.router.navigate(["items"]);
     }
