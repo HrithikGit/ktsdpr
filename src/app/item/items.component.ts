@@ -2,8 +2,7 @@ import { Component, OnInit,NgModule } from "@angular/core";
 import { NativeScriptFormsModule } from "@nativescript/angular/forms";
 import { Page } from "tns-core-modules/ui/page";
 import {Router} from "@angular/router";
-
-
+import { alert, prompt } from "tns-core-modules/ui/dialogs";
 
 
 const firebase = require("nativescript-plugin-firebase/app");
@@ -26,9 +25,9 @@ export class ItemsComponent implements OnInit {
     waiting ;
     constructor(private router: Router,private page: Page) {
         this.waiting = true;
-        // if(appSettings.getString("AlreadyLoggedIn")=="Yes"){
-        //     this.router.navigate([appSettings.getString("TypeOfUser")]);
-        // }
+        if(appSettings.getString("AlreadyLoggedIn")=="Yes"){
+            this.router.navigate([appSettings.getString("TypeOfUser")]);
+        }
         this.waiting = false;
         this.notcorrect = false;
     }
@@ -52,11 +51,14 @@ export class ItemsComponent implements OnInit {
         var documentid ="";
         const userCollection = firebase.firestore().collection("Users").where("Username","==",this.user)
         .where("Password","==",this.pass);
+        var firsttime;
         await userCollection.get().then(result=>{
             result.forEach(doc=>{
                 isValid = true;
                 documentid = doc.id;
-                console.log(doc.data());
+                if(doc.data()["FirstLogin"]){
+                    firsttime = true;
+                }
                 personid = doc.data()["Id"];
                 if(doc.data()["Type"]=="Teacher"){
                     type="teacher";
@@ -71,6 +73,39 @@ export class ItemsComponent implements OnInit {
             })
         })  
         if(isValid){  
+
+            var returntopage;
+            if(firsttime){
+                await prompt({
+                    title: "Change Password",
+                    message: "Enter new Password",
+                    defaultText: "",
+                    okButtonText: "Ok",
+                    cancelButtonText: "Cancel"
+                  }).then((data) => { 
+                    if (data.result) {
+                        if(data.text.trim().length==0){
+                            alert("Password cannot be empty ! Retry");
+                            returntopage = true;
+                            return;
+                        }
+                       this.changePassword(data.text,documentid);
+                      alert({
+                        title: "Welcome",
+                        message: "Your password was successfully reset.",
+                        okButtonText: "Ok"
+                      })
+                    }
+                    else{
+                        returntopage =true;
+                    }
+                  }); 
+            }
+            if(returntopage){
+                this.loading = false;
+                return;
+            }
+
             this.waiting = true;
             if(type=="student"){
                 await firebase.firestore().collection("Student").where("Unq_Id","==",personid).get()
@@ -118,6 +153,14 @@ export class ItemsComponent implements OnInit {
         this.waiting = false; 
         this.loading=false;
     }
+
+    async changePassword(givenpass,givendoc){
+        await firebase.firestore().collection("Users").doc(givendoc).update({
+            // FirstLogin : false,
+            Password : givenpass
+        });
+    }
+
     issues(){
         alert("Please Contact Administrator.!");
     }

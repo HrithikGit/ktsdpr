@@ -214,7 +214,8 @@ export class addteacherComponent implements OnInit {
             Username : this.teacher_name.trim()+this.teacherid,
             Password : "1234",
             Type : "Teacher",
-            Id: this.teacherid
+            Id: this.teacherid,
+            FirstLogin : true
         })
         this.waiting = false;
         indicator.hide();

@@ -1,11 +1,11 @@
-<StackLayout verticalAlignment="center">
+<!-- <StackLayout verticalAlignment="center">
     <Button (tap)="teacherpage()" text="Teacher"></Button>
     <Button (tap)="rootpage()" text="Root"></Button>
     <Button (tap)="studentpage()"text="Student"></Button>
-</StackLayout>
+</StackLayout> -->
 
-
-<!-- <GridLayout rows="40*,20*,40*" columns="*" *ngIf="!this.loading" class="root-bg">
+ 
+<GridLayout rows="40*,20*,40*" columns="*" *ngIf="!this.loading" class="root-bg">
     <StackLayout row="0" col="0" verticalAlignment="bottom">
 
         <Image width="130" height="130" stretch="aspectFill" style="padding-bottom: 10;" src="~/images/applogo.png"></Image>
@@ -34,6 +34,8 @@
         <Label text="Having any login issues?" horizontalAlignment='center' fontSize="15" color="white" (tap)="issues()"  textDecoration="underline" style="margin-top:10%"></Label></StackLayout>
     </StackLayout>
 </GridLayout>
-<StackLayout *ngIf="this.loading">
-    <Image horizontalAlignment="center" style="margin-top: 30%;" stretch="aspectFit" src="~/images/rl.png"></Image>
-</StackLayout> -->
+<StackLayout verticalAlignment="center" *ngIf="this.loading">
+    <Image horizontalAlignment="center" height="250" width="250" stretch="aspectFill" src="~/images/rl.png"></Image>
+    <Label text="Loading... Please Wait !!" class="loading" fontSize="17"></Label>
+</StackLayout>
+      
