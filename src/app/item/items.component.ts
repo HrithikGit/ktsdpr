@@ -69,14 +69,17 @@ export class ItemsComponent implements OnInit {
                     type="student";
                 }
             })
-        }) 
-        if(isValid){ 
+        })  
+        if(isValid){  
             this.waiting = true;
             if(type=="student"){
                 await firebase.firestore().collection("Student").where("Unq_Id","==",personid).get()
                 .then(result=>{
                     result.forEach(doc=>{
-                        appSettings.setString("unq_id",doc.data().Unq_Id);
+                        appSettings.setString("unq_id",doc.data().Unq_Id+"");
+                        appSettings.setString("StudentClass",doc.data().Class_Id+"");
+                        appSettings.setString("StudentSection",doc.data().Class_Section);
+                        appSettings.setString("RollNumber",doc.data()["Student_Id"]+"");
                     }) 
                 })
                 this.updateandmove(type); 
@@ -84,6 +87,7 @@ export class ItemsComponent implements OnInit {
 
 
             else if(type=="teacher"){
+                appSettings.setString("TeacherId",personid+"");
                 await firebase.firestore().collection("Teacher").where("Teacher_Id","==",personid).get()
                 .then(result=>{
                     result.forEach(doc=>{
@@ -94,7 +98,7 @@ export class ItemsComponent implements OnInit {
                 .then(result=>{
                     result.forEach(doc=>{
                         appSettings.setString("IsClassTeacher","True");
-                        appSettings.setString("TeahcerClass",doc.data()["Class_Id"]+"");
+                        appSettings.setString("TeacherClass",doc.data()["Class_Id"]+"");
                         appSettings.setString("TeacherSection",doc.data()["Class_Section"]);
                     })
                 })
@@ -136,4 +140,3 @@ export class ItemsComponent implements OnInit {
         this.router.navigate(["teacher"])
     }
 }
- 

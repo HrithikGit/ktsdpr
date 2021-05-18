@@ -14,15 +14,16 @@ const appSettings = require("tns-core-modules/application-settings");
  
 export class teacherpageComponent {
     isClassTeacher;
-    teacherid="13";
+    teacherid=13;
     exit_tapped;
-    obj={classteacherclass:"1", classteachersection:"A"}; 
+    obj={classteacherclass:1, classteachersection:"A"}; 
     public constructor(private rtr:RouterExtensions,private router: Router) {
         this.exit_tapped = false;
+        this.teacherid = parseInt(appSettings.getString("TeacherId"));
         if(appSettings.getString("IsClassTeacher")=="True"){
             this.isClassTeacher=true;
-            this.obj.classteacherclass = appSettings.getString("Class");
-            this.obj.classteachersection = appSettings.getString("Section");
+            this.obj.classteacherclass = parseInt(appSettings.getString("TeacherClass"));
+            this.obj.classteachersection = appSettings.getString("TeacherSection");
         }
         else{
             this.isClassTeacher = false;
@@ -59,15 +60,14 @@ export class teacherpageComponent {
         this.router.navigate(["deletestudent",this.obj.classteacherclass,this.obj.classteachersection]);
     }
     timetable(): void{
-        this.router.navigate(["teacherpagetimetable",this.obj.classteacherclass,this.obj.classteachersection]);
+        this.router.navigate(["timetableofteacher",this.teacherid]);
     }
     marks():void{
-        this.router.navigate(["teacherpagemarks",this.obj.classteacherclass,this.obj.classteachersection,parseInt(this.teacherid)]);
+        this.router.navigate(["teacherpagemarks",this.obj.classteacherclass,this.obj.classteachersection,this.teacherid]);
     }
     attendance():void{
-        this.router.navigate(["teacherpageattendance",this.obj.classteacherclass,this.obj.classteachersection]
-        
-        );    }
+        this.router.navigate(["teacherpageattendance",this.obj.classteacherclass,this.obj.classteachersection]);
+    }
     blog(): void{
         this.router.navigate(["blog","teacher"]);
     }

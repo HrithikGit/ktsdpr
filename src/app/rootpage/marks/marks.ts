@@ -88,7 +88,7 @@ export class marksComponent {
         if(stop){
             return ;
         }
-
+        this.examtype=this.examtype.toUpperCase();
         const options: OptionsCommon = {
             message: 'Loading...',
             details: 'Please Wait',
@@ -103,7 +103,15 @@ export class marksComponent {
           };
           indicator.show(options);
 
-
+        for(var i=0;i<classes_selected.length;i++){
+          this.sel_class=classes_selected[i]["Class_Id"];
+            this.sel_sec=classes_selected[i]["Class_Section"];
+            this.checkunits();
+            if(this.class_units.includes(this.examtype)){
+                alert("Exam type already present in class "+this.sel_class+"-"+this.sel_sec);
+                return;
+            }
+        }
 
 
         for(var i=0;i<classes_selected.length;i++){
@@ -116,6 +124,9 @@ export class marksComponent {
                     subjects.push(doc.data().Subject_Name);
                 })
             })
+
+
+            
 
             const students=firebase.firestore().collection("Student").where("Class_Id","==",parseInt(classes_selected[i]["Class_Id"]))
             .where("Class_Section","==",classes_selected[i]["Class_Section"]);
@@ -166,13 +177,13 @@ export class marksComponent {
 
     }
 
-    class_units=[];
 
-    async getunits(){
-        var unitset=new Set();
+    async checkunits(){
         this.class_units=[];
+        var unitset=new Set();
         const units=firebase.firestore().collection("Marks").where("Student_Class","==",parseInt(this.sel_class))
         .where("Student_Section","==",this.sel_sec);
+
         await units.get().then(result=>{
             result.forEach(doc=>{
                 var data=doc.data();
@@ -182,7 +193,30 @@ export class marksComponent {
                 }
             })
         })
+    }
+
+
+    class_units=[];
+    fetching=false;
+    async getunits(){
+        var unitset=new Set();
+        this.class_units=[];
+        this.fetching=true;
         this.is_Class_Selected=true;
+        const units=firebase.firestore().collection("Marks").where("Student_Class","==",parseInt(this.sel_class))
+        .where("Student_Section","==",this.sel_sec);
+
+        await units.get().then(result=>{
+            result.forEach(doc=>{
+                var data=doc.data();
+                if(!unitset.has(data.Exam_Type)){
+                    unitset.add(data.Exam_Type);
+                    this.class_units.push(data.Exam_Type);
+                }
+            })
+        })
+        
+        this.fetching=false;
     }
 
     async removeexam(i){
