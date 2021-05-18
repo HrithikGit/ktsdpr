@@ -4,6 +4,8 @@ import * as application from "tns-core-modules/application";
 import { AndroidApplication, AndroidActivityBackPressedEventData } from "tns-core-modules/application";
 import { Page } from "tns-core-modules/ui/page";
 import { confirm } from "tns-core-modules/ui/dialogs";
+import {LoadingIndicator,Mode,OptionsCommon} from '@nstudio/nativescript-loading-indicator';
+const indicator = new LoadingIndicator();
 
 const appSettings = require("tns-core-modules/application-settings")
 
@@ -69,7 +71,7 @@ export class rootpageComponent{
     public async logout(){
         var stop = false;
         await confirm({
-            title: "Your title",
+            title: "Logout",
             message: "Are you sure you want to logout?",
             okButtonText: "Yes",
             cancelButtonText: "No",
@@ -88,7 +90,21 @@ export class rootpageComponent{
         if(stop){
             return ;
         }
+        const options: OptionsCommon = {
+            message: 'Loading...',
+            details: 'Please Wait',
+            progress: 0.65, 
+            margin: 10,
+            dimBackground: true,
+            color: '#FF392E', 
+            backgroundColor: 'yellow',
+            userInteractionEnabled: false,
+            hideBezel: true,
+            mode: Mode.Indeterminate
+          };
+          indicator.show(options);
         appSettings.clear();
+        indicator.hide();
         this.router.navigate(["items"]);
     }
     

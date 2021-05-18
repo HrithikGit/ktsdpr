@@ -4,6 +4,8 @@ import { RouterExtensions } from "@nativescript/angular/router";
 import * as application from "tns-core-modules/application";
 import { AndroidApplication, AndroidActivityBackPressedEventData } from "tns-core-modules/application";
 import { confirm } from "tns-core-modules/ui/dialogs";
+import {LoadingIndicator,Mode,OptionsCommon} from '@nstudio/nativescript-loading-indicator';
+const indicator = new LoadingIndicator();
 
 const appSettings = require("tns-core-modules/application-settings");
 
@@ -14,15 +16,16 @@ const appSettings = require("tns-core-modules/application-settings");
  
 export class teacherpageComponent {
     isClassTeacher;
-    teacherid="13";
+    teacherid;
     exit_tapped;
-    obj={classteacherclass:"1", classteachersection:"A"}; 
+    obj={classteacherclass:1, classteachersection:"A"}; 
     public constructor(private rtr:RouterExtensions,private router: Router) {
         this.exit_tapped = false;
+        this.teacherid = parseInt(appSettings.getString("TeacherId"));
         if(appSettings.getString("IsClassTeacher")=="True"){
             this.isClassTeacher=true;
-            this.obj.classteacherclass = appSettings.getString("Class");
-            this.obj.classteachersection = appSettings.getString("Section");
+            this.obj.classteacherclass = parseInt(appSettings.getString("TeacherClass"));
+            this.obj.classteachersection = appSettings.getString("TeacherSection");
         }
         else{
             this.isClassTeacher = false;
@@ -55,11 +58,12 @@ export class teacherpageComponent {
             var Toast = require("nativescript-toast");
             var toast = Toast.makeText("You Aren't a Class Teacher");
             toast.show();
-        }
+            return ;
+        } 
         this.router.navigate(["deletestudent",this.obj.classteacherclass,this.obj.classteachersection]);
     }
     timetable(): void{
-        this.router.navigate(["teacherpagetimetable",this.obj.classteacherclass,this.obj.classteachersection]);
+        this.router.navigate(["timetableofteacher",this.teacherid]);
     }
     marks():void{
         this.router.navigate(["teacherpagemarks",this.obj.classteacherclass,this.obj.classteachersection,parseInt(this.teacherid)]);
@@ -75,7 +79,7 @@ export class teacherpageComponent {
     public async logout(){
         var stop = false;
         await confirm({
-            title: "Your title",
+            title: "Logout",
             message: "Are you sure you want to logout?",
             okButtonText: "Yes",
             cancelButtonText: "No",
@@ -94,7 +98,21 @@ export class teacherpageComponent {
         if(stop){
             return ;
         }
+        const options: OptionsCommon = {
+            message: 'Loading...',
+            details: 'Please Wait',
+            progress: 0.65, 
+            margin: 10,
+            dimBackground: true,
+            color: '#FF392E', 
+            backgroundColor: 'yellow',
+            userInteractionEnabled: false,
+            hideBezel: true,
+            mode: Mode.Indeterminate
+          };
+          indicator.show(options);
         appSettings.clear();
+        indicator.hide();
         this.router.navigate(["items"]);
     }
 

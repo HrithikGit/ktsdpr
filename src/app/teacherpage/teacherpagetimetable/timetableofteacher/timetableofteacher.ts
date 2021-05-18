@@ -31,7 +31,7 @@ export class timetableofteacherComponent {
         this.index=0;
         this.tt =[];
         this.route.params.subscribe((params)=>{
-            this.teacherid=params["teacherid"];
+            this.teacherid=parseInt(params["teacherid"]);
         });
         this.loading = true;
         this.getData();
@@ -41,7 +41,7 @@ export class timetableofteacherComponent {
             this.teacherclass= parseInt(appSettings.getString("TeacherClass"));
             this.teachersection = appSettings.getString("TeacherSection");
         }
-    }
+    } 
 
 
     async join(str){

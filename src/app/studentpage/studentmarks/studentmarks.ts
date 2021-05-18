@@ -51,7 +51,7 @@ export class studentmarksComponent{
                 else{this.exammarks[this.indexes[data.Exam_Type]][data.Subject]=data.Student_Marks;}
                 console.log(data);
             })
-        })
+        }) 
         console.log(this.exammarks);
         this.waiting=false;
     }

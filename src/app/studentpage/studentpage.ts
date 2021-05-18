@@ -3,6 +3,9 @@ import {Router} from "@angular/router";
 import * as application from "tns-core-modules/application";
 import { AndroidApplication, AndroidActivityBackPressedEventData } from "tns-core-modules/application";
 import { confirm } from "tns-core-modules/ui/dialogs";
+import {LoadingIndicator,Mode,OptionsCommon} from '@nstudio/nativescript-loading-indicator';
+const indicator = new LoadingIndicator();
+
 
 const appSettings = require("tns-core-modules/application-settings");
 
@@ -13,13 +16,17 @@ const appSettings = require("tns-core-modules/application-settings");
 })
 export class studentpageComponent {
     studentclass ;
-    studentsection;
+    studentsection; 
     exit_tapped ;
-    studentid=16;
+    studentid;
+    unqid;
     public constructor(private router: Router) {
         this.exit_tapped = false;
         this.studentclass = parseInt(appSettings.getString("StudentClass"));
-        this.studentsection = parseInt(appSettings.getString("StudentSection"));
+        this.studentsection = appSettings.getString("StudentSection");
+        this.studentid = parseInt(appSettings.getString("RollNumber"))
+        this.unqid = parseInt(appSettings.getString("unq_id"));
+        console.log(this.studentclass+" "+this.studentsection+" "+this.studentid+" "+this.unqid);
     }
     
     ngOnInit() {
@@ -42,27 +49,11 @@ export class studentpageComponent {
           }
         android.os.Process.killProcess(android.os.Process.myPid());
       }
-
-    attendance(){
-        this.router.navigate(["studentattendance",appSettings.getString("unq_id")]);
-    }
-    timetable(){
-        this.router.navigate(["displaytimetable",this.studentclass,this.studentsection]);
-    }
-    blog(){
-        this.router.navigate(["blog","Student"]);
-    }
-    about(){
-        this.router.navigate(["studentpageabout"]);
-    }
-    marks(){
-        this.router.navigate(["studentmarks",this.studentclass,this.studentsection,this.studentid]);
-    }
     
     public async logout(){
       var stop = false;
         await confirm({
-            title: "Your title",
+            title: "Logout",
             message: "Are you sure you want to logout?",
             okButtonText: "Yes",
             cancelButtonText: "No",
@@ -81,8 +72,22 @@ export class studentpageComponent {
         if(stop){
             return ;
         }
-      appSettings.clear();
-      this.router.navigate(["items"]);
+        const options: OptionsCommon = {
+            message: 'Loading...',
+            details: 'Please Wait',
+            progress: 0.65, 
+            margin: 10,
+            dimBackground: true,
+            color: '#FF392E', 
+            backgroundColor: 'yellow',
+            userInteractionEnabled: false,
+            hideBezel: true,
+            mode: Mode.Indeterminate
+          };
+          indicator.show(options);
+        appSettings.clear();
+        indicator.hide();
+        this.router.navigate(["items"]);
     }
 
 }

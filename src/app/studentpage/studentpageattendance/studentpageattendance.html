@@ -1,4 +1,4 @@
-<ActionBar title="Attendance" color="white">
+<ActionBar title="Attendance" hotizontalAlignment="center">
     <ActionItem position="right" (tap)="goHome()">
         <Image height=40 width=40 src="~/images/homeicon.png"></Image>
     </ActionItem>
@@ -15,8 +15,15 @@
         </StackLayout>  
         
         <GridLayout [columns]="columns" class="progressbar">
-            <StackLayout col="0" class="progressbar-value"></StackLayout>
-        </GridLayout> 
+            <StackLayout col="0" class="progressbar-value" style="background-color: {{this.color}};"></StackLayout>
+        </GridLayout>
+        
+        <StackLayout>
+        <Label fontSize="17" horizontalAlignment="center" paddingBottom="10" fontWeight="600" color="{{this.color}}" text="Percentage : {{this.data.Student_Attendance}} "></Label>
+        <Label *ngIf="this.data.Student_Attendance>=75" fontSize="13" horizontalAlignment="center" paddingBottom="20" fontWeight="300" color="{{this.color}}" text="Keep it up :-)"></Label>
+        <Label *ngIf="this.data.Student_Attendance<75 && this.data.Student_Attendance>50" fontSize="13" horizontalAlignment="center" paddingBottom="20" fontWeight="300" color="{{this.color}}" text="Be more regular :-/"></Label>
+        <Label *ngIf="this.data.Student_Attendance<=50" fontSize="13" horizontalAlignment="center" paddingBottom="20" fontWeight="300" color="{{this.color}}" text="Don't skip classes "></Label>
+        </StackLayout>
 
         <StackLayout backgroundColor="#f1f1f1">
             <Label fontWeight="900" fontSize="16" text="Your Last Three Records :" horizontalAlignment="center" textWrap="true"></Label>
@@ -32,4 +39,4 @@
             </template>
         </StackLayout>
     </StackLayout>    
-</ScrollView> 
+</ScrollView>  

@@ -1,4 +1,4 @@
-<ActionBar title="Manage Teacher">
+<!-- <ActionBar title="Manage Teacher">
   <ActionItem position="right" (tap)="goHome()">
       <Image height=40 width=40 src="~/images/homeicon.png"></Image>
   </ActionItem>
@@ -6,12 +6,12 @@
 
 <StackLayout>
     <StackLayout>
-      <Label *ngIf="this.waiting" text="Please wait.... Loading"></Label>
+      <Label *ngIf="this.waiting" fontSize="17" text="Please wait.... Loading"></Label>
       <Label text="Teacher Name : {{this.teacher_name}}" class="local-heading" horizontalAlignment="center"></Label>
       <Button *ngIf="!this.waiting" text="Add Class and Section" (tap)="addrow()" class="plusbutton"></Button>
     </StackLayout>
 
-    
+     
     
     <ScrollView height="80%">
     <StackLayout>
@@ -37,5 +37,55 @@
     <StackLayout>
       <Button text="Confirm changes" (tap)="confirmchanges()" class="addbutton"></Button>
     </StackLayout>
-  </StackLayout>
+  </StackLayout> -->
+
+
+  <ActionBar title="Manage Teacher">
+    <ActionItem position="right" (tap)="goHome()">
+        <Image height=40 width=40 src="~/images/homeicon.png"></Image>
+    </ActionItem>
+  </ActionBar> 
+
+<ScrollView height="100%">
+<StackLayout>
+    <Label text="Teacher Name" class="local-heading"></Label>
+    <TextField [(ngModel)]="this.teacher_name" class="input-add-db" ></TextField>
+    <Button (tap)="addrow()" text="Add a class and section" class="addbutton" width="10%" class="plusbutton" width="90%" horizontalAlignment="left"></Button>
+
+    <StackLayout>
+    <template *ngFor="let row of this.rows; let i=index">
+    <GridLayout rows="auto,auto,auto,auto" columns="40*,40*,10*">
+        <Label text="Class" row="0" col="0" class="local-heading"></Label>
+        <Label text="Section" row="0" col="1" class="local-heading"></Label>
+        <TextField height="8%" [(ngModel)]="row.Class_Id" row="1" col="0" class="input-add-db"></TextField>
+        <TextField height="8%" [(ngModel)]="row.Class_Section" row="1" col="1" class="input-add-db"></TextField>
+        <StackLayout row="1" col="2" (tap)="remove(i)"><Image src="~/images/minus.png" height="25" width="25" stretch="aspectFill"></Image></StackLayout>
+        <Label text="Subject" row="2" col="0" class="local-heading"></Label>
+        <TextField height="8%" [(ngModel)]="row.Subject_Name" row="3" col="0" class="input-add-db"></TextField>
+    </GridLayout>
+    </template>
+    </StackLayout>
+
+    <StackLayout>
+    <Label text="Class Teacher ?" class="local-heading"></Label>
+    <Switch horizontalAlignment="left" checked={{this.checked}} (checkedChange)="onCheckedChange($event)" ></Switch>
+    <Label *ngIf="this.notvalid" fontSize="15" class="errortext" text="Please Enter Valid Data"></Label>
+    
+    </StackLayout>
+
+    <StackLayout>
+        <GridLayout rows="auto,auto" columns="40*,40*" *ngIf="this.checked">
+            <Label text="Class" row="0" col="0" class="local-heading"></Label>
+            <Label text="Section" row="0" col="1" class="local-heading"></Label>
+            <TextField height="8%" [(ngModel)]="this.Class_Id" row="1" col="0" class="input-add-db"></TextField>
+            <TextField height="8%" [(ngModel)]="this.Section_Id" row="1" col="1" class="input-add-db"></TextField>
+            </GridLayout>
+    </StackLayout>
+
+    <StackLayout>
+        <Button text="Add" class="addbutton" (tap)="submit()"></Button>
+    </StackLayout>
+</StackLayout>
+</ScrollView>
+
   

@@ -16,6 +16,7 @@ export class studentpageattendanceComponent{
     rows=[];
     columns;
     colors=[];
+    color;
     public constructor(private router:Router,private route:ActivatedRoute){
         this.loading = true;
         this.route.params.subscribe((params)=>{
@@ -29,22 +30,20 @@ export class studentpageattendanceComponent{
         await firebase.firestore().collection("Student").where("Unq_Id","==",parseInt(this.unq_id)).get().then(result=>{
             result.forEach(doc=>{
                 this.data = doc.data()
+                this.data["Student_Attendance"]=doc.data().Student_Attendance.toFixed(2);
+                this.color = this.getCol(doc.data().Student_Attendance);
                 if("Today_Date" in this.data){
                     this.rows.push([this.data.Today_Date, this.data.Is_Present_Today]);
-                    this.colors.push(this.getCol(this.data.Is_Present_Today));
                 }
                 else{
                     this.rows.push(["Data Not available ","--"])
-                    this.colors.push("gray");
                 }
 
                 if("Previous_Date" in this.data){
                     this.rows.push([this.data.Previous_Date,this.data.Is_Present_Yesterday]);
-                    this.colors.push(this.getCol(this.data.Is_Present_Yesterday));
                 }
                 else{
                     this.rows.push(["Data Not available ","--"])
-                    this.colors.push("gray");
                 }
 
                 if("Previous_Previous_Date" in this.data){
@@ -52,7 +51,6 @@ export class studentpageattendanceComponent{
                 }
                 else{
                     this.rows.push(["Data Not available ","----"])
-                    this.colors.push("gray");
                 }
  
             })
@@ -62,23 +60,19 @@ export class studentpageattendanceComponent{
     }
 
     getCol(str){
-        if(str=="1"){
-            return "green";
-        }
-        else{
+        if(str<=50){
             return "red";
         }
-    }
-    getVal(str){
-        if(str=="1"){
-            return "Present";
+        else if(str>50 && str<75){
+            return "orange";
         }
         else{
-            return "Absent";
+            return "green";
         }
     }
 
     setPercentage(percent) {
+        percent = Math.floor(percent);
         this.columns = percent + "*," + (100 - percent) + "*";
       }
 
@@ -86,4 +80,4 @@ export class studentpageattendanceComponent{
         const appSettings = require("tns-core-modules/application-settings")
         this.router.navigate(["/"+appSettings.getString("TypeOfUser")], { replaceUrl: true });
     }
-}
+} 

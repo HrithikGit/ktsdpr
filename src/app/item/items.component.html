@@ -2,60 +2,39 @@
     <Button (tap)="teacherpage()" text="Teacher"></Button>
     <Button (tap)="rootpage()" text="Root"></Button>
     <Button (tap)="studentpage()"text="Student"></Button>
-</StackLayout>-->  
- 
- 
-    
-<GridLayout rows="40*,20*,40*" columns="*" *ngIf="!this.loading" class="root-bg">
+</StackLayout>
+
+     
+  
+  
+<!-- <GridLayout rows="40*,20*,40*" columns="*" *ngIf="!this.loading" class="root-bg">
+
     <StackLayout row="0" col="0" verticalAlignment="bottom">
 
         <Image width="130" height="130" stretch="aspectFill" style="padding-bottom: 10;" src="~/images/applogo.png"></Image>
-        <Label text="Login" fontWeight="900" fontSize="30" horizontalAlignment="center" color="white" paddingBottom="20"></Label>
+        <Label text="Login" style="font-family: 'Shelter_PersonalUseOnly'" fontWeight="900" fontSize="30" horizontalAlignment="center" color="white" paddingBottom="20"></Label>
     </StackLayout>
-     
+      
     <StackLayout width="80%" horizontalAlignment="left" row="1" col="0"  height="21%" style="border-width: 2px; border-top-right-radius: 80%; border-bottom-right-radius: 80%; border-right-color: black; background-color: #f1f1f1;">
         <GridLayout rows="*,auto,*" columns="auto,*">
             <Image width="45" height="45" stretch="aspectFill" src="~/images/user.png" row="0" col="0"></Image>
-            <TextField [(ngModel)]="this.user" autocapitalizationType="none" paddingLeft="20"  hint="Username" fontSize="20"  style="border-bottom-width: 1; border-bottom-color: transparent; font-weight: bold;" row="0" col="1" width="100%" height="100%"></TextField>
+            <TextField [(ngModel)]="this.user" autocapitalizationType="none" paddingLeft="20" paddingRight="20" hint="Username" fontSize="17"  style="border-bottom-width: 1; border-bottom-color: transparent; font-weight: 200;" row="0" col="1" width="100%" height="100%"></TextField>
             <Label text="" class="single-line" style="height:2px" row="1" col="1"></Label>
             <Label text="" class="single-line" style="height:2px" row="1" col="0"></Label>
-            <TextField [(ngModel)]="this.pass" paddingLeft="20" autocapitalizationType="none"secure="true" hint="Password" fontSize="20" style="border-bottom-width: 1; border-bottom-color: transparent; font-weight: bold;" row="2" col="1" width="100%" height="100%"></TextField>
+            <TextField [(ngModel)]="this.pass" paddingLeft="20" autocapitalizationType="none"secure="true" hint="Password" fontSize="17" style="border-bottom-width: 1; border-bottom-color: transparent; font-weight: 200;" row="2" col="1" width="100%" height="100%"></TextField>
             <Image width="20" height="20"  stretch="aspectFill" src="~/images/pass.png" row="2" col="0"></Image>
         </GridLayout>
     </StackLayout>
     <StackLayout row="1" col="0" style="margin-left:60%" verticalAlignment="center" (tap)="loginAuthenicate()">
         <Image width="70" height="70" stretch="aspectFill" src="~/images/go.png" ></Image>
-    </StackLayout>
-
-            <Image width="150" height="150" stretch="aspectFill" style="margin-top: 20%; padding-bottom: 10;" src="~/images/applogo.png"></Image>
-            <Label text="Login" fontWeight="900" fontSize="30" horizontalAlignment="center"></Label>
-        </StackLayout> 
-         
-        <StackLayout width="80%" horizontalAlignment="left" row="1" col="0"  height="21%" style="border-width: 4px; border-top-right-radius: 80%; border-bottom-right-radius: 80%; border-right-color: black; background-color: #f1f1f1;">
-            <GridLayout rows="*,auto,*" columns="*">
-                <TextField [(ngModel)]="this.user" paddingLeft="20" style="text-align: center;"  hint="Username" fontSize="20"  style="border-bottom-width: 1; border-bottom-color: transparent; font-weight: bold;" row="0" col="0" width="100%" height="100%"></TextField>
-                <Label text="" class="single-line" style="height:4px" row="1" col="0"></Label>
-                <TextField [(ngModel)]="this.pass" style="text-align: center;" secure="true" hint="Password" fontSize="20" style="border-bottom-width: 1; border-bottom-color: transparent; font-weight: bold;" row="2" col="0" width="100%" height="100%"></TextField>
-            </GridLayout>
-        </StackLayout>
-        
-        <StackLayout row="1" col="0" style="margin-left:60%" verticalAlignment="center" (tap)="loginAuthenicate()">
-            <Image width="70" height="70" stretch="aspectFill" src="~/images/go.png" ></Image>
-        </StackLayout>
+    </StackLayout> 
+ 
 
     <StackLayout row="3" col="0" (tap)="issues()">
         <Label *ngIf="this.notcorrect" class="errortext" text="Username and Password doesn't match" horizontalAlignment="center"></Label>
         <Label text="Having any login issues?" horizontalAlignment='center' fontSize="15" color="white"  textDecoration="underline" style="margin-top:10%"></Label>
-    </StackLayout>
+    </StackLayout> 
 </GridLayout>
 <StackLayout *ngIf="this.loading">
     <Image horizontalAlignment="center" style="margin-top: 30%;" stretch="aspectFit" src="~/images/rl.png"></Image>
-</StackLayout>
-
-        <StackLayout row="3" col="0"> 
-            <Label text="Having any login issues?" horizontalAlignment='center' fontSize="15" color="#0074d9" textDecoration="underline" style="margin-top:10%"></Label>
-        </StackLayout>
-    </GridLayout>
-    <StackLayout *ngIf="this.loading">
-        <Image [tnsGif] src="~/images/rootloading.gif"></Image>
-    </StackLayout>
+</StackLayout> -->

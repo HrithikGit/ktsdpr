@@ -15,7 +15,7 @@
     <template *ngFor="let item of this.students; let i=index">
 
         <GridLayout columns="2*,85*,13*" rows="auto,auto,auto" style="padding-bottom:10%;">
-        <GridLayout [nsRouterLink]="['/viewstudent',item.Student_Id,item.Class_Id,item.Class_Section]" paddingTop="5%" rows="*" columns="auto,auto,*" row="0" col="1">
+        <GridLayout [nsRouterLink]="['/viewstudent',item.Student_Id,item.Class_Id,item.Class_Section]" pageTransition="fade" paddingTop="5%" rows="*" columns="auto,auto,*" row="0" col="1">
           <Label fontSize="15" text="Student Name : " class="local-heading" row="0" col="0"></Label>
           <Label fontSize="15" [text]="item.Student_Name"
            row="0" col="1"></Label>

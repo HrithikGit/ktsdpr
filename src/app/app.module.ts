@@ -20,7 +20,6 @@ import {deleteteacherComponent} from "./rootpage/updateteacher/deleteteacher/del
 import {addteacherComponent} from "./rootpage/updateteacher/addteacher/addteacher";
 import {deletestudentComponent} from "./rootpage/updatestudent/deletestudent/deletestudent";
 import {addstudentComponent} from "./rootpage/updatestudent/addstudent/addstudent";
-import {successComponent} from "./rootpage/success/success";
 import { attendanceComponent} from "./rootpage/attendance/attendance";
 import {displaytimetableComponent} from "./rootpage/timetable/displaytimetable/displaytimetable";
 import {timetableclassselectComponent} from "./rootpage/timetable/timetableclassselect/timetableclassselect";
@@ -77,7 +76,6 @@ import {studentpageattendanceComponent} from "./studentpage/studentpageattendanc
         timetableComponent,
         blogComponent,
         deleteteacherComponent,
-        successComponent,
         attendanceComponent,
         updatetimetableComponent,
         timetableclassselectComponent,

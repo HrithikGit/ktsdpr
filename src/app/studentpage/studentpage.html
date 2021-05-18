@@ -9,27 +9,27 @@
         <Label fontWeight="900" color="white" fontSize="17" horizontalAlignment="center" text="Welcome, Pal !"></Label> 
         <GridLayout rows="15,auto,15,auto,15,auto,15" columns="6*,41*,6*,41*,6*" >
 
-            <StackLayout class="home-item" row="1" col="1" (tap)="timetable()">
+            <StackLayout [nsRouterLink]="['/displaytimetable',this.studentclass,this.studentsection]" pageTransition="fade" class="home-item" row="1" col="1">
                 <Image src="~/images/timetable.png" style="padding-top: 20;" height="130" width="130"  stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
                 <Label text="TimeTable" verticalAlignment="center" style="padding-bottom: 20px;" horizontalAlignment="center"></Label>
             </StackLayout>
 
-            <StackLayout class="home-item" row="1" col="3" (tap)="attendance()">
+            <StackLayout  [nsRouterLink]="['/studentattendance',this.unqid]" pageTransition="fade" class="home-item" row="1" col="3" >
                 <Image src="~/images/attendance.png" style="padding-top: 20;"  height="130" width="130"  stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
                 <Label text="Attendance" verticalAlignment="center" style="padding-bottom: 20px;" horizontalAlignment="center"></Label>
             </StackLayout>
 
-            <StackLayout class="home-item" row="3" col="1" (tap)="blog()">
+            <StackLayout  [nsRouterLink]="['/blog','Student']" pageTransition="fade" class="home-item" row="3" col="1">
                 <Image src="~/images/blog.png" style="padding-top: 20;" height="130" width="130"  stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
                 <Label text="Blog" verticalAlignment="center" style="padding-bottom: 20px;" horizontalAlignment="center"></Label>
             </StackLayout>
 
-            <StackLayout class="home-item" row="3" col="3" (tap)="about()">
+            <StackLayout  [nsRouterLink]="['/about']" pageTransition="fade" class="home-item" row="3" col="3" >
                 <Image src="~/images/blog.png" style="padding-top: 20;" height="130" width="130" stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
                 <Label text="About" verticalAlignment="center" style="padding-bottom: 20px;" horizontalAlignment="center"></Label>
             </StackLayout>
 
-            <StackLayout class="home-item" row="5" col="1" (tap)="marks()">
+            <StackLayout  [nsRouterLink]="['/studentmarks',this.studentclass,this.studentsection,this.studentid]" pageTransition="fade" class="home-item" row="5" col="1" >
                 <Image src="~/images/blog.png" style="padding-top: 20;"  height="130" width="130" stretch="aspectFill" verticalAlignment="center" horizontalAlignment="center"></Image>
                 <Label text="Marks" verticalAlignment="center" style="padding-bottom: 20px;" horizontalAlignment="center"></Label>
             </StackLayout>
