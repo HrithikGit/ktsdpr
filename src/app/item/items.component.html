@@ -36,16 +36,16 @@
     <StackLayout row="0" col="0" verticalAlignment="bottom">
 
         <Image width="130" height="130" stretch="aspectFill" style="padding-bottom: 10;" src="~/images/applogo.png"></Image>
-        <Label text="Login" fontWeight="900" fontSize="30" horizontalAlignment="center" color="white" paddingBottom="20"></Label>
+        <Label text="Login" style="font-family: 'Shelter_PersonalUseOnly'" fontWeight="900" fontSize="30" horizontalAlignment="center" color="white" paddingBottom="20"></Label>
     </StackLayout>
-     
+      
     <StackLayout width="80%" horizontalAlignment="left" row="1" col="0"  height="21%" style="border-width: 2px; border-top-right-radius: 80%; border-bottom-right-radius: 80%; border-right-color: black; background-color: #f1f1f1;">
         <GridLayout rows="*,auto,*" columns="auto,*">
             <Image width="45" height="45" stretch="aspectFill" src="~/images/user.png" row="0" col="0"></Image>
-            <TextField [(ngModel)]="this.user" autocapitalizationType="none" paddingLeft="20"  hint="Username" fontSize="20"  style="border-bottom-width: 1; border-bottom-color: transparent; font-weight: bold;" row="0" col="1" width="100%" height="100%"></TextField>
+            <TextField [(ngModel)]="this.user" autocapitalizationType="none" paddingLeft="20" paddingRight="20" hint="Username" fontSize="17"  style="border-bottom-width: 1; border-bottom-color: transparent; font-weight: 200;" row="0" col="1" width="100%" height="100%"></TextField>
             <Label text="" class="single-line" style="height:2px" row="1" col="1"></Label>
             <Label text="" class="single-line" style="height:2px" row="1" col="0"></Label>
-            <TextField [(ngModel)]="this.pass" paddingLeft="20" autocapitalizationType="none"secure="true" hint="Password" fontSize="20" style="border-bottom-width: 1; border-bottom-color: transparent; font-weight: bold;" row="2" col="1" width="100%" height="100%"></TextField>
+            <TextField [(ngModel)]="this.pass" paddingLeft="20" autocapitalizationType="none"secure="true" hint="Password" fontSize="17" style="border-bottom-width: 1; border-bottom-color: transparent; font-weight: 200;" row="2" col="1" width="100%" height="100%"></TextField>
             <Image width="20" height="20"  stretch="aspectFill" src="~/images/pass.png" row="2" col="0"></Image>
         </GridLayout>
     </StackLayout>

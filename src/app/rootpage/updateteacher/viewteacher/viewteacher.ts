@@ -14,7 +14,7 @@ export class viewteacherComponent {
     teacherid;
     waiting;
     teacher_name;
-    class_and_section=[];
+    rows=[];
     subjectname;
 
     prev_class_and_section=[];
@@ -30,7 +30,7 @@ export class viewteacherComponent {
         this.loading = false;
         this.getdata();
 
-    }
+    } 
 
 
     async getdata(){
@@ -40,25 +40,32 @@ export class viewteacherComponent {
                 var check = doc.data();
                 this.teacher_name=check.Teacher_Name;
                 check["id"] = doc.id;
-                this.class_and_section.push(check);
+                this.rows.push(check);
                 this.prev_class_and_section.push(check);
                 this.subjectname=check.Subject_Name;
             })
         })
         this.waiting = false;
-        console.log(this.class_and_section);
+        console.log(this.rows);
     }
 
 
     addrow(){
-        this.class_and_section.push({"Class_Id":-1,"Teacher_Id":this.teacherid,"Class_Section":"","Subject_Name":this.subjectname,"Teacher_Name":this.teacher_name});
+        if(this.rows[this.rows.length-1].Class_Id<=0 || this.rows[this.rows.length-1].Class_Section.trim.length==0
+            || this.rows[this.rows.length-1].Subject_Name.trim().length==0){
+                var Toast = require("nativescript-toast");
+                var toast = Toast.makeText("Above Fields Cannot be empty");
+                toast.show();
+                return ;
+            }
+        this.rows.push({"Class_Id":-1,"Teacher_Id":this.teacherid,"Class_Section":"","Subject_Name":"","Teacher_Name":this.teacher_name});
 
     }
     async remove(i){
         var stop = false;
         await confirm({
             title: "Your title",
-            message: "Are you sure delete this class for teacher"+this.class_and_section[i].Class_Id+this.class_and_section[i].Class_Section,
+            message: "Are you sure delete this class for teacher"+this.rows[i].Class_Id+this.rows[i].Class_Section,
             okButtonText: "Yes",
             cancelButtonText: "No",
             neutralButtonText: "Cancel"
@@ -76,19 +83,20 @@ export class viewteacherComponent {
         if(stop){
             return ;
         }
-        /*const remcollection = firebase.firestore().collection("Teacher").doc(this.class_and_section[i].id);
+
+        const remcollection = firebase.firestore().collection("Teacher").doc(this.rows[i].id);
         this.waiting = true;
         await remcollection.delete();
-        var removeddata=this.class_and_section.splice(i,1);
-        this.waiting = false;*/
+        var removeddata=this.rows.splice(i,1);
+        this.waiting = false;
 
-        this.class_and_section.splice(i,1);
+        this.rows.splice(i,1);
 
         // console.log(i);
         // console.log("TAPPED ON REMOVE");
     }
     isCharacterALetter(char) {
-        return (/[a-zA-Z]/).test(char)
+        return (/[a-zA-Z]/).test(char) 
       }
 
 
@@ -96,15 +104,23 @@ export class viewteacherComponent {
 
     notvalid;
     async confirmchanges(){
-        if(this.class_and_section==this.prev_class_and_section){
+        if(this.rows==this.prev_class_and_section){
             alert("Done!");
             return;
         }
 
+        if(this.rows[this.rows.length-1].Class_Id<=0 || this.rows[this.rows.length-1].Class_Section.trim.length==0
+            || this.rows[this.rows.length-1].Subject_Name.trim().length==0){
+                var Toast = require("nativescript-toast");
+                var toast = Toast.makeText("Above Fields Cannot be empty");
+                toast.show();
+                return ;
+            }
+            
 
-        for(var i=0;i<this.class_and_section.length;i++){
-            var present_class=parseInt(this.class_and_section[i].Class_Id);
-            var present_section=this.class_and_section[i].Class_Section;
+        for(var i=0;i<this.rows.length;i++){
+            var present_class=parseInt(this.rows[i].Class_Id);
+            var present_section=this.rows[i].Class_Section;
 
             if(!(this.isCharacterALetter(present_section))){
                 this.notvalid = true;
@@ -142,7 +158,7 @@ export class viewteacherComponent {
                exists= true;
                teacherid_of_class=doc.data().Teacher_Id;
         })
-        })
+        }) 
         // If already teacher teaching subject in given class is found
 
         if(exists){
@@ -159,13 +175,13 @@ export class viewteacherComponent {
             //this.waiting = true;
             await remcollection.delete();
         }
-    for(var i=0;i<this.class_and_section.length;i++){
-        this.addteacher(parseInt(this.class_and_section[i].Class_Id),this.class_and_section[i].Class_Section);
+    for(var i=0;i<this.rows.length;i++){
+        this.addteacher(parseInt(this.rows[i].Class_Id),this.rows[i].Class_Section,this.rows[i].Subject_Name);
     }
 
     alert("Done!");
 }
-    async addteacher(class_tobeAdded,section_tobeAdded){
+    async addteacher(class_tobeAdded,section_tobeAdded,sub_toBeAdded){
         this.teacher_name.trim();
         this.subjectname.trim();
 
@@ -174,8 +190,8 @@ export class viewteacherComponent {
             Teacher_Id : parseInt(this.teacherid),
             Teacher_Name : this.teacher_name,
             Class_Id : class_tobeAdded,
-            Class_Section : section_tobeAdded,
-            Subject_Name : this.subjectname
+            Class_Section : section_tobeAdded.toUpperCase(),
+            Subject_Name : sub_toBeAdded
         })
         
         

@@ -4,6 +4,7 @@ const firebase = require("nativescript-plugin-firebase/app");
 import {LoadingIndicator,Mode,OptionsCommon} from '@nstudio/nativescript-loading-indicator';
   
 const indicator = new LoadingIndicator();
+const appSettings = require("tns-core-modules/application-settings")
   
 
 @Component({
@@ -12,8 +13,8 @@ const indicator = new LoadingIndicator();
     styleUrls : ["./teacherpageattendance.css"]
 })
 export class teacherpageattendanceComponent {
-    ClassTeacherClass;
-    ClassTeacherSection;
+    teacherclass;
+    teachersection;
     waiting ;
     updatingData;
     loading=true;
@@ -28,21 +29,19 @@ export class teacherpageattendanceComponent {
 
     public constructor(private router:Router,private route:ActivatedRoute) {
         this.route.params.subscribe((params)=>{
-            this.ClassTeacherClass=params["class"];
-            this.ClassTeacherSection=params["section"];
+            this.teacherclass = parseInt(appSettings.getString("Teacher_Class"));
+            this.teachersection = appSettings.getString("Teacher_Section");
         });
         this.waiting = false;
         this.getdetails();
     }  
 
     initialize(){
-        this.ref=[];
+        this.ref=[]; 
         this.rows=[[]];
     } 
     async getdetails(){
         var k=0;
-        var classid=1;
-        var section ="A";
         var date = new Date();
         this.today = date.getDate().toString()+"-"+date.getMonth().toString()+"-"+date.getFullYear().toString();
         this.waiting = true;
@@ -50,8 +49,8 @@ export class teacherpageattendanceComponent {
         this.getdate ="";
         this.sofar=0;
 
-        const collect = firebase.firestore().collection("Student").where("Class_Id","==",classid)
-        .where("Class_Section","==",section);
+        const collect = firebase.firestore().collection("Student").where("Class_Id","==",this.teacherclass)
+        .where("Class_Section","==",this.teachersection);
  
         await collect.get().then(result=>{
             result.forEach(doc=>{
@@ -98,7 +97,7 @@ export class teacherpageattendanceComponent {
 
     longpress(i) {
         alert("Student Name :"+this.rows[Math.floor(i/3)][i%3]["Student_Name"]+"\n"+
-        "Student Attendance :"+this.rows[Math.floor(i/3)][i%3]["Student_Attendance"]);
+        "Student Attendance :"+this.rows[Math.floor(i/3)][i%3]["Student_Attendance"].toFixed(2));
       }
 
     change(i){
@@ -181,7 +180,6 @@ export class teacherpageattendanceComponent {
     }
  
     public goHome(){
-        const appSettings = require("tns-core-modules/application-settings")
         this.router.navigate(["/"+appSettings.getString("TypeOfUser")], { replaceUrl: true });
     }
 }

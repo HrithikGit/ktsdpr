@@ -97,6 +97,7 @@ export class ItemsComponent implements OnInit {
                 await firebase.firestore().collection("Class").where("Teacher_Id","==",personid).get()
                 .then(result=>{
                     result.forEach(doc=>{
+
                         appSettings.setString("IsClassTeacher","True");
                         appSettings.setString("TeacherClass",doc.data()["Class_Id"]+"");
                         appSettings.setString("TeacherSection",doc.data()["Class_Section"]);
@@ -109,7 +110,7 @@ export class ItemsComponent implements OnInit {
             else{
                 appSettings.setString("IsRoot","True");
                 this.updateandmove(type);
-            }
+            } 
         }
         else{ 
             this.notcorrect = true; 
@@ -124,7 +125,7 @@ export class ItemsComponent implements OnInit {
         appSettings.setString("AlreadyLoggedIn","Yes");
         appSettings.setString("TypeOfUser",type);
         this.router.navigate([type]);
-    }
+    } 
     rootpage(){
         appSettings.setString("TypeOfUser","root");
         this.router.navigate(["root"]);

@@ -10,13 +10,13 @@
     <Label *ngIf="!this.waiting" class="title-heading" text="Add Teacher/Delete Teacher/Update Teacher"></Label>
     <Button *ngIf="!this.waiting" (tap)="add()" width="90%" text="Add Teacher" class="addbutton"></Button>
   </StackLayout>
-  
+   
   <ScrollView height="100%">
   <StackLayout>
   <template *ngFor="let item of this.teachers; let i=index">
 
     <GridLayout   columns="2*,85*,13*" rows="auto,auto,auto" style="padding-bottom:10%;">
-      <GridLayout [nsRouterLink]="['/viewteacher',item.Teacher_Id]" paddingTop="5%" rows="*" columns="auto,auto,*" row="0" col="1">
+      <GridLayout [nsRouterLink]="['/viewteacher',item.Teacher_Id]" pageTransition="fade" paddingTop="5%" rows="*" columns="auto,auto,*" row="0" col="1">
         <Label fontSize="15" text="Teacher Name : " class="local-heading" row="0" col="0"></Label>
         <Label fontSize="15" [text]="item.Teacher_Name" row="0" col="1"></Label>
       </GridLayout>

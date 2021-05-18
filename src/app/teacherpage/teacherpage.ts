@@ -4,6 +4,8 @@ import { RouterExtensions } from "@nativescript/angular/router";
 import * as application from "tns-core-modules/application";
 import { AndroidApplication, AndroidActivityBackPressedEventData } from "tns-core-modules/application";
 import { confirm } from "tns-core-modules/ui/dialogs";
+import {LoadingIndicator,Mode,OptionsCommon} from '@nstudio/nativescript-loading-indicator';
+const indicator = new LoadingIndicator();
 
 const appSettings = require("tns-core-modules/application-settings");
 
@@ -14,7 +16,7 @@ const appSettings = require("tns-core-modules/application-settings");
  
 export class teacherpageComponent {
     isClassTeacher;
-    teacherid=13;
+    teacherid;
     exit_tapped;
     obj={classteacherclass:1, classteachersection:"A"}; 
     public constructor(private rtr:RouterExtensions,private router: Router) {
@@ -56,7 +58,8 @@ export class teacherpageComponent {
             var Toast = require("nativescript-toast");
             var toast = Toast.makeText("You Aren't a Class Teacher");
             toast.show();
-        }
+            return ;
+        } 
         this.router.navigate(["deletestudent",this.obj.classteacherclass,this.obj.classteachersection]);
     }
     timetable(): void{
@@ -75,7 +78,7 @@ export class teacherpageComponent {
     public async logout(){
         var stop = false;
         await confirm({
-            title: "Your title",
+            title: "Logout",
             message: "Are you sure you want to logout?",
             okButtonText: "Yes",
             cancelButtonText: "No",
@@ -94,7 +97,21 @@ export class teacherpageComponent {
         if(stop){
             return ;
         }
+        const options: OptionsCommon = {
+            message: 'Loading...',
+            details: 'Please Wait',
+            progress: 0.65, 
+            margin: 10,
+            dimBackground: true,
+            color: '#FF392E', 
+            backgroundColor: 'yellow',
+            userInteractionEnabled: false,
+            hideBezel: true,
+            mode: Mode.Indeterminate
+          };
+          indicator.show(options);
         appSettings.clear();
+        indicator.hide();
         this.router.navigate(["items"]);
     }
 

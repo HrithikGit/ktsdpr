@@ -15,7 +15,7 @@
           <template *ngFor="let item of this.blogs; let i=index">
             <StackLayout style="border-radius: 20%; background-color: #f1f1f1;" marginTop="7" marginBottom="7">
               <GridLayout columns="2*,85*,13*" rows="auto,auto" style="padding-bottom:10%;">
-              <StackLayout [nsRouterLink]="['/viewblog',item.Date,item.Time,this.isRoot]" row="0" col="1">
+              <StackLayout [nsRouterLink]="['/viewblog',item.Date,item.Time,this.isRoot]" pageTransition="fade" row="0" col="1">
                 <Label fontSize=20 class="blog-heading"  [text]="item.Heading"></Label>
                 <Label class="blogcontent" [text]="item.Content" textWrap="true"></Label>
               </StackLayout>
