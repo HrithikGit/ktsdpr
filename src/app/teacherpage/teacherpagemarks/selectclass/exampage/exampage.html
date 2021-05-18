@@ -7,14 +7,16 @@
 <StackLayout>
     <StackLayout>
         <Label *ngIf="this.waiting" text="Loading......Please Wait"></Label>
-        <!-- <Button *ngIf="!this.waiting" text="Add New Test" (tap)="add()" width="80%" class="plusbutton"></Button> -->
+        <Label *ngIf="!this.waiting" text="Select an Exam Type" class="local-heading" style="text-align: center;" fontSize="20"></Label>
     </StackLayout>
-    <ScrollView height="100%">
+    <ScrollView height="100%" *ngIf="!this.waiting">
         <StackLayout>
             <template *ngFor="let exam of this.examtypes;index as i">
-                <GridLayout rows="auto" column="*">
-                    <Label [nsRouterLink]="['/marksupdatepage',this.class,this.section,this.teacherid,exam.Exam]" [text]="exam.Exam" horizontalAlignment="center" class="local-heading"></Label>
-                </GridLayout>
+                <StackLayout [nsRouterLink]="['/marksupdatepage',this.class,this.section,this.subject,exam.Exam]" style="border-radius: 20%; border-color: black; background-color: #f1f1f1;" marginTop="3" marginBottom="3">
+                    <Label [text]="exam.Exam" fontSize="14" marginTop="7" marginBottom="7" class="local-heading" style="text-align: center;"></Label>
+                </StackLayout>
+                <Label text="" class="line"></Label>
+
             </template>
         </StackLayout>
     </ScrollView>

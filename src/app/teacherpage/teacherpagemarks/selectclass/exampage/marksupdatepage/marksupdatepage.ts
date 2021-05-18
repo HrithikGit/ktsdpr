@@ -17,21 +17,22 @@ export class marksupdatepageComponent{
     examtype;
     marks=[];
     waiting=true;
+    subject;
     max_scoreable;
     public constructor(private router:Router,private route:ActivatedRoute){
         this.route.params.subscribe((params)=>{
-            this.class=parseInt(params["class"]);
+            this.class=params["class"];
             this.section=params["section"];
-            this.teacherid=parseInt(params["teacherid"]);
+            this.subject=params["subject"];
             this.examtype=params["examtype"];
         });
         this.getdetails();
-        this.max_scoreable=-1;
+        this.max_scoreable=0;
     }
 
     async getdetails(){
-        const student=firebase.firestore().collection("Marks").where("Student_Class","==",this.class).where("Student_Section","==",this.section)
-        .where("Exam_Type","==",this.examtype).where("Teacher_Id","==",this.teacherid);
+        const student=firebase.firestore().collection("Marks").where("Student_Class","==",parseInt(this.class)).where("Student_Section","==",this.section)
+        .where("Exam_Type","==",this.examtype).where("Subject","==",this.subject);
 
         console.log(this.class+" "+this.section+" "+this.examtype+" "+this.teacherid);
         await student.get().then(result=>{
@@ -46,10 +47,12 @@ export class marksupdatepageComponent{
                     "Subject":data.Subject,
                     "Teacher_Id":data.Teacher_Id,
                     "Student_Marks":data.Student_Marks,
-                    "id":doc.id
+                    "id":doc.id,
+                    "Student_Name":data.Student_Name
                 });
             })
         })
+        console.log(this.marks);
 
         this.waiting=false;
     }
@@ -93,6 +96,7 @@ export class marksupdatepageComponent{
         indicator.hide();
 
         var toast = Toast.makeText("Updated Successfully!");
+        alert("Updated Successfully");
     }
     public goHome(){
         const appSettings = require("tns-core-modules/application-settings")

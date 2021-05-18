@@ -3,7 +3,7 @@ import { confirm } from "tns-core-modules/ui/dialogs";
 var stop = false;
         await confirm({
             title: "Your title",
-            message: "Are you sure delete this teacher "+this.teachers[i].Teacher_Name;
+            message: "Are you sure delete this teacher "+this.teachers[i].Teacher_Name,
             okButtonText: "Yes",
             cancelButtonText: "No",
             neutralButtonText: "Cancel"

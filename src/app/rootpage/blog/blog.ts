@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {Router,ActivatedRoute} from "@angular/router";
+import { confirm } from "tns-core-modules/ui/dialogs";
 const firebase = require("nativescript-plugin-firebase/app");
 const appSettings = require("tns-core-modules/application-settings")
 
@@ -55,7 +56,29 @@ export class blogComponent {
         this.router.navigate(["addblog"]);
     }
 
-    remove(i){
+    async remove(i){
+        var stop = false;
+        await confirm({
+            title: "",
+            message: "Are you sure you want to delete this blog?",
+            okButtonText: "Yes",
+            cancelButtonText: "No",
+            neutralButtonText: "Cancel"
+         }).then(result=>{
+             if(result==false){
+                 stop = true;
+             }
+             else if(result==true){
+                 stop = false;
+             }
+             else{
+                 stop = true;
+             }
+         })
+        if(stop){
+            return ;
+        }
+
         const remcollection = firebase.firestore().collection("Blogs").doc(this.blogs[i].id);
         remcollection.delete();
         var removeddata=this.blogs.splice(i,1);
