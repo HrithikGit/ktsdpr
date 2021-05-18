@@ -26,8 +26,7 @@ export class selectclassComponent{
             result.forEach(doc=>{
                 var data=doc.data();
                 console.log(doc.data());
-                this.subject=data.Subject_Name;
-                this.classes.push({"Class_Id":data.Class_Id,"Class_Section":data.Class_Section});
+                this.classes.push({"Class_Id":data.Class_Id,"Class_Section":data.Class_Section,"Subject":data.Subject_Name});
             })
         });
         this.waiting=false;

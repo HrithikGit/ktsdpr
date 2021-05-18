@@ -13,7 +13,7 @@
   <ScrollView height="100%">
     <StackLayout>
           <template *ngFor="let item of this.classes">
-            <GridLayout [nsRouterLink]="['/exampage', item.Class_Id,item.Class_Section,this.teacherid,this.subject]" rows="auto" columns="*,auto,auto,auto,auto,*">
+            <GridLayout [nsRouterLink]="['/exampage', item.Class_Id,item.Class_Section,this.teacherid,item.Subject]" rows="auto" columns="*,auto,auto,auto,auto,*">
               <Label text="Class : " horizontalAlignment="right" class="local-side-heading" row="0" col="0"></Label>
               <Label [text]="item.Class_Id" class="local-side-heading" row="0" col="1" style="padding-right: 8;" ></Label>
               <Label text="Section : " horizontalAlignment="right" class="local-side-heading" row="0" col="2"></Label>

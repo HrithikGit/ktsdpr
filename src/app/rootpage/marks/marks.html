@@ -1,13 +1,14 @@
 <StackLayout verticalAlignment="center">
 <ScrollView height="100%">
   <StackLayout>
-    <Label *ngIf="this.waiting"></Label>
+    <Label *ngIf="this.waiting" text='Loading Please wait..!'></Label>
 
 
     <StackLayout *ngIf="!this.waiting">
       <Button (tap)="openclasses()"  [text]="this.exam" width="90%" class="plusbutton"></Button>
       <TextField *ngIf="this.openClasses" [(ngModel)]="this.examtype" width="70%" style="text-align: center;" hint="Enter Exam Type" horizontalAlignment="center" class="txtfld"></TextField>
-      <StackLayout *ngIf="this.openClasses">
+      <StackLayout *ngIf="this.openClasses" width="90%" horizontalAlignment="center" style="background-color: #f1f1f1;">
+        <Label text="Select the classes to add this exam to them" width="90%" fontSize="14" fontWeight="300" style="color:black; text-align: center;"  marginBottom="7" marginTop="7" ></Label>
           <template *ngFor="let item of this.classes; index as i">
             
               <GridLayout rows="auto" columns="*,auto,auto,auto,*" style="background-color: {{this.class_select[i]}};" (tap)="change(i)">
@@ -16,17 +17,17 @@
                 <Label [text]="item.Class_Section" fontSize="20" row="0" col="3"></Label>
               </GridLayout>
               <Label text="" class="line"></Label>
-            
           </template>
         </StackLayout>
-      <Button (tap)="add()" *ngIf="this.openClasses" text="Add {{this.examtype}} To These Sections" class="addbutton"></Button>
+      <Button (tap)="add()" *ngIf="this.openClasses" width="90%" horizontalAlignment="center" style="border-radius: 20%;" text="Add {{this.examtype}} To These Sections" class="addbutton"></Button>
     </StackLayout>
 
-
-    <StackLayout *ngIf="!this.waiting">
-      <Button (tap)="Open()" [text]="this.class_selected" class="plusbutton" width="90%"></Button>
+    
+    <StackLayout *ngIf="!this.waiting" width="90%" horizontalAlignment="center">
+      <Label text="" class="line"></Label>
+    <Label text="Select a class to view exams in them" *ngIf="this.open" width="100%" fontSize="14" fontWeight="300" style="color:black; background-color: #f1f1f1; text-align: center;" marginBottom="7" marginTop="7"></Label>
+      <Button (tap)="Open()" [text]="this.class_selected" class="plusbutton" width="100%"></Button>
       <StackLayout *ngIf="this.open">
-          <StackLayout>
             <template *ngFor="let item of this.classes; index as i">
               <GridLayout rows="auto" columns="*,auto,auto,auto,*" (tap)="selected(i)">
                 <Label [text]="item.Class_Id" fontSize="20" row="0" col="1"></Label>
@@ -35,12 +36,12 @@
               </GridLayout>
               <Label text="" class="line"></Label>
             </template>
-          </StackLayout>
       </StackLayout>
     </StackLayout>
 
 
-    <StackLayout *ngIf="this.is_Class_Selected">
+    <StackLayout *ngIf="this.is_Class_Selected" width="90%">
+      <Label text="Fetching data, Please wait..." width="100%" *ngIf="this.fetching" fontSize="14" fontWeight="300" style="color:black;text-align:center" marginBottom="7" marginTop="7" style="background-color: #f1f1f1;"></Label>
       <GridLayout rows="auto" columns="*,auto,*">
         <Label text="The Exams in Class {{this.class_selected}} are as follows:" row="0" col="1" class="local-heading" fontSize="18"></Label>
       </GridLayout>

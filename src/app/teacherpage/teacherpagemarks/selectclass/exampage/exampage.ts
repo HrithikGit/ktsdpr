@@ -29,7 +29,9 @@ export class exampageComponent{
     }
 
     async gettests(){
-        const tests=firebase.firestore().collection("Marks").where("Teacher_Id","==",this.teacherid).where("Student_Class","==",this.class)
+
+        
+        const tests=firebase.firestore().collection("Marks").where("Subject","==",this.subject).where("Student_Class","==",parseInt(this.class))
         .where("Student_Section","==",this.section);
         var set=new Set();
         await tests.get().then(result=>{
@@ -40,6 +42,7 @@ export class exampageComponent{
                     this.examtypes.push({"Exam":data.Exam_Type});}
             })
         })
+        console.log(this.examtypes);
         this.waiting=false;
     }
     remove(i){

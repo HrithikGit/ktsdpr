@@ -66,12 +66,11 @@ export class teacherpageComponent {
         this.router.navigate(["timetableofteacher",this.teacherid]);
     }
     marks():void{
-        this.router.navigate(["teacherpagemarks",this.obj.classteacherclass,this.obj.classteachersection,parseInt(this.teacherid)]);
+        this.router.navigate(["teacherpagemarks",this.obj.classteacherclass,this.obj.classteachersection,this.teacherid]);
     }
     attendance():void{
-        this.router.navigate(["teacherpageattendance",this.obj.classteacherclass,this.obj.classteachersection]
-        
-        );    }
+        this.router.navigate(["teacherpageattendance",this.obj.classteacherclass,this.obj.classteachersection]);
+    }
     blog(): void{
         this.router.navigate(["blog","teacher"]);
     }
