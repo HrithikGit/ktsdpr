@@ -50,6 +50,7 @@ export class marksupdatepageComponent{
                     "id":doc.id,
                     "Student_Name":data.Student_Name
                 });
+                this.max_scoreable=data.Maximum_Marks;
             })
         })
         console.log(this.marks);
