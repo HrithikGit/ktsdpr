@@ -1,9 +1,19 @@
+<<<<<<< HEAD
 <!--<StackLayout verticalAlignment="center">
     <Button (tap)="teacherpage()" text="Teacher"></Button>
     <Button (tap)="rootpage()" text="Root"></Button>
     <Button (tap)="studentpage()"text="Student"></Button>
 </StackLayout>--> 
     
+=======
+<!-- <StackLayout verticalAlignment="center">
+    <Button (tap)="teacherpage()" text="Teacher"></Button>
+    <Button (tap)="rootpage()" text="Root"></Button>
+    <Button (tap)="studentpage()"text="Student"></Button>
+</StackLayout> -->
+
+ 
+>>>>>>> 81bdcc6a43f5c056c5fe0c6d79f0dcc10db889e2
 <GridLayout rows="40*,20*,40*" columns="*" *ngIf="!this.loading" class="root-bg">
     <StackLayout row="0" col="0" verticalAlignment="bottom">
 
@@ -33,6 +43,14 @@
         <Label text="Having any login issues?" horizontalAlignment='center' fontSize="15" color="white" (tap)="issues()"  textDecoration="underline" style="margin-top:10%"></Label></StackLayout>
     </StackLayout>
 </GridLayout>
+<<<<<<< HEAD
 <StackLayout *ngIf="this.loading">
     <Image horizontalAlignment="center" style="margin-top: 30%;" stretch="aspectFit" src="~/images/rl.png"></Image>
 </StackLayout>
+=======
+<StackLayout verticalAlignment="center" *ngIf="this.loading">
+    <Image horizontalAlignment="center" height="250" width="250" stretch="aspectFill" src="~/images/rl.png"></Image>
+    <Label text="Loading... Please Wait !!" class="loading" fontSize="17"></Label>
+</StackLayout>
+      
+>>>>>>> 81bdcc6a43f5c056c5fe0c6d79f0dcc10db889e2

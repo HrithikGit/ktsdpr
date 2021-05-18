@@ -117,7 +117,8 @@ export class addstudentComponent {
             Username: unqid,
             Password : "1234",
             Type : "Student", 
-            Id : value
+            Id : value,
+            FirstLogin : true
         })
 
         await firebase.firestore().collection("Generate_Id").doc(doccheck).update({
