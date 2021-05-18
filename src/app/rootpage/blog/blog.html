@@ -13,7 +13,7 @@
     <ScrollView height="100%">
       <StackLayout>
           <template *ngFor="let item of this.blogs; let i=index">
-
+            <StackLayout style="border-radius: 20%; background-color: #f1f1f1;" marginTop="7" marginBottom="7">
               <GridLayout columns="2*,85*,13*" rows="auto,auto" style="padding-bottom:10%;">
               <StackLayout [nsRouterLink]="['/viewblog',item.Date,item.Time,this.isRoot]" pageTransition="fade" row="0" col="1">
                 <Label fontSize=20 class="blog-heading"  [text]="item.Heading"></Label>
@@ -24,13 +24,12 @@
                 <Label class="timeanddate" row="0" col="1" [text]="item.Time"></Label>
               </GridLayout>
 
-              <StackLayout *ngIf="this.isRoot" (tap)=remove(i) height="20" width="0" row="0" col="2" verticalAlignment="center">
-                <Image src="~/images/minus.png"></Image>
+              <StackLayout *ngIf="this.isRoot" (tap)=remove(i) height="30" width="0" row="0" col="2" verticalAlignment="center">
+                <Image height="30" width="30" stretch="aspectFill" src="~/images/minus.png" ></Image>
               </StackLayout>
               </GridLayout>
-              <StackLayout>
-                <Label class="line"></Label> 
-              </StackLayout>
+            </StackLayout>
+            <Label class="line"></Label>
             </template>
           </StackLayout>
     </ScrollView>
