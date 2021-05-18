@@ -29,9 +29,9 @@ export class teacherpageattendanceComponent {
 
     public constructor(private router:Router,private route:ActivatedRoute) {
         this.route.params.subscribe((params)=>{
-            this.teacherclass = parseInt(appSettings.getString("Teacher_Class"));
-            this.teachersection = appSettings.getString("Teacher_Section");
         });
+        this.teacherclass = parseInt(appSettings.getString("TeacherClass"));
+        this.teachersection = appSettings.getString("TeacherSection");
         this.waiting = false;
         this.getdetails();
     }  

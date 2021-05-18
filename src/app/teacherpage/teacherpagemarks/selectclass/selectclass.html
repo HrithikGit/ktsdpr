@@ -5,7 +5,7 @@
 </ActionBar> 
 
 
-<StackLayout>
+<!-- <StackLayout>
     <StackLayout>
       <Label *ngIf="this.waiting" class="loading" fontSize="20" text="Loading.. Please Wait"></Label>
       <Label *ngIf="!this.waiting" class="local-heading" fontSize="20" style="padding-bottom: 10;" horizontalAlignment="center" text="Select a Class"></Label>
@@ -24,5 +24,36 @@
           </template>
       </StackLayout>
     </ScrollView>
+    </StackLayout> -->
+
+<ActionBar title="Classes">
+  <ActionItem position="right" (tap)="goHome()">
+      <Image height=40 width=40 src="~/images/homeicon.png"></Image>
+  </ActionItem> 
+</ActionBar> 
+     
+    <ScrollView height="100%">
+      <StackLayout>
+      <StackLayout backgroundColor="#f1f1f1">
+        <Label class="line" backgroundColor="gray"></Label> 
+        <Label *ngIf="this.notready" class="loading" fontSize="20" text="Loading.. Please Wait"></Label>
+        <Label *ngIf="!this.notready" class="heading" fontSize="20" fontWeight="700" horizontalAlingment="center" text="Select a class among your classes!"></Label>
+        <Label class="line" backgroundColor="gray"></Label>
+      </StackLayout>
+    
+      <StackLayout *ngIf="!this.notready">
+      <template *ngFor="let row of this.classes; let i=index"> 
+        <GridLayout paddingTop="20" columns="*,*,*" rows="auto">
+        <Button  *ngIf="3*i<this.classes.length"   [nsRouterLink]="['/exampage', this.classes[3*i].Class_Id,this.classes[3*i].Class_Section,this.teacherid,this.classes[3*i].Subject]" pageTransition="fade" [text]="this.classes[3*i].Class_Id+' - '+this.classes[3*i].Class_Section+'\n'+this.classes[3*i].Subject" color="white" fontWeight="800" fontSize="15" width="90" height="60" row="0" col="0"  textWrap="true" style="border-radius: 15; background-color: #0074d9;"></Button>
+        <Button  *ngIf="3*i+1<this.classes.length" [nsRouterLink]="['/exampage', this.classes[3*i+1].Class_Id,this.classes[3*i+1].Class_Section,this.teacherid,this.classes[3*i+1].Subject]" pageTransition="fade" [text]="this.classes[3*i+1].Class_Id+' - '+this.classes[3*i+1].Class_Section+'\n'+this.classes[3*i+1].Subject" color="white" fontWeight="800" fontSize="15" width="90" height="60" row="0" col="1"  style="border-radius: 15; background-color: #0074d9;" ></Button>
+        <Button  *ngIf="3*i+2<this.classes.length" [nsRouterLink]="['/exampage', this.classes[3*i+2].Class_Id,this.classes[3*i+2].Class_Section,this.teacherid,this.classes[3*i+2].Subject]" pageTransition="fade" [text]="this.classes[3*i+2].Class_Id+' - '+this.classes[3*i+2].Class_Section+'\n'+this.classes[3*i+2].Subject" color="white" fontWeight="800" fontSize="15" width="90" height="60" row="0" col="2"  style="border-radius: 15; background-color: #0074d9;"></Button>
+        </GridLayout>
+      </template>
     </StackLayout>
+      
+      </StackLayout> 
+    </ScrollView>
+
+ 
+
     

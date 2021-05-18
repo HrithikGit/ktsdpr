@@ -1,38 +1,11 @@
-<!--<Page xmlns="http://www.nativescript.org/tns.xsd" xmlns:Gif="nativescript-gif" loaded="pageLoaded" actionBarHidden="true">
-</Page>
-
-<FlexboxLayout class="page">
-    <StackLayout class="form">
-        <StackLayout>
-            <Image class="logo" src="~/images/logo.png"></Image>
-            <ActivityIndicator class="activity-indicator" [busy]="this.waiting"></ActivityIndicator>
-        </StackLayout>
-
-        <StackLayout>
-            <TextField [(ngModel)]="this.user" style="margin-top: 15px" paddingLeft="10%" borderRadius="5%" borderColor="#DEDEDE" borderWidth="1" height="auto" hint="Username..." autocorrect="false"
-             autocapitalizationType="none" ></TextField>
-        </StackLayout>
-        
-        <StackLayout>
-            <TextField [(ngModel)]="this.pass" secure="true" style="margin-top: 15px" paddingLeft="10%" borderRadius="5%" borderColor="#DEDEDE" borderWidth="1" height="auto" hint="Password..." autocorrect="false"
-             autocapitalizationType="none" ></TextField>
-        </StackLayout>
-        <StackLayout>
-            <Label class="errortext" *ngIf="this.notcorrect" text="Username and Password doesn't match"></Label>
-        </StackLayout>
-        <Button text="Log In" class="btn-btn-primary" (tap)="loginAuthenicate()" style="font-size: 16%;"></Button>
-      </StackLayout>
-</FlexboxLayout>-->
-  
-<!--<StackLayout verticalAlignment="center">
+<StackLayout verticalAlignment="center">
     <Button (tap)="teacherpage()" text="Teacher"></Button>
     <Button (tap)="rootpage()" text="Root"></Button>
     <Button (tap)="studentpage()"text="Student"></Button>
-</StackLayout>--> 
- 
- <!---->
-    
-<GridLayout rows="40*,20*,40*" columns="*" *ngIf="!this.loading" class="root-bg">
+</StackLayout>
+
+
+<!-- <GridLayout rows="40*,20*,40*" columns="*" *ngIf="!this.loading" class="root-bg">
     <StackLayout row="0" col="0" verticalAlignment="bottom">
 
         <Image width="130" height="130" stretch="aspectFill" style="padding-bottom: 10;" src="~/images/applogo.png"></Image>
@@ -63,4 +36,4 @@
 </GridLayout>
 <StackLayout *ngIf="this.loading">
     <Image horizontalAlignment="center" style="margin-top: 30%;" stretch="aspectFit" src="~/images/rl.png"></Image>
-</StackLayout>
+</StackLayout> -->
