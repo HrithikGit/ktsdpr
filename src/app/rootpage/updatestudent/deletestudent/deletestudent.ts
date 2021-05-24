@@ -14,7 +14,7 @@ export class deletestudentComponent {
     student_class;
     student_section;
     waiting;
-    editable;
+    editable=false;
     students=[];
     public constructor(private router: Router,private route:ActivatedRoute) {
         this.route.params.subscribe((params)=>{
@@ -22,7 +22,7 @@ export class deletestudentComponent {
             this.student_section = params["section"]
             console.log(this.student_class+" "+this.student_section);
         })
-        if(appSettings.getString("TypeOfUser")=="root"){
+        if(appSettings.getString("TypeOfUser")=="root" || appSettings.getString("TypeOfUser")=="teacher"){
             this.editable=true;
         }
         this.waiting = true;

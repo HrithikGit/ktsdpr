@@ -18,7 +18,7 @@ firebase.initializeApp({
     templateUrl: "./items.component.html",
     styleUrls : ["./items.component.css"]
 })
-export class ItemsComponent implements OnInit { 
+export class ItemsComponent implements OnInit {
     user="";
     pass="";
     notcorrect ;
@@ -62,7 +62,7 @@ export class ItemsComponent implements OnInit {
                 personid = doc.data()["Id"];
                 if(doc.data()["Type"]=="Teacher"){
                     type="teacher";
-                    console.log(doc.data()); 
+                    console.log(doc.data());
                 }
                 else if(doc.data()["Type"]=="Root"){
                     type ="root";
@@ -82,7 +82,7 @@ export class ItemsComponent implements OnInit {
                     defaultText: "",
                     okButtonText: "Ok",
                     cancelButtonText: "Cancel"
-                  }).then((data) => { 
+                  }).then((data) => {
                     if (data.result) {
                         if(data.text.trim().length==0){
                             alert("Password cannot be empty ! Retry");
@@ -99,7 +99,7 @@ export class ItemsComponent implements OnInit {
                     else{
                         returntopage =true;
                     }
-                  }); 
+                  });
             }
             if(returntopage){
                 this.loading = false;
@@ -115,9 +115,9 @@ export class ItemsComponent implements OnInit {
                         appSettings.setString("StudentClass",doc.data().Class_Id+"");
                         appSettings.setString("StudentSection",doc.data().Class_Section);
                         appSettings.setString("RollNumber",doc.data()["Student_Id"]+"");
-                    }) 
+                    })
                 })
-                this.updateandmove(type); 
+                this.updateandmove(type);
             }
 
 
@@ -145,12 +145,12 @@ export class ItemsComponent implements OnInit {
             else{
                 appSettings.setString("IsRoot","True");
                 this.updateandmove(type);
-            } 
+            }
         }
-        else{ 
-            this.notcorrect = true; 
+        else{
+            this.notcorrect = true;
         }
-        this.waiting = false; 
+        this.waiting = false;
         this.loading=false;
     }
 
@@ -168,7 +168,7 @@ export class ItemsComponent implements OnInit {
         appSettings.setString("AlreadyLoggedIn","Yes");
         appSettings.setString("TypeOfUser",type);
         this.router.navigate([type]);
-    } 
+    }
     rootpage(){
         appSettings.setString("TypeOfUser","root");
         this.router.navigate(["root"]);
