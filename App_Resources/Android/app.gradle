@@ -16,7 +16,7 @@ android {
     applicationId ="org.nativescript.ktsdpr"
     multiDexEnabled true
   }
-  aaptOptions {
+  aaptOptions {    
     additionalParameters "--no-version-vectors"
   }
 dependencies {

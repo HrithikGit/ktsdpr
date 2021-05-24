@@ -14,7 +14,7 @@ firebase.initializeApp({
 }).then(instance =>( console.log("Intialized from component ")));
 
 @Component({
-    selector: "ns-items",
+    selector: "login-page",
     templateUrl: "./items.component.html",
     styleUrls : ["./items.component.css"]
 })
