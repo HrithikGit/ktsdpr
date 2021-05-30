@@ -4,24 +4,59 @@
     </ActionItem>
   </ActionBar> 
 
-<StackLayout>
-    <!-- REY IKKADA FORM PETTU-->
-    <Label text="Student Name" class="local-heading"></Label>
-    <TextField [(ngModel)]="this.student_name" class="input-add-db" autocorrect="false"></TextField>
-
-    <GridLayout rows="auto,auto" columns="50*,50*">
-    <Label text="Roll No" class="local-heading" row="0" col="0"></Label>
-    <TextField [(ngModel)]="this.student_id" row="1" col="0" class="input-add-db"  autocorrect="false"></TextField>
-    <Label text="Attendance" row="0" col="1" class="local-heading"></Label>
-    <TextField [(ngModel)]="this.student_attendance" row="1" col="1" class="input-add-db"  autocorrect="false"></TextField>
-    </GridLayout>
-
-    <Label text="Address" class="local-heading"></Label>
-    <TextView [(ngModel)]="this.student_address" class="input-add-db"  height="20%" autocorrect="false"></TextView>
-
+<ScrollView height="100%">
     <StackLayout>
-    <Label *ngIf="this.notvalid" fontSize="15" class="errortext" text="Please Enter Valid Data"></Label>
-    </StackLayout>
+        <Label text="Student Name" class="local-heading"></Label>
+        <TextField [(ngModel)]="this.student_name" class="input-add-db" autocorrect="false"></TextField>
 
-    <Button text="Add" class="addbutton" (tap)="fun()"></Button>
-</StackLayout>
+        <Label text="Student's Father Name" class="local-heading"></Label>
+        <TextField [(ngModel)]="this.student_father_name" class="input-add-db" autocorrect="false"></TextField>
+
+        <Label text="Student's Mother Name" class="local-heading"></Label>
+        <TextField [(ngModel)]="this.student_mother_name" class="input-add-db" autocorrect="false"></TextField>
+
+        <GridLayout rows="auto,auto,auto,auto" columns="50*,50*">
+        
+        <Label text="Class" class="local-heading" row="0" col="0"></Label>
+        <TextField editable="false" [(ngModel)]="this.student_class" row="1" col="0" class="input-add-db"  autocorrect="false"></TextField>
+        <Label text="Section" row="0" col="1" class="local-heading"></Label>
+        <TextField editable="false" [(ngModel)]="this.student_section" row="1" col="1" class="input-add-db"  autocorrect="false"></TextField>
+         
+        <Label text="Roll No" class="local-heading" row="2" col="0"></Label>
+        <TextField [(ngModel)]="this.student_id" row="3" col="0" class="input-add-db"  autocorrect="false"></TextField>
+        <Label text="Attendance" row="2" col="1" class="local-heading"></Label>
+        <TextField [(ngModel)]="this.student_attendance" row="3" col="1" class="input-add-db"  autocorrect="false"></TextField>
+        
+        </GridLayout>
+
+        <GridLayout rows="auto,auto,auto" columns="65*,35*">
+            <Label text="Mobile Number" class="local-heading" row="0" col="0"></Label>
+            <TextField (textChange)="checkMobile($event)" keyboardType="phone" [(ngModel)]="this.student_mobileno" row="1" col="0" class="input-add-db"  autocorrect="false"></TextField>
+            <Label row="2" col="0" *ngIf="!isMobileValid" class="errortext" text="Mobile number should be 10 digits"></Label>
+        </GridLayout>
+
+        <GridLayout rows="auto,auto,auto" columns="65*,35*">
+            <Label text="Date of Birth (DD-MM-YYYY)" class="local-heading" row="0" col="0"></Label>
+            <TextField [(ngModel)]="this.student_dob" (textChange)="checkDob($event)" row="1" col="0" class="input-add-db" hint="Ex : 30-12-2021" autocorrect="false"></TextField>
+            <Label row="2" col="0" *ngIf="this.doberror" class="errortext" text="Please check the format"></Label>
+        </GridLayout>
+
+        <!-- Moles -->
+        <GridLayout rows="auto,auto,auto" columns="100*">
+            <Label text="Mole's" class="local-heading" row="0" col="0"></Label>
+            <TextField [(ngModel)]="this.mole1" row="1" col="0" class="input-add-db" hint="Enter Mole(1) for Identity" autocorrect="false"></TextField>
+            <TextField [(ngModel)]="this.mole2" row="2" col="0" class="input-add-db" hint="Enter Mole(2) for Identity" autocorrect="false"></TextField>
+        </GridLayout>
+
+
+        <Label text="Address" class="local-heading"></Label>
+        <TextView [(ngModel)]="this.student_address" class="input-add-db"  height="20%" autocorrect="false"></TextView>
+ 
+        <StackLayout>
+        <Label *ngIf="this.notvalid" fontSize="15" class="errortext" text="Please Enter Valid Data"></Label>
+        </StackLayout>    
+
+        <Button text="Add" class="addbutton" (tap)="fun()"></Button>
+    </StackLayout>
+</ScrollView> 
+    

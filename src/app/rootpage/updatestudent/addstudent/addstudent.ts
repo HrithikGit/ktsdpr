@@ -16,10 +16,18 @@ export class addstudentComponent {
     student_id;
     student_section;
     student_attendance;
-    exists;
+    exists; 
     notvalid;
     succeded;
     student_address;
+    student_mobileno;
+    isMobileValid;
+    student_father_name;
+    student_mother_name;
+    student_dob;
+    mole1;
+    mole2;
+    doberror;
     constructor(private router: Router,private route: ActivatedRoute,private page: Page) {
         this.route.params.subscribe((params)=>{
             this.student_class= params["name"],
@@ -29,16 +37,56 @@ export class addstudentComponent {
         this.intialize();
     }
     intialize(): void {
+        this.doberror = false;
+        this.isMobileValid = true;
+        this.student_mobileno="";
         this.student_address="";
         this.student_name="";
         this.student_id="";
         this.student_attendance="";
         this.notvalid = false;
         this.exists = false;
+        this.student_father_name="";
+        this.student_mother_name="";
+        this.mole1="";
+        this.mole2="";
     }
     isCharacterALetter(char) {
         return (/[a-zA-Z]/).test(char)
-      }
+      } 
+
+    checkMobile(event : any){
+        console.log("Came here")
+        if(this.student_mobileno.trim().length!=10){
+            this.isMobileValid = false;
+            return;
+        }
+        this.isMobileValid = true;
+    }
+
+    checkDob(event : any){
+        try{
+            var splittedDob = this.student_dob.split("-"); 
+            if(splittedDob.length!=3){
+                this.doberror = true;
+                return;
+            }
+            var day = parseInt(splittedDob[0]);
+            var month = parseInt(splittedDob[1]);
+            if(splittedDob[2].length!=4){
+                this.doberror= true;
+            }
+            if(day<=0 || day>31 || month<0 || month>=13){
+                this.doberror=true;
+                return;
+            } 
+        }
+        catch(error){
+            this.doberror = true;
+            return;
+        }
+        this.doberror = false;
+    }
 
     async fun(){
         this.student_attendance.trim();
@@ -51,7 +99,7 @@ export class addstudentComponent {
 
         // console.log(this.class_year);
 
-        if(this.student_name.length==0){
+        if(this.student_name.length==0 || (!this.isMobileValid) || this.doberror){
             this.notvalid = true;
             return;
         }
@@ -88,7 +136,7 @@ export class addstudentComponent {
             message: 'Loading...',
             details: 'Please Wait',
             progress: 0.65, 
-            margin: 10,
+            margin: 10, 
             dimBackground: true,
             color: '#FF392E', 
             backgroundColor: 'yellow',
@@ -105,16 +153,21 @@ export class addstudentComponent {
             Class_Id : parseInt(this.student_class),
             Class_Section : this.student_section,
             Student_Name : this.student_name,
+            Student_Father_Name : this.student_father_name,
+            Student_Mother_Name : this.student_mother_name,
             Student_Attendance : parseInt(this.student_attendance),
+            Student_Mobile_No : parseInt(this.student_mobileno),
+            Date_Of_Birth : this.student_dob,
             Student_Address : this.student_address,
             Is_Present_Today : "0",
             Classes_So_Far : 0, 
             Classes_Attended : 0,
-            Is_Present_Yesterday : "0"
+            Is_Present_Yesterday : "0",
+            Date_Of_Joining: new Date().getDate()+"-"+(new Date().getMonth()+1)+"-"+new Date().getFullYear()
         })
         
         await firebase.firestore().collection("Users").add({
-            Username: unqid,
+            Username: parseInt(this.student_mobileno),
             Password : "1234",
             Type : "Student", 
             Id : value,
