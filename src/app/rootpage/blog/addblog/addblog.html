@@ -3,12 +3,48 @@
         <Image height=40 width=40 src="~/images/homeicon.png"></Image>
     </ActionItem>
   </ActionBar>  
-<StackLayout class="input-form">
+<Label text="Loading Please Wait" *ngIf="this.waiting"></Label>
+<ScrollView>
+<StackLayout class="input-form" *ngIf="!this.waiting">
     <Label text="Heading" fontSize="17%" class="local-heading"></Label>
     <TextField textWrap="true" [(ngModel)]="this.heading"  style="margin-top:15px" backgroundColor="#f1f1f1" paddingLeft="10%" borderRadius="5%" borderColor="#DEDEDE" borderWidth="1" hint="Please Enter the heading"></TextField>
     <Label text="Content" fontSize="17%" class="local-heading"></Label>
     <TextView textWrap="true" [(ngModel)]="this.content" style="margin-top: 15px" backgroundColor="#f1f1f1" paddingLeft="10%" borderRadius="5%" borderColor="#DEDEDE" borderWidth="1" height="50%" hint="Enter Note" ></TextView>
-    <Button text="Add Images" width="40%"></Button>
+    
     <Label *ngIf="!this.headavail" style="margin-top: 15px" borderRadius="5%" borderColor="#DEDEDE" borderWidth="1" class="errortext" text="*Fields Cannot be Empty"></Label>
-    <Button text="Post" (tap)="addToDb()"class="addbutton"></Button>
+    <Label text="Select the Classes of this blog" fontSize="17%" class="local-heading" horizontalAlignment="center"></Label>
+    <StackLayout>
+    <GridLayout rows="auto" columns="*,auto,auto,*">
+        <Label text="All Classes?" row="0" col="1" fontSize="17%" verticalAlignment="center"></Label>
+        <Switch checked="true" (checkedChange)="onCheckedChange($event)" row="0" col="2"></Switch>
+    </GridLayout>
+    <StackLayout *ngIf="this.show_classes" width="80%" style="background-color: #f1f1f1;">
+        <template *ngFor="let cls of this.all_classes; index as i">
+            <GridLayout rows="auto" columns="*,auto,auto,auto,*" (tap)="select_class(i)" style="background-color: {{getcolor(i)}};">
+                <Label [text]="cls.Class_Id" row="0" col="1" fontSize="14"></Label>
+                <Label text="-" row="0" col="2" fontSize="14"></Label>
+                <Label [text]="cls.Class_Section" row="0" col="3" fontSize="14"></Label>
+            </GridLayout>
+        </template>
+    </StackLayout>
+    </StackLayout>
+    <StackLayout>
+        <Label text="Send to a particular ID?" fontSize="17%" class="local-heading" horizontalAlignment="center"></Label>
+        <Button text="Add Id" width="60%" horizontalAlignment="center" (tap)="addID()"></Button>
+        <StackLayout>
+            <template *ngFor="let row of this.IDs;index as i">
+                <GridLayout rows="auto" columns="*,auto,auto,*">
+                    <TextField [(ngModel)]="row.ID" width="40%" row="0" col="1"></TextField>
+                    <StackLayout row="0" col="2" (tap)="removeID(i)">
+                        <Image height="30" width="30" stretch="aspectFill" src="~/images/minus.png" row="0" col="2" ></Image>
+                    </StackLayout>
+                    
+                </GridLayout>
+                
+            </template>
+        </StackLayout>
+    </StackLayout>
+    <Button text="Add Images" width="40%"></Button>
+    <Button text="Post" (tap)="addToDb()" class="addbutton"></Button>
 </StackLayout>
+</ScrollView>
